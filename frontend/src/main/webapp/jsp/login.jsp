@@ -11,8 +11,8 @@
 <head>
     <title>Login page</title>
 </head>
-<script src="resources/js/libs/jquery-3.2.1.min.js"></script>
-<script src="resources/js/custom/loadSimpleData.js"></script>
+<script src="../resources/js/jquery-3.2.1.min.js"></script>
+<script src="../resources/js/custom/loadSimpleData.js"></script>
 <body>
 <jsp:include page="/jsp/blocks/header.jsp"/>
 
