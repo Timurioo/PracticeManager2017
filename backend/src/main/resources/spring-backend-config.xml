@@ -43,7 +43,7 @@
     <context:component-scan base-package="com.netcracker"/>
 
     <!-- Need for Repository abstraction -->
-    <jpa:repositories base-package="com.netcracker.repository" entity-manager-factory-ref="emf"
+    <jpa:repositories base-package="com.netcracker.pmbackend.repository" entity-manager-factory-ref="emf"
                       transaction-manager-ref="transactionManager"/>
 
 </beans>
