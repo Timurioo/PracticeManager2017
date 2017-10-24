@@ -1,4 +1,4 @@
-package com.netcracker.pmbackend.entities;
+package com.netcracker.pmbackend.impl.entities;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -7,13 +7,12 @@ import java.util.Collection;
  * Created by dima on 10/24/2017.
  */
 @Entity
-@Table(name = "headofpractices", schema = "practicemanager", catalog = "")
-public class HeadofpracticesEntity {
+@Table(name = "faculty", schema = "practicemanager", catalog = "")
+public class FacultyEntity {
     private int id;
-    private int userId;
     private String name;
-    private UsersEntity usersByUserId;
     private Collection<PracticesEntity> practicesById;
+    private Collection<SpecialityEntity> specialitiesById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -26,17 +25,7 @@ public class HeadofpracticesEntity {
     }
 
     @Basic
-    @Column(name = "user_id", nullable = false, insertable = false, updatable = false)
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    @Basic
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -50,10 +39,9 @@ public class HeadofpracticesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        HeadofpracticesEntity that = (HeadofpracticesEntity) o;
+        FacultyEntity that = (FacultyEntity) o;
 
         if (id != that.id) return false;
-        if (userId != that.userId) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
@@ -62,27 +50,25 @@ public class HeadofpracticesEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + userId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    public UsersEntity getUsersByUserId() {
-        return usersByUserId;
-    }
-
-    public void setUsersByUserId(UsersEntity usersByUserId) {
-        this.usersByUserId = usersByUserId;
-    }
-
-    @OneToMany(mappedBy = "headofpracticesByHeadofpracticeId")
+    @OneToMany(mappedBy = "facultyByFacultyId")
     public Collection<PracticesEntity> getPracticesById() {
         return practicesById;
     }
 
     public void setPracticesById(Collection<PracticesEntity> practicesById) {
         this.practicesById = practicesById;
+    }
+
+    @OneToMany(mappedBy = "facultyByFacultyId")
+    public Collection<SpecialityEntity> getSpecialitiesById() {
+        return specialitiesById;
+    }
+
+    public void setSpecialitiesById(Collection<SpecialityEntity> specialitiesById) {
+        this.specialitiesById = specialitiesById;
     }
 }

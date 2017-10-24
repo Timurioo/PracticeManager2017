@@ -1,4 +1,4 @@
-package com.netcracker.pmbackend.entities;
+package com.netcracker.pmbackend.impl.entities;
 
 import javax.persistence.*;
 import java.util.Collection;
