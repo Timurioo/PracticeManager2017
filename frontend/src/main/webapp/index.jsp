@@ -12,6 +12,6 @@
     <title></title>
 </head>
 <body>
-<c:redirect url = "/users-view"/>
+<c:redirect url = "/authorization"/>
 </body>
 </html>
