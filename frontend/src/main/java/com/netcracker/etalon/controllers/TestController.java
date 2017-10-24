@@ -24,6 +24,7 @@
 package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.beans.UserViewModel;
+import com.netcracker.pmbackend.impl.test.SpringDataTest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +47,19 @@ public class TestController {
         return "login";
     }
 
+    @RequestMapping(value = "/authorization", method = RequestMethod.GET)
+    public String goToAuthorizationPage() {
+        return "authorization";
+    }
+
+    // Spring Data Testing
+    /*@RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String goTest() {
+        SpringDataTest springDataTest = new SpringDataTest();
+        springDataTest.testMethod();
+        return "login";
+    }*/
+
     @RequestMapping(value = "/users-view", method = RequestMethod.GET)
     public ModelAndView getUsersAsModelWithView() {
 
@@ -57,6 +71,7 @@ public class TestController {
     @RequestMapping(value = "/usersAsJson", method = RequestMethod.GET)
     @ResponseBody
     public List<UserViewModel> getUsersAsJson() {
+
         return getStubUsers();
     }
 
