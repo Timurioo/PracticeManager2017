@@ -17,6 +17,7 @@
         <datasource-mapping>
           <factory-entry name="NewPersistenceUnit" />
           <factory-entry name="emf" value="dataSource" />
+          <factory-entry name="noname-a.xml@0" value="2a92f383-5327-48f6-b23f-2a160cf16fbf" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/java/META-INF/persistence.xml" />
       </configuration>

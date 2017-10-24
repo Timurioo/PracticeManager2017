@@ -37,7 +37,7 @@ public class PracticesEntity {
     }
 
     @Basic
-    @Column(name = "headofpractice_id", nullable = false)
+    @Column(name = "headofpractice_id", nullable = false, insertable = false, updatable = false)
     public int getHeadofpracticeId() {
         return headofpracticeId;
     }
@@ -117,7 +117,7 @@ public class PracticesEntity {
     }
 
     @Basic
-    @Column(name = "speciality_id", nullable = true)
+    @Column(name = "speciality_id", nullable = true, insertable = false, updatable = false)
     public Integer getSpecialityId() {
         return specialityId;
     }
@@ -127,7 +127,7 @@ public class PracticesEntity {
     }
 
     @Basic
-    @Column(name = "faculty_id", nullable = true)
+    @Column(name = "faculty_id", nullable = true, insertable = false, updatable = false)
     public Integer getFacultyId() {
         return facultyId;
     }

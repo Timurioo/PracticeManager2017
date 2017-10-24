@@ -27,7 +27,7 @@ public class SpecialityEntity {
     }
 
     @Basic
-    @Column(name = "faculty_id", nullable = false)
+    @Column(name = "faculty_id", nullable = false, insertable = false, updatable = false)
     public int getFacultyId() {
         return facultyId;
     }

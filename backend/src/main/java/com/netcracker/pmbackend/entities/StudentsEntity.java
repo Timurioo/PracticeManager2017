@@ -35,7 +35,7 @@ public class StudentsEntity {
     }
 
     @Basic
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id", nullable = false, insertable = false, updatable = false)
     public int getUserId() {
         return userId;
     }
@@ -85,7 +85,7 @@ public class StudentsEntity {
     }
 
     @Basic
-    @Column(name = "speciality_id", nullable = false)
+    @Column(name = "speciality_id", nullable = false, insertable = false, updatable = false)
     public int getSpecialityId() {
         return specialityId;
     }
@@ -175,7 +175,7 @@ public class StudentsEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "studentsByStudentId")
+    @OneToMany(mappedBy = "studentsByStudentId" )
     public Collection<AssignstudentsEntity> getAssignstudentsesById() {
         return assignstudentsesById;
     }

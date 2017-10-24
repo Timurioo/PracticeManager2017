@@ -25,7 +25,7 @@ public class AssignstudentsEntity {
     }
 
     @Basic
-    @Column(name = "student_id", nullable = false)
+    @Column(name = "student_id", nullable = false, insertable = false, updatable = false)
     public int getStudentId() {
         return studentId;
     }
@@ -35,7 +35,7 @@ public class AssignstudentsEntity {
     }
 
     @Basic
-    @Column(name = "practice_id", nullable = false)
+    @Column(name = "practice_id", nullable = false, insertable = false, updatable = false)
     public int getPracticeId() {
         return practiceId;
     }
