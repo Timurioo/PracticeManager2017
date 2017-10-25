@@ -25,6 +25,11 @@ public class StudentsServiceImpl implements StudentsService {
     }
 
 
+    public StudentsEntity findById(int id) {
+        return studentsRepository.findOne(id);
+    }
+
+
     public List<StudentsEntity> findByName(String name) {
         return studentsRepository.findByName(name);
     }
@@ -32,5 +37,15 @@ public class StudentsServiceImpl implements StudentsService {
 
     public List<StudentsEntity> findByGroup(String group) {
         return studentsRepository.findByGroup(group);
+    }
+
+
+    public StudentsEntity findByUserId(int userId) {
+        return studentsRepository.findByUserId(userId);
+    }
+
+
+    public List<StudentsEntity> findByStatus(String status) {
+        return studentsRepository.findByStatus(status);
     }
 }

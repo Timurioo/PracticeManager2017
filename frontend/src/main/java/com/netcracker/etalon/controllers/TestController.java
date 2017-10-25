@@ -24,7 +24,14 @@
 package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.beans.UserViewModel;
+import com.netcracker.pmbackend.impl.entities.SpecialityEntity;
+import com.netcracker.pmbackend.impl.entities.StudentsEntity;
+import com.netcracker.pmbackend.impl.entities.UsersEntity;
 import com.netcracker.pmbackend.impl.test.SpringDataTest;
+import com.netcracker.pmbackend.interfaces.SpecialityService;
+import com.netcracker.pmbackend.interfaces.StudentsService;
+import com.netcracker.pmbackend.interfaces.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +49,16 @@ import java.util.List;
 @Controller
 public class TestController {
 
+    @Autowired
+    private UsersService usersService;
+
+    @Autowired
+    private StudentsService studentsService;
+
+    @Autowired
+    private SpecialityService specialityService;
+
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String goToLoginPage() {
         return "login";
@@ -55,8 +72,17 @@ public class TestController {
     // Spring Data Testing
     /*@RequestMapping(value = "/test", method = RequestMethod.GET)
     public String goTest() {
-        SpringDataTest springDataTest = new SpringDataTest();
-        springDataTest.testMethod();
+
+        UsersEntity usersEntity = usersService.findById(1);
+        System.out.println(usersEntity.getId()+" "+ usersEntity.getLogin() + " "+ usersEntity.getPassword());
+
+        for(StudentsEntity studentsEntity : studentsService.findAll()){
+            System.out.println(studentsEntity.getId() + " " + studentsEntity.getName() + " " + studentsEntity.getSpecialityBySpecialityId().getName());
+        }
+
+        SpecialityEntity specialityEntity = specialityService.findById(1);
+        System.out.println(specialityEntity.getId()+" "+ specialityEntity.getName() + specialityEntity.getFacultyByFacultyId().getName());
+
         return "login";
     }*/
 
