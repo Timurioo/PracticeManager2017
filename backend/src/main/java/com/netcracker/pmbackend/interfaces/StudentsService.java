@@ -5,12 +5,13 @@ import com.netcracker.pmbackend.impl.entities.StudentsEntity;
 
 import java.util.List;
 
-/**
- * Created by dima on 10/23/2017.
- */
+
 public interface StudentsService {
 
     List<StudentsEntity> findAll();
+    StudentsEntity findById(int id);
     List<StudentsEntity> findByName(String name);
     List<StudentsEntity> findByGroup(String group);
+    StudentsEntity findByUserId(int userId);
+    List<StudentsEntity> findByStatus(String status);
 }
