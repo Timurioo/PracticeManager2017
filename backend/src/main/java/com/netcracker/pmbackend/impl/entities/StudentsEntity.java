@@ -18,7 +18,7 @@ public class StudentsEntity {
     private int specialityId;
     private String group;
     private double avrMark;
-    private byte budget;
+    private String budget;
     private String status;
     private Collection<AssignstudentsEntity> assignstudentsesById;
     private UsersEntity usersByUserId;
@@ -116,11 +116,11 @@ public class StudentsEntity {
 
     @Basic
     @Column(name = "budget", nullable = false)
-    public byte getBudget() {
+    public String getBudget() {
         return budget;
     }
 
-    public void setBudget(byte budget) {
+    public void setBudget(String budget) {
         this.budget = budget;
     }
 
@@ -145,7 +145,7 @@ public class StudentsEntity {
         if (userId != that.userId) return false;
         if (specialityId != that.specialityId) return false;
         if (Double.compare(that.avrMark, avrMark) != 0) return false;
-        if (budget != that.budget) return false;
+        if (budget != null ? !budget.equals(that.budget) : that.budget != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
@@ -170,7 +170,7 @@ public class StudentsEntity {
         result = 31 * result + (group != null ? group.hashCode() : 0);
         temp = Double.doubleToLongBits(avrMark);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (int) budget;
+        result = 31 * result + (budget != null ? budget.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
