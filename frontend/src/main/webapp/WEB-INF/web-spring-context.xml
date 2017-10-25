@@ -23,5 +23,7 @@
 
     <!-- Import backend context-->
     <import  resource="classpath*:spring-backend-config.xml"/>
+    <!-- Import converters context-->
+    <import resource="web-converters-context.xml"/>
 
 </beans>
