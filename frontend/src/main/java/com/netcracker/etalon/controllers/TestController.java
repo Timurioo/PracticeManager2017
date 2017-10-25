@@ -27,11 +27,12 @@ import com.netcracker.etalon.beans.UserViewModel;
 import com.netcracker.pmbackend.impl.entities.SpecialityEntity;
 import com.netcracker.pmbackend.impl.entities.StudentsEntity;
 import com.netcracker.pmbackend.impl.entities.UsersEntity;
-import com.netcracker.pmbackend.impl.test.SpringDataTest;
 import com.netcracker.pmbackend.interfaces.SpecialityService;
 import com.netcracker.pmbackend.interfaces.StudentsService;
 import com.netcracker.pmbackend.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,6 +59,13 @@ public class TestController {
     @Autowired
     private SpecialityService specialityService;
 
+    @Autowired
+    private ConversionService conversionService;
+
+
+    // Type Descriptors for custom converters
+    private final TypeDescriptor userEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UsersEntity.class));
+    private final TypeDescriptor userViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UserViewModel.class));
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String goToLoginPage() {
@@ -70,7 +78,7 @@ public class TestController {
     }
 
     // Spring Data Testing
-    /*@RequestMapping(value = "/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/testdb", method = RequestMethod.GET)
     public String goTest() {
 
         UsersEntity usersEntity = usersService.findById(1);
@@ -84,35 +92,26 @@ public class TestController {
         System.out.println(specialityEntity.getId()+" "+ specialityEntity.getName() + specialityEntity.getFacultyByFacultyId().getName());
 
         return "login";
-    }*/
+    }
 
     @RequestMapping(value = "/users-view", method = RequestMethod.GET)
     public ModelAndView getUsersAsModelWithView() {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
-        modelAndView.addObject("users", getStubUsers());
+        //modelAndView.addObject("users", getStubUsers());
         return modelAndView;
     }
+
+
     @RequestMapping(value = "/usersAsJson", method = RequestMethod.GET)
     @ResponseBody
     public List<UserViewModel> getUsersAsJson() {
-
-        return getStubUsers();
+        List<UsersEntity> allUsers = usersService.findAll();
+        return (List<UserViewModel>) conversionService.convert(allUsers,userEntityTypeDescriptor, userViewModelTypeDescriptor);
     }
 
-    private List<UserViewModel> getStubUsers() {
-        List<UserViewModel> userViewModels = new ArrayList<>();
-        UserViewModel userViewModelIvan  = new UserViewModel();
-        userViewModelIvan.setId("113");
-        userViewModelIvan.setName("Ivan");
-        UserViewModel userViewModelLeopold = new UserViewModel();
-        userViewModelLeopold.setId("114");
-        userViewModelLeopold.setName("Leopold");
-        userViewModels.add(userViewModelIvan);
-        userViewModels.add(userViewModelLeopold);
-        return userViewModels;
-    }
+
 
 
 }
