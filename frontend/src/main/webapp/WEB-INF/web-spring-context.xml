@@ -21,4 +21,7 @@
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
+    <!-- Import backend context-->
+    <import  resource="classpath*:spring-backend-config.xml"/>
+
 </beans>
