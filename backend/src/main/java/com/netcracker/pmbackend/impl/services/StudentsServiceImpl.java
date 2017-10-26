@@ -19,32 +19,32 @@ public class StudentsServiceImpl implements StudentsService {
     @Autowired
     private StudentsRepository studentsRepository;
 
-
+    @Transactional(readOnly = true)
     public List<StudentsEntity> findAll() {
         return Lists.newArrayList(studentsRepository.findAll());
     }
 
-
+    @Transactional(readOnly = true)
     public StudentsEntity findById(int id) {
         return studentsRepository.findOne(id);
     }
 
-
+    @Transactional(readOnly = true)
     public List<StudentsEntity> findByName(String name) {
         return studentsRepository.findByName(name);
     }
 
-
+    @Transactional(readOnly = true)
     public List<StudentsEntity> findByGroup(String group) {
         return studentsRepository.findByGroup(group);
     }
 
-
+    @Transactional(readOnly = true)
     public StudentsEntity findByUserId(int userId) {
         return studentsRepository.findByUserId(userId);
     }
 
-
+    @Transactional(readOnly = true)
     public List<StudentsEntity> findByStatus(String status) {
         return studentsRepository.findByStatus(status);
     }

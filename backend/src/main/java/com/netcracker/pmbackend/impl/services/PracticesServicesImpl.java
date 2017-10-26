@@ -19,21 +19,22 @@ public class PracticesServicesImpl implements PracticesService {
     @Autowired
     private PracticesRepository practicesRepository;
 
+    @Transactional(readOnly = true)
     public List<PracticesEntity> findAll() {
         return Lists.newArrayList(practicesRepository.findAll());
     }
 
-
+    @Transactional(readOnly = true)
     public PracticesEntity findById(int id) {
         return practicesRepository.findOne(id);
     }
 
-
+    @Transactional(readOnly = true)
     public List<PracticesEntity> findByHeadofpracticeId(int id) {
         return practicesRepository.findByHeadofpracticeId(id);
     }
 
-
+    @Transactional(readOnly = true)
     public List<PracticesEntity> findByStatus(String status) {
         return practicesRepository.findByStatus(status);
     }

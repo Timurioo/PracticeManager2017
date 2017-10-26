@@ -19,16 +19,17 @@ public class HeadofpracticesServiceImpl implements HeadofpracticesService {
     @Autowired
     private HeadofpracticesRepository headofpracticesRepository;
 
+    @Transactional(readOnly = true)
     public List<HeadofpracticesEntity> findAll() {
         return Lists.newArrayList(headofpracticesRepository.findAll());
     }
 
-
+    @Transactional(readOnly = true)
     public HeadofpracticesEntity findById(int id) {
         return headofpracticesRepository.findOne(id);
     }
 
-
+    @Transactional(readOnly = true)
     public HeadofpracticesEntity findByUserId(int userId) {
         return headofpracticesRepository.findByUserId(userId);
     }

@@ -20,21 +20,22 @@ public class AssignStudentsServiceImpl implements AssignStudentsService {
     @Autowired
     private AssignStudentsRepository assignStudentsRepository;
 
+    @Transactional(readOnly = true)
     public List<AssignstudentsEntity> findAll() {
         return Lists.newArrayList(assignStudentsRepository.findAll());
     }
 
-
+    @Transactional(readOnly = true)
     public AssignstudentsEntity findById(int id) {
         return assignStudentsRepository.findOne(id);
     }
 
-
+    @Transactional(readOnly = true)
     public List<AssignstudentsEntity> findByStudentId(int studentId) {
         return assignStudentsRepository.findByStudentId(studentId);
     }
 
-
+    @Transactional(readOnly = true)
     public List<AssignstudentsEntity> findByPracticeId(int practiceId) {
         return assignStudentsRepository.findByPracticeId(practiceId);
     }

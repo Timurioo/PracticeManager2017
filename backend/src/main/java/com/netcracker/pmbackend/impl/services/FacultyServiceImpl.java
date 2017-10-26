@@ -19,16 +19,17 @@ public class FacultyServiceImpl implements FacultyService {
     @Autowired
     private FacultyRepository facultyRepository;
 
+    @Transactional(readOnly = true)
     public List<FacultyEntity> findAll() {
         return Lists.newArrayList(facultyRepository.findAll());
     }
 
-
+    @Transactional(readOnly = true)
     public FacultyEntity findById(int id) {
         return facultyRepository.findOne(id);
     }
 
-
+    @Transactional(readOnly = true)
     public FacultyEntity findByName(String name) {
         return facultyRepository.findByName(name);
     }

@@ -19,16 +19,17 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     private UsersRepository usersRepository;
 
+    @Transactional(readOnly = true)
     public List<UsersEntity> findAll() {
         return Lists.newArrayList(usersRepository.findAll());
     }
 
-
+    @Transactional(readOnly = true)
     public UsersEntity findById(int id) {
         return usersRepository.findOne(id);
     }
 
-
+    @Transactional(readOnly = true)
     public UsersEntity findByLoginAndPasswordAndRole(String login, String password, String role) {
         return usersRepository.findByLoginAndPasswordAndRole(login, password, role);
     }

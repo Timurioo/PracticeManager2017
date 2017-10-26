@@ -19,16 +19,17 @@ public class SpecialityServiceImpl implements SpecialityService {
     @Autowired
     private SpecialityRepository specialityRepository;
 
+    @Transactional(readOnly = true)
     public List<SpecialityEntity> findAll() {
         return Lists.newArrayList(specialityRepository.findAll());
     }
 
-
+    @Transactional(readOnly = true)
     public SpecialityEntity findById(int id) {
         return specialityRepository.findOne(id);
     }
 
-
+    @Transactional(readOnly = true)
     public List<SpecialityEntity> findByFacultyId(int facultyId) {
         return specialityRepository.findByFacultyId(facultyId);
     }
