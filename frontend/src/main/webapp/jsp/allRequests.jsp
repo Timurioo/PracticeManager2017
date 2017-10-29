@@ -4,6 +4,9 @@
     <head>
         <title>Request list</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
+
+        <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
+        <script src="../resources/js/bootstrap-table.js"></script>
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
@@ -23,9 +26,82 @@
             </div>
         </div>
 
+        <br/>
+        <div class="container">
+            <table class="table table-no-bordered" id="table1" data-toggle="table"
+                   data-classes="table table-no-bordered"
+                   data-click-to-select="true"
+                   data-url="/practicesData" >
+                <thead>
+                <tr>
+                    <th data-field="state" data-checkbox="true"></th>
+                    <th data-field="headOfPractice" >Head of practice</th>
+                    <th data-field="company" >Company name</th>
+                    <th data-field="firstDate" >Start date</th>
+                    <th data-field="finishDate" >Finish date</th>
+                    <th data-field="status" >Status</th>
+                    <th data-field="faculty">Faculty</th>
+                    <th data-field="speciality" >Speciality</th>
+                    <th data-field="avrMark" >Average mark</th>
+                    <th data-field="totalQuantity" >Total quantity</th>
+                    <th data-field="availableQuantity">Available quantity</th>
+                    <th data-field="id" data-formatter="LinkFormatter">Edit</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <script>
+            function LinkFormatter(value, row, index) {
+                return "<button href=\"#"+value+"\" class=\"btn btn-default btn-block\" data-toggle=\"modal\" data-target=\"#myModal\">Edit <span class=\"glyphicon glyphicon-pencil\"></span></button>";
+            }
+        </script>
+
+        <!-- <script>
+             $('#table1').bootstrapTable({
+                 url: '/usersAsJson',
+                 columns: [{
+                     field: 'state',
+                     title: 'State'
+                 },{
+                     field: 'name',
+                     title: 'Name'
+                 }, {
+                     field: 'surname',
+                     title: 'Surname'
+                 }, {
+                     field: 'faculty',
+                     title: 'Faculty'
+                 }, {
+                     field: 'speciality',
+                     title: 'Speciality'
+                 }, {
+                     field: 'budget',
+                     title: 'Budget'
+                 }, {
+                     field: 'avrMark',
+                     title: 'Average mark'
+                 }, {
+                     field: 'status',
+                     title: 'Status'
+                 }, {
+                     field: 'company',
+                     title: 'Company'
+                 }, {
+                     field: 'practicePeriod',
+                     title: 'Practice period'
+                 }, {
+                     field: 'profile',
+                     title: 'Show profile'
+                 }]
+             });
+         </script>-->
+
+
+
 
         <br/>
-        <div class="container table-responsive">
+       <!-- <div class="container table-responsive">
             <table class="table table-condensed table-striped">
                 <thead>
                     <tr>
@@ -73,7 +149,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div>-->
 
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">

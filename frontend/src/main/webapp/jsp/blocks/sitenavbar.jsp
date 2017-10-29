@@ -14,7 +14,7 @@
 
         <div class="navbar-collapse collapse">
             <form class="navbar-form navbar-right">
-                <a href="../authorization.jsp" class="btn btn-success">Sign in <span class="	glyphicon glyphicon-ok"></span> </a>
+                <a href="authorization" class="btn btn-danger">Sign out <span class="	glyphicon glyphicon-remove"></span> </a>
 
             </form>
         </div>

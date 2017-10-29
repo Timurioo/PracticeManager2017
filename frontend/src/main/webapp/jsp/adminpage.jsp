@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="btn-group ">
-                    <a href="allRequests.jsp" class="btn btn-primary">Show all requests</a>
+                    <a href="practices" class="btn btn-primary">Show all requests</a>
                 </div>
 
                 <div class="btn-group ">
@@ -47,7 +47,7 @@
             <table class="table table-no-bordered" id="table1" data-toggle="table"
                    data-classes="table table-no-bordered"
                    data-click-to-select="true"
-                   data-url="/studentsAndPractice" >
+                   data-url="/studentsAndPracticeData" >
                 <thead>
                 <tr>
                     <th data-field="state" data-checkbox="true"></th>
@@ -68,13 +68,13 @@
 
         <script>
             function LinkFormatter(value, row, index) {
-                return "<a href='"+value+"'>"+value+"</a>";
+                return "<a href=\"studentProfile?id="+value+"\" class=\"btn btn-default btn-block\">Profile <span class=\"glyphicon glyphicon-user\"></span></a>";
             }
         </script>
 
         <!-- <script>
              $('#table1').bootstrapTable({
-                 url: '/usersAsJson',
+                 url: '/studentsAndPracticeData',
                  columns: [{
                      field: 'state',
                      title: 'State'
