@@ -175,7 +175,7 @@ public class StudentsEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "studentsByStudentId" )
+    @OneToMany(mappedBy = "studentsByStudentId", fetch = FetchType.EAGER)
     public Collection<AssignstudentsEntity> getAssignstudentsesById() {
         return assignstudentsesById;
     }
