@@ -1,4 +1,4 @@
-package com.netcracker.etalon.converters;
+package com.netcracker.etalon.converters.entities;
 
 
 import com.netcracker.etalon.beans.HeadOfPracticeViewModel;
