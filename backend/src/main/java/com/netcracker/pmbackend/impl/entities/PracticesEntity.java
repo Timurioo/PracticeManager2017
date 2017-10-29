@@ -21,7 +21,7 @@ public class PracticesEntity {
     private Double avrMark;
     private Integer specialityId;
     private Integer facultyId;
-    private Collection<AssignstudentsEntity> assignstudentsesById;
+    private Collection<AssignStudentsEntity> assignstudentsesById;
     private HeadofpracticesEntity headofpracticesByHeadofpracticeId;
     private SpecialityEntity specialityBySpecialityId;
     private FacultyEntity facultyByFacultyId;
@@ -175,11 +175,11 @@ public class PracticesEntity {
     }
 
     @OneToMany(mappedBy = "practicesByPracticeId")
-    public Collection<AssignstudentsEntity> getAssignstudentsesById() {
+    public Collection<AssignStudentsEntity> getAssignstudentsesById() {
         return assignstudentsesById;
     }
 
-    public void setAssignstudentsesById(Collection<AssignstudentsEntity> assignstudentsesById) {
+    public void setAssignstudentsesById(Collection<AssignStudentsEntity> assignstudentsesById) {
         this.assignstudentsesById = assignstudentsesById;
     }
 

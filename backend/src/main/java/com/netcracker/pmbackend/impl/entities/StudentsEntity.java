@@ -20,7 +20,7 @@ public class StudentsEntity {
     private double avrMark;
     private String budget;
     private String status;
-    private Collection<AssignstudentsEntity> assignstudentsesById;
+    private Collection<AssignStudentsEntity> assignstudentsesById;
     private UsersEntity usersByUserId;
     private SpecialityEntity specialityBySpecialityId;
 
@@ -176,11 +176,11 @@ public class StudentsEntity {
     }
 
     @OneToMany(mappedBy = "studentsByStudentId", fetch = FetchType.EAGER)
-    public Collection<AssignstudentsEntity> getAssignstudentsesById() {
+    public Collection<AssignStudentsEntity> getAssignstudentsesById() {
         return assignstudentsesById;
     }
 
-    public void setAssignstudentsesById(Collection<AssignstudentsEntity> assignstudentsesById) {
+    public void setAssignstudentsesById(Collection<AssignStudentsEntity> assignstudentsesById) {
         this.assignstudentsesById = assignstudentsesById;
     }
 

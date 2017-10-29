@@ -1,14 +1,14 @@
 package com.netcracker.pmbackend.interfaces;
 
 
-import com.netcracker.pmbackend.impl.entities.AssignstudentsEntity;
+import com.netcracker.pmbackend.impl.entities.AssignStudentsEntity;
 
 import java.util.List;
 
 public interface AssignStudentsService {
 
-    List<AssignstudentsEntity> findAll();
-    AssignstudentsEntity findById(int id);
-    List<AssignstudentsEntity> findByStudentId(int studentId);
-    List<AssignstudentsEntity> findByPracticeId(int practiceId);
+    List<AssignStudentsEntity> findAll();
+    AssignStudentsEntity findById(int id);
+    List<AssignStudentsEntity> findByStudentId(int studentId);
+    List<AssignStudentsEntity> findByPracticeId(int practiceId);
 }

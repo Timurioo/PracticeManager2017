@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "assignstudents", schema = "practicemanager", catalog = "")
-public class AssignstudentsEntity {
+public class AssignStudentsEntity {
     private int id;
     private int studentId;
     private int practiceId;
@@ -49,7 +49,7 @@ public class AssignstudentsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AssignstudentsEntity that = (AssignstudentsEntity) o;
+        AssignStudentsEntity that = (AssignStudentsEntity) o;
 
         if (id != that.id) return false;
         if (studentId != that.studentId) return false;

@@ -1,12 +1,12 @@
 package com.netcracker.pmbackend.repository;
 
-import com.netcracker.pmbackend.impl.entities.AssignstudentsEntity;
+import com.netcracker.pmbackend.impl.entities.AssignStudentsEntity;
 import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 
-public interface AssignStudentsRepository extends CrudRepository<AssignstudentsEntity, Integer> {
+public interface AssignStudentsRepository extends CrudRepository<AssignStudentsEntity, Integer> {
 
-    List<AssignstudentsEntity> findByStudentId(int studentId);
-    List<AssignstudentsEntity> findByPracticeId(int practiceId);
+    List<AssignStudentsEntity> findByStudentId(int studentId);
+    List<AssignStudentsEntity> findByPracticeId(int practiceId);
 }
