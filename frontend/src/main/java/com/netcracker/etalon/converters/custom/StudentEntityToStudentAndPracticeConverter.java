@@ -23,7 +23,7 @@ public class StudentEntityToStudentAndPracticeConverter implements Converter<Stu
 
         for(AssignStudentsEntity a : studentsEntity.getAssignstudentsesById()) {
             studentAndPracticeViewModel.setCompany(a.getPracticesByPracticeId().getCompany());
-            studentAndPracticeViewModel.setPracticePeriod(String.valueOf(a.getPracticesByPracticeId().getFirstDate()) +"-"+String.valueOf(a.getPracticesByPracticeId().getFinishDate()));
+            studentAndPracticeViewModel.setPracticePeriod(String.valueOf(a.getPracticesByPracticeId().getFirstDate()) +" - "+String.valueOf(a.getPracticesByPracticeId().getFinishDate()));
         }
         return studentAndPracticeViewModel;
     }

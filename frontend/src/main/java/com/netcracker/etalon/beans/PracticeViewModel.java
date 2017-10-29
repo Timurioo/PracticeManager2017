@@ -4,7 +4,7 @@ package com.netcracker.etalon.beans;
 public class PracticeViewModel {
 
     private String id;
-    private HeadOfPracticeViewModel headOfPracticeViewModel;
+    private String headOfPractice;
     private String company;
     private String firstDate;
     private String finishDate;
@@ -12,8 +12,8 @@ public class PracticeViewModel {
     private String totalQuantity;
     private String availableQuantity;
     private String avrMark;
-    private SpecialityViewModel specialityViewModel;
-    private FacultyViewModel facultyViewModel;
+    private String speciality;
+    private String faculty;
 
     public String getId() {
         return id;
@@ -23,12 +23,12 @@ public class PracticeViewModel {
         this.id = id;
     }
 
-    public HeadOfPracticeViewModel getHeadOfPracticeViewModel() {
-        return headOfPracticeViewModel;
+    public String getHeadOfPractice() {
+        return headOfPractice;
     }
 
-    public void setHeadOfPracticeViewModel(HeadOfPracticeViewModel headOfPracticeViewModel) {
-        this.headOfPracticeViewModel = headOfPracticeViewModel;
+    public void setHeadOfPractice(String headOfPractice) {
+        this.headOfPractice = headOfPractice;
     }
 
     public String getCompany() {
@@ -87,19 +87,19 @@ public class PracticeViewModel {
         this.avrMark = avrMark;
     }
 
-    public SpecialityViewModel getSpecialityViewModel() {
-        return specialityViewModel;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void setSpecialityViewModel(SpecialityViewModel specialityViewModel) {
-        this.specialityViewModel = specialityViewModel;
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 
-    public FacultyViewModel getFacultyViewModel() {
-        return facultyViewModel;
+    public String getFaculty() {
+        return faculty;
     }
 
-    public void setFacultyViewModel(FacultyViewModel facultyViewModel) {
-        this.facultyViewModel = facultyViewModel;
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
     }
 }

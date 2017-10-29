@@ -24,24 +24,29 @@ public class PracticeEntityToPracticeViewModelConverter implements Converter<Pra
         practiceViewModel.setStatus(practicesEntity.getStatus());
         practiceViewModel.setTotalQuantity(String.valueOf(practicesEntity.getTotalQuantity()));
         practiceViewModel.setAvailableQuantity(String.valueOf(practicesEntity.getAvailableQuantity()));
-        practiceViewModel.setHeadOfPracticeViewModel(conversionService.convert(practicesEntity.getHeadofpracticesByHeadofpracticeId(), HeadOfPracticeViewModel.class));
+        // practiceViewModel.setHeadOfPracticeViewModel(conversionService.convert(practicesEntity.getHeadofpracticesByHeadofpracticeId(), HeadOfPracticeViewModel.class));
+        practiceViewModel.setHeadOfPractice(practicesEntity.getHeadofpracticesByHeadofpracticeId().getName());
 
-        if(practicesEntity.getFacultyId() != null){
-            practiceViewModel.setFacultyViewModel(conversionService.convert(practicesEntity.getFacultyByFacultyId(), FacultyViewModel.class));
+
+
+        if(practicesEntity.getFacultyId() != 0){
+            //practiceViewModel.setFacultyViewModel(conversionService.convert(practicesEntity.getFacultyByFacultyId(), FacultyViewModel.class));
+            practiceViewModel.setFaculty(practicesEntity.getFacultyByFacultyId().getName());
         }else{
-            practiceViewModel.setFacultyViewModel(null);
+            practiceViewModel.setFaculty(null);
         }
 
-        if(practicesEntity.getSpecialityId() != null){
-            practiceViewModel.setSpecialityViewModel(conversionService.convert(practicesEntity.getSpecialityBySpecialityId(), SpecialityViewModel.class));
+        if(practicesEntity.getSpecialityId() != 0){
+            // practiceViewModel.setSpecialityViewModel(conversionService.convert(practicesEntity.getSpecialityBySpecialityId(), SpecialityViewModel.class));
+            practiceViewModel.setSpeciality(practicesEntity.getSpecialityBySpecialityId().getName());
         }else{
-            practiceViewModel.setSpecialityViewModel(null);
+            practiceViewModel.setSpeciality(null);
         }
 
-        if(practicesEntity.getAvrMark() != null){
+        if(practicesEntity.getAvrMark() != 0){
             practiceViewModel.setAvrMark(String.valueOf(practicesEntity.getAvrMark()));
         }else{
-            practiceViewModel.setAvrMark("");
+            practiceViewModel.setAvrMark(null);
         }
 
 

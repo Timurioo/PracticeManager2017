@@ -7,6 +7,7 @@
         <bean id="conversionService" class="com.netcracker.etalon.converters.CustomConvertersRegister">
             <property name="converters">
                 <set>
+                    <bean class="com.netcracker.etalon.converters.custom.StudentEntityToStudentProfileViewModel"/>
                     <bean class="com.netcracker.etalon.converters.custom.StudentEntityToStudentAndPracticeConverter"/>
                     <bean class="com.netcracker.etalon.converters.entities.FacultyEntityToFacultyViewModelConverter"/>
                     <bean class="com.netcracker.etalon.converters.entities.SpecialityEntityToSpecialityViewModelConverter"/>
