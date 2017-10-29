@@ -4,6 +4,9 @@
     <head>
         <title>Administration</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
+
+        <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
+        <script src="../resources/js/bootstrap-table.js"></script>
     </head>
     <body>
 
@@ -37,8 +40,82 @@
             </div>
         </div>
 
+
+
         <br/>
-        <div class="container table-responsive">
+        <div class="container">
+            <table class="table table-no-bordered" id="table1" data-toggle="table"
+                   data-classes="table table-no-bordered"
+                   data-click-to-select="true"
+                   data-url="/studentsAndPractice" >
+                <thead>
+                <tr>
+                    <th data-field="state" data-checkbox="true"></th>
+                    <th data-field="name" >Name</th>
+                    <th data-field="surname" >Surname</th>
+                    <th data-field="faculty" >Faculty</th>
+                    <th data-field="speciality" >Speciality</th>
+                    <th data-field="budget" >Education basis</th>
+                    <th data-field="avrMark">Average mark</th>
+                    <th data-field="status" >Status</th>
+                    <th data-field="company" >Company</th>
+                    <th data-field="practicePeriod" >Practice period</th>
+                    <th data-field="id" data-formatter="LinkFormatter">Show profile</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <script>
+            function LinkFormatter(value, row, index) {
+                return "<a href='"+value+"'>"+value+"</a>";
+            }
+        </script>
+
+        <!-- <script>
+             $('#table1').bootstrapTable({
+                 url: '/usersAsJson',
+                 columns: [{
+                     field: 'state',
+                     title: 'State'
+                 },{
+                     field: 'name',
+                     title: 'Name'
+                 }, {
+                     field: 'surname',
+                     title: 'Surname'
+                 }, {
+                     field: 'faculty',
+                     title: 'Faculty'
+                 }, {
+                     field: 'speciality',
+                     title: 'Speciality'
+                 }, {
+                     field: 'budget',
+                     title: 'Budget'
+                 }, {
+                     field: 'avrMark',
+                     title: 'Average mark'
+                 }, {
+                     field: 'status',
+                     title: 'Status'
+                 }, {
+                     field: 'company',
+                     title: 'Company'
+                 }, {
+                     field: 'practicePeriod',
+                     title: 'Practice period'
+                 }, {
+                     field: 'profile',
+                     title: 'Show profile'
+                 }]
+             });
+         </script>-->
+
+
+
+        <br/>
+       <!-- <div class="container table-responsive">
             <table class="table table-condensed table-striped">
                 <thead>
                 <tr>
@@ -97,7 +174,7 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
+        </div>-->
 
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">

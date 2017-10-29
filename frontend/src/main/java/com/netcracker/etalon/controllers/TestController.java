@@ -23,7 +23,11 @@
  */
 package com.netcracker.etalon.controllers;
 
+import com.netcracker.etalon.beans.AssignStudentViewModel;
+import com.netcracker.etalon.beans.StudentAndPracticeViewModel;
+import com.netcracker.etalon.beans.StudentViewModel;
 import com.netcracker.etalon.beans.UserViewModel;
+import com.netcracker.pmbackend.impl.entities.AssignStudentsEntity;
 import com.netcracker.pmbackend.impl.entities.SpecialityEntity;
 import com.netcracker.pmbackend.impl.entities.StudentsEntity;
 import com.netcracker.pmbackend.impl.entities.UsersEntity;
@@ -67,6 +71,14 @@ public class TestController {
     private final TypeDescriptor userEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UsersEntity.class));
     private final TypeDescriptor userViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UserViewModel.class));
 
+    private final TypeDescriptor studentEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentsEntity.class));
+    private final TypeDescriptor studentViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentViewModel.class));
+
+    private final TypeDescriptor assignStudentEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(AssignStudentsEntity.class));
+    private final TypeDescriptor assignStudentViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(AssignStudentViewModel.class));
+
+    private final TypeDescriptor studentAndPracticeViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentAndPracticeViewModel.class));
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String goToLoginPage() {
         return "login";
@@ -75,6 +87,11 @@ public class TestController {
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String goToAuthorizationPage() {
         return "authorization";
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String goToAdmin() {
+        return "adminpage";
     }
 
     // Spring Data Testing
@@ -109,6 +126,13 @@ public class TestController {
     public List<UserViewModel> getUsersAsJson() {
         List<UsersEntity> allUsers = usersService.findAll();
         return (List<UserViewModel>) conversionService.convert(allUsers,userEntityTypeDescriptor, userViewModelTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/studentsAndPractice", method = RequestMethod.GET)
+    @ResponseBody
+    public List<StudentAndPracticeViewModel> getStudentsAndPractice() {
+        List<StudentsEntity> allStudents = studentsService.findAll();
+        return (List<StudentAndPracticeViewModel>) conversionService.convert(allStudents,studentEntityTypeDescriptor, studentAndPracticeViewModelTypeDescriptor);
     }
 
 
