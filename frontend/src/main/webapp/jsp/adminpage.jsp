@@ -68,7 +68,7 @@
 
         <script>
             function LinkFormatter(value, row, index) {
-                return "<a href=\"studentProfile?id="+value+"\" class=\"btn btn-default btn-block\">Profile <span class=\"glyphicon glyphicon-user\"></span></a>";
+                return "<a href=\"studentProfile/"+value+"\" class=\"btn btn-default btn-block\">Profile <span class=\"glyphicon glyphicon-user\"></span></a>";
             }
         </script>
 

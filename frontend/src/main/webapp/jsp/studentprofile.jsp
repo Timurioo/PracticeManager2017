@@ -8,16 +8,16 @@
         <!-- AJAX -->
         <script type="text/javascript">
 
-            function $_GET(key) {
-                var s = window.location.search;
-                s = s.match(new RegExp(key + '=([^&=]+)'));
+            function getIdParam() {
+                var s = window.location.href;
+                s = s.match(new RegExp('studentProfile' + '\/([^&=]+)'));
                 return s ? s[1] : null;
             }
 
             function doAjax() {
                 $.ajax({
-                    url: 'studentProfileData?id='+$_GET("id"),
-                    data: (''),
+                    url: '/studentProfileData',
+                    data: ({id:getIdParam()}),
                     success: function (data) {
                         $('#name').html("Name: "+data.name);
                         $('#surname').html("Surname: "+data.surname);
@@ -41,8 +41,6 @@
                 });
             }
 
-
-
         </script>
     </head>
     <body onload="doAjax()">
@@ -52,12 +50,6 @@
             <jsp:param name="pageTitle" value="Student profile"/>
             <jsp:param name="titleDescription" value="Full actual information about certain student."/>
         </jsp:include>
-
-
-
-
-
-
 
 
         <div class="container-fluid text-center">

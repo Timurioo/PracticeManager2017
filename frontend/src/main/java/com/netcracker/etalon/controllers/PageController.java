@@ -51,7 +51,7 @@ public class PageController {
         return "allRequests";
     }
 
-    @RequestMapping(value = "/studentProfile", method = RequestMethod.GET)
+    @RequestMapping(value = "/studentProfile/{id}", method = RequestMethod.GET)
     public String goToStudentProfile() {
         return "studentprofile";
     }
