@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("jpaUsersService")
-@Repository
 @Transactional
 public class UsersServiceImpl implements UsersService {
 

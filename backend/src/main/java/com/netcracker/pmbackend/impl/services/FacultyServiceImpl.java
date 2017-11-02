@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("jpaFacultyService")
-@Repository
 @Transactional
 public class FacultyServiceImpl implements FacultyService {
 

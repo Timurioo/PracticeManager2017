@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("jpaAssignStudentService")
-@Repository
 @Transactional
 public class AssignStudentsServiceImpl implements AssignStudentsService {
 
