@@ -29,6 +29,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Transactional(readOnly = true)
+    public UsersEntity findByLogin(String login) {
+        return usersRepository.findByLogin(login);
+    }
+
+    @Transactional(readOnly = true)
     public UsersEntity findByLoginAndPasswordAndRole(String login, String password, String role) {
         return usersRepository.findByLoginAndPasswordAndRole(login, password, role);
     }
