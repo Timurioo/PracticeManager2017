@@ -15,7 +15,7 @@
 
         <div class="container">
             <h2 class="text-center">Authorization information:</h2>
-            <form class="form-horizontal">
+            <form class="form-horizontal" name="form_login" action="/j_spring_security_check" method="post">
 
                 <div class="form-group">
                     <div class="col-md-4 col-md-offset-4">
@@ -40,21 +40,21 @@
                 <div class="form-group">
                     <label class="control-label col-md-4">Login:</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Enter login...">
+                        <input type="text" class="form-control" name="user_login" placeholder="Enter login...">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-4">Password:</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Enter password...">
+                        <input type="text" class="form-control" name="user_password" placeholder="Enter password...">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="checkbox col-md-4 col-md-offset-4"><label class="control-label"><input type="checkbox">Remember me</label></div>
                 </div>
                 <div class="col-md-4 col-md-offset-4">
-                    <button type="submit" class="btn btn-success btn-block">Sign in <span class="	glyphicon glyphicon-ok"></span></button>
+                    <button type="submit" name="submit" class="btn btn-success btn-block" value="submit">Sign in <span class="	glyphicon glyphicon-ok"></span></button>
                 </div>
             </form>
         </div>

@@ -14,7 +14,7 @@
 
         <div class="navbar-collapse collapse">
             <form class="navbar-form navbar-right">
-                <a href="authorization" class="btn btn-danger">Sign out <span class="	glyphicon glyphicon-remove"></span> </a>
+                <a href="/j_spring_security_logout" class="btn btn-danger">Sign out <span class="	glyphicon glyphicon-remove"></span> </a>
 
             </form>
         </div>
