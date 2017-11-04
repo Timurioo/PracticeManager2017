@@ -17,7 +17,10 @@
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
         <csrf disabled="true"/>
 
-        <form-login login-processing-url="/j_spring_security_check" login-page="/authorization" default-target-url="/admin"
+        <form-login login-processing-url="/j_spring_security_check"
+                    login-page="/authorization"
+                    default-target-url="/roleRedirect"
+                    always-use-default-target="true"
                     authentication-failure-url="/authorization?error=true"
                     username-parameter="user_login"
                     password-parameter="user_password"/>

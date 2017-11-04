@@ -23,6 +23,11 @@
  */
 package com.netcracker.etalon.controllers;
 
+import com.netcracker.pmbackend.interfaces.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +35,38 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class PageController {
 
+    @Autowired
+    private UsersService usersService;
+
+    @RequestMapping(value = "/roleRedirect", method = RequestMethod.GET)
+    public String redirectRoleToPage() {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userLogin = user.getUsername();
+        String userRole = null;
+        String urlRedirect = "redirect:/authorization";
+
+        for (GrantedAuthority authority : user.getAuthorities()) {
+            userRole = authority.getAuthority();
+        }
+
+        switch (userRole){
+            case "ROLE_ADMIN":{
+                urlRedirect = "redirect:/admin";
+                break;
+            }
+            case "ROLE_STUDENT":{
+                long userId = usersService.findByLogin(userLogin).getId();
+                urlRedirect = "redirect:/studentProfile/" + userId;
+                break;
+            }
+            case "ROLE_HEADOFPRACTICE":{
+                long userId = usersService.findByLogin(userLogin).getId();
+                urlRedirect = "redirect:/practices";
+                break;
+            }
+        }
+        return urlRedirect;
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String goToLoginPage() {
