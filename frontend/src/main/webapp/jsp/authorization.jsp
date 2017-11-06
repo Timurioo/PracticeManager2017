@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="checkbox col-md-4 col-md-offset-4"><label class="control-label"><input type="checkbox">Remember me</label></div>
+                    <div class="checkbox col-md-4 col-md-offset-4"><label class="control-label"><input name="_spring_security_remember_me" type="checkbox">Remember me</label></div>
                 </div>
                 <div class="col-md-4 col-md-offset-4">
                     <button type="submit" name="submit" class="btn btn-success btn-block" value="submit">Sign in <span class="	glyphicon glyphicon-ok"></span></button>

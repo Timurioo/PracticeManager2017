@@ -26,6 +26,8 @@
                     password-parameter="user_password"/>
 
         <logout logout-url="/j_spring_security_logout" logout-success-url="/authorization"/>
+
+        <remember-me remember-me-parameter="_spring_security_remember_me" token-validity-seconds="1209600"/>
     </http>
 
 
