@@ -1,6 +1,8 @@
 package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.beans.*;
+import com.netcracker.etalon.dto.HeadOfPracticeRegistrationDTO;
+import com.netcracker.etalon.security.validator.HeadOfPracticeRegistrationDTOValidator;
 import com.netcracker.pmbackend.impl.entities.PracticesEntity;
 import com.netcracker.pmbackend.impl.entities.StudentsEntity;
 import com.netcracker.pmbackend.impl.entities.UsersEntity;
@@ -12,12 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class DataController {
@@ -29,13 +32,13 @@ public class DataController {
     private StudentsService studentsService;
 
     @Autowired
-    private SpecialityService specialityService;
-
-    @Autowired
     private PracticesService practicesService;
 
     @Autowired
     private ConversionService conversionService;
+
+    @Autowired
+    private HeadOfPracticeRegistrationDTOValidator headOfPracticeRegistrationDTOValidator;
 
 
     // Type Descriptors for custom converters
@@ -78,6 +81,24 @@ public class DataController {
     public List<UserViewModel> getUsersAsJson() {
         List<UsersEntity> allUsers = usersService.findAll();
         return (List<UserViewModel>) conversionService.convert(allUsers,userEntityTypeDescriptor, userViewModelTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/headOfPracticeRegistration", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public Map<String, String> registration(@RequestBody HeadOfPracticeRegistrationDTO headOfPracticeRegistrationDTO, BindingResult bindingResult) {
+
+        Map<String,String> resultMap = new HashMap<>();
+        headOfPracticeRegistrationDTOValidator.validate(headOfPracticeRegistrationDTO, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            for (FieldError error : bindingResult.getFieldErrors()) {
+                resultMap.put(error.getField(),error.getCode());
+            }
+            return resultMap;
+        }
+
+        resultMap.put("Redirect","redirect:/registration?res=success");
+        return resultMap;
     }
 
 }

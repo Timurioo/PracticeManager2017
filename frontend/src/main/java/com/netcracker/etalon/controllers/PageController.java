@@ -93,6 +93,11 @@ public class PageController {
         return "studentprofile";
     }
 
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String registration() {
+        return "registration";
+    }
+
 
 }
 /*

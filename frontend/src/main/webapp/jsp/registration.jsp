@@ -4,6 +4,29 @@
     <head>
         <title>Registration</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
+
+        <script type="text/javascript">
+            function doAjaxHeadOfPractice() {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=UTF-8",
+                    url:"/headOfPracticeRegistration",
+                    data:JSON.stringify({"login":$('#login_headofpractice').val(),
+                            "password":$('#password_headofpractice').val(),
+                            "role":"ROLE_HEADOFPRACTICE",
+                            "name":$('#name_headofpractice').val()}),
+                    success: function (data) {
+                        $('#hint_password_headofpractice').empty();
+                        $('#hint_password_headofpractice').html(data.password);
+                        $('#hint_login_headofpractice').empty();
+                        $('#hint_login_headofpractice').html(data.login);
+                        $('#hint_name_headofpractice').empty();
+                        $('#hint_name_headofpractice').html(data.name);
+                    }
+                })
+            }
+        </script>
+
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
@@ -134,25 +157,29 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Head of practice name:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter name...">
+                                <input id="name_headofpractice" type="text" class="form-control" placeholder="Enter name...">
+                                <p class="text-danger" id="hint_name_headofpractice"></p>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Login:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter login...">
+                                <input id="login_headofpractice" type="text" class="form-control" placeholder="Enter login...">
+                                <p class="text-danger" id="hint_login_headofpractice"></p>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Password:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter password...">
+                                <input id="password_headofpractice" type="text" class="form-control" placeholder="Enter password...">
+                                <p class="text-danger" id="hint_password_headofpractice"></p>
                             </div>
                         </div>
+
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                            <button type="button" class="btn btn-primary btn-block" onclick="doAjaxHeadOfPractice()">Sign up</button>
                         </div>
                     </form>
                 </div>
