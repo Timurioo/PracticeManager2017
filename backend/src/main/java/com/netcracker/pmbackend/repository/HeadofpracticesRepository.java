@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface HeadofpracticesRepository extends CrudRepository<HeadofpracticesEntity, Integer> {
 
     HeadofpracticesEntity findByUserId(int userId);
+    HeadofpracticesEntity findByName(String name);
 }

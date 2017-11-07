@@ -11,5 +11,6 @@ public interface UsersService {
     UsersEntity findById(int id);
     UsersEntity findByLogin(String login);
     UsersEntity findByLoginAndPasswordAndRole(String login, String password, String role);
-    void createUsers(List<UsersEntity> usersEntity);
+    UsersEntity findByPassword(String password);
+    UsersEntity save(UsersEntity entity);
 }

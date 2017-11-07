@@ -38,8 +38,12 @@ public class UsersServiceImpl implements UsersService {
         return usersRepository.findByLoginAndPasswordAndRole(login, password, role);
     }
 
+    @Transactional(readOnly = true)
+    public UsersEntity findByPassword(String password){
+        return usersRepository.findByPassword(password);
+    }
 
-    public void createUsers(List<UsersEntity> usersEntity) {
-        usersRepository.save(usersEntity);
+    public UsersEntity save(UsersEntity entity) {
+        return usersRepository.save(entity);
     }
 }

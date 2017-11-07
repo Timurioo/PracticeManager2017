@@ -9,4 +9,6 @@ public interface HeadofpracticesService {
     List<HeadofpracticesEntity> findAll();
     HeadofpracticesEntity findById(int id);
     HeadofpracticesEntity findByUserId(int userId);
+    HeadofpracticesEntity findByName(String name);
+    HeadofpracticesEntity save(HeadofpracticesEntity entity);
 }

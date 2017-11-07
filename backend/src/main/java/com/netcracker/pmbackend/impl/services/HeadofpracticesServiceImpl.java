@@ -32,4 +32,13 @@ public class HeadofpracticesServiceImpl implements HeadofpracticesService {
     public HeadofpracticesEntity findByUserId(int userId) {
         return headofpracticesRepository.findByUserId(userId);
     }
+
+    @Transactional(readOnly = true)
+    public HeadofpracticesEntity findByName(String name){
+        return headofpracticesRepository.findByName(name);
+    }
+
+    public HeadofpracticesEntity save(HeadofpracticesEntity entity){
+        return headofpracticesRepository.save(entity);
+    }
 }
