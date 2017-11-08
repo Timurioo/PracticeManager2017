@@ -2,12 +2,11 @@ package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.beans.*;
 import com.netcracker.etalon.dto.HeadOfPracticeRegistrationDTO;
-import com.netcracker.etalon.security.validator.HeadOfPracticeRegistrationDTOValidator;
+import com.netcracker.etalon.validator.HeadOfPracticeRegistrationDTOValidator;
 import com.netcracker.pmbackend.impl.entities.PracticesEntity;
 import com.netcracker.pmbackend.impl.entities.StudentsEntity;
 import com.netcracker.pmbackend.impl.entities.UsersEntity;
 import com.netcracker.pmbackend.interfaces.PracticesService;
-import com.netcracker.pmbackend.interfaces.SpecialityService;
 import com.netcracker.pmbackend.interfaces.StudentsService;
 import com.netcracker.pmbackend.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
