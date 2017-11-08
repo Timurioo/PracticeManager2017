@@ -5,7 +5,7 @@ public class SpecialityViewModel {
 
     private String id;
     private String name;
-    private FacultyViewModel facultyViewModel;
+    private String faculty;
 
     public String getId() {
         return id;
@@ -23,11 +23,11 @@ public class SpecialityViewModel {
         this.name = name;
     }
 
-    public FacultyViewModel getFacultyViewModel() {
-        return facultyViewModel;
+    public String getFaculty() {
+        return faculty;
     }
 
-    public void setFacultyViewModel(FacultyViewModel facultyViewModel) {
-        this.facultyViewModel = facultyViewModel;
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
     }
 }
