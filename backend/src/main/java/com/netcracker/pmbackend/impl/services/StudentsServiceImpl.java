@@ -34,8 +34,8 @@ public class StudentsServiceImpl implements StudentsService {
     }
 
     @Transactional(readOnly = true)
-    public List<StudentsEntity> findByGroup(String group) {
-        return studentsRepository.findByGroup(group);
+    public List<StudentsEntity> findByClassgroup(String classgroup) {
+        return studentsRepository.findByClassgroup(classgroup);
     }
 
     @Transactional(readOnly = true)
@@ -46,5 +46,19 @@ public class StudentsServiceImpl implements StudentsService {
     @Transactional(readOnly = true)
     public List<StudentsEntity> findByStatus(String status) {
         return studentsRepository.findByStatus(status);
+    }
+
+    @Transactional(readOnly = true)
+    public StudentsEntity findByEmail(String email) {
+        return studentsRepository.findByEmail(email);
+    }
+
+    @Transactional(readOnly = true)
+    public StudentsEntity findByPhone(String phone) {
+        return studentsRepository.findByPhone(phone);
+    }
+
+    public StudentsEntity save(StudentsEntity entity) {
+        return studentsRepository.save(entity);
     }
 }

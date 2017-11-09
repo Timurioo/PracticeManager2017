@@ -21,7 +21,7 @@ public class StudentEntityToStudentViewModelConverter implements Converter<Stude
         studentViewModel.setSurname(studentsEntity.getSurname());
         studentViewModel.setPhone(studentsEntity.getPhone());
         studentViewModel.setEmail(studentsEntity.getEmail());
-        studentViewModel.setGroup(studentsEntity.getGroup());
+        studentViewModel.setGroup(studentsEntity.getClassgroup());
         studentViewModel.setAvrMark(String.valueOf(studentsEntity.getAvrMark()));
         studentViewModel.setBudget(studentsEntity.getBudget());
         studentViewModel.setStatus(studentsEntity.getStatus());

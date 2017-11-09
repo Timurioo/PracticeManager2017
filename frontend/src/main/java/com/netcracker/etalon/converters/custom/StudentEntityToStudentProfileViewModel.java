@@ -19,7 +19,7 @@ public class StudentEntityToStudentProfileViewModel implements Converter<Student
         studentProfileViewModel.setSurname(studentsEntity.getSurname());
         studentProfileViewModel.setPhone(studentsEntity.getPhone());
         studentProfileViewModel.setEmail(studentsEntity.getEmail());
-        studentProfileViewModel.setGroup(studentsEntity.getGroup());
+        studentProfileViewModel.setGroup(studentsEntity.getClassgroup());
         studentProfileViewModel.setAvrMark(String.valueOf(studentsEntity.getAvrMark()));
         studentProfileViewModel.setBudget(studentsEntity.getBudget());
         studentProfileViewModel.setStatus(studentsEntity.getStatus());

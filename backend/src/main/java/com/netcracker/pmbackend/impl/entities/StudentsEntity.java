@@ -16,7 +16,7 @@ public class StudentsEntity {
     private String phone;
     private String email;
     private int specialityId;
-    private String group;
+    private String classgroup;
     private double avrMark;
     private String budget;
     private String status;
@@ -95,13 +95,13 @@ public class StudentsEntity {
     }
 
     @Basic
-    @Column(name = "group", nullable = false, length = 45)
-    public String getGroup() {
-        return group;
+    @Column(name = "classgroup", nullable = false, length = 45)
+    public String getClassgroup() {
+        return classgroup;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setClassgroup(String group) {
+        this.classgroup = group;
     }
 
     @Basic
@@ -150,7 +150,7 @@ public class StudentsEntity {
         if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (group != null ? !group.equals(that.group) : that.group != null) return false;
+        if (classgroup != null ? !classgroup.equals(that.classgroup) : that.classgroup != null) return false;
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
 
         return true;
@@ -167,7 +167,7 @@ public class StudentsEntity {
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + specialityId;
-        result = 31 * result + (group != null ? group.hashCode() : 0);
+        result = 31 * result + (classgroup != null ? classgroup.hashCode() : 0);
         temp = Double.doubleToLongBits(avrMark);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (budget != null ? budget.hashCode() : 0);
@@ -202,5 +202,24 @@ public class StudentsEntity {
 
     public void setSpecialityBySpecialityId(SpecialityEntity specialityBySpecialityId) {
         this.specialityBySpecialityId = specialityBySpecialityId;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentsEntity{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", specialityId=" + specialityId +
+                ", group='" + classgroup + '\'' +
+                ", avrMark=" + avrMark +
+                ", budget='" + budget + '\'' +
+                ", status='" + status + '\'' +
+                ", usersByUserId=" + usersByUserId +
+                ", specialityBySpecialityId=" + specialityBySpecialityId +
+                '}';
     }
 }
