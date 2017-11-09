@@ -4,28 +4,7 @@
     <head>
         <title>Registration</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
-
-        <script type="text/javascript">
-            function doAjaxHeadOfPractice() {
-                $.ajax({
-                    type: "POST",
-                    contentType: "application/json; charset=UTF-8",
-                    url:"/headOfPracticeRegistration",
-                    data:JSON.stringify({"login":$('#login_headofpractice').val(),
-                            "password":$('#password_headofpractice').val(),
-                            "role":"ROLE_HEADOFPRACTICE",
-                            "name":$('#name_headofpractice').val()}),
-                    success: function (data) {
-                        $('#hint_password_headofpractice').empty();
-                        $('#hint_password_headofpractice').html(data.password);
-                        $('#hint_login_headofpractice').empty();
-                        $('#hint_login_headofpractice').html(data.login);
-                        $('#hint_name_headofpractice').empty();
-                        $('#hint_name_headofpractice').html(data.name);
-                    }
-                })
-            }
-        </script>
+        <script src="../resources/js/custom/registration.js"></script>
 
     </head>
     <body>
@@ -50,38 +29,36 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Name:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter name...">
+                                <input id="name_student" type="text" class="form-control" placeholder="Enter name...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Surname:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter surname...">
+                                <input id="surname_student" type="text" class="form-control" placeholder="Enter surname...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Phone number:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="*+375441111111...">
+                                <input id="phone_student" type="text" class="form-control" placeholder="*+375441111111...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Email:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter email...">
+                                <input id="email_student" type="text" class="form-control" placeholder="Enter email...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Choose faculty:</label>
                             <div class="col-md-4">
-                                <select class="form-control">
-                                    <option>FSCAN</option>
-                                    <option>FCP</option>
-                                    <option>FTC</option>
+                                <select id="faculty_name_student" class="form-control" onchange="doAjaxSpeciality()">
+
                                 </select>
                             </div>
                         </div>
@@ -89,44 +66,36 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Choose speciality:</label>
                             <div class="col-md-4">
-                                <select class="form-control">
-                                    <option>ITS</option>
-                                    <option>VMSIS</option>
-                                </select>
-                            </div>
-                        </div>
+                                <select id="speciality_name_student" class="form-control">
 
-                        <div class="form-group">
-                            <label class="control-label col-md-4">Year of study:</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="*3...">
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Group:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="*551001...">
+                                <input id="group_student" type="text" class="form-control" placeholder="*551001...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Average mark:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="*8...">
+                                <input id="average_mark_student" type="text" class="form-control" placeholder="*8...">
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div id="radio_Form" class="form-group">
                             <div class="col-md-4 col-md-offset-4">
                             <div class="radio-inline">
                                 <label >
-                                    <input checked="checked" type="radio" name="isBudget">Budget
+                                    <input id="budget_1_student" checked="checked" type="radio" name="isBudget" value="Budget">Budget
                                 </label>
                             </div>
                             <div class="radio-inline">
                                 <label >
-                                    <input type="radio" name="isBudget">Chargeable
+                                    <input id="budget_2_student" type="radio" name="isBudget" value="Chargeable">Chargeable
                                 </label>
                             </div>
                             </div>
@@ -135,18 +104,18 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Login:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter login...">
+                                <input id="login_student" type="text" class="form-control" placeholder="Enter login...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Password:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter password...">
+                                <input id="password_student" type="text" class="form-control" placeholder="Enter password...">
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+                            <button type="button" class="btn btn-primary btn-block" onclick="doAjaxStudent()">Sign up</button>
                         </div>
                     </form>
                 </div>
@@ -158,7 +127,7 @@
                             <label class="control-label col-md-4">Head of practice name:</label>
                             <div class="col-md-4">
                                 <input id="name_headofpractice" type="text" class="form-control" placeholder="Enter name...">
-                                <p class="text-danger" id="hint_name_headofpractice"></p>
+
                             </div>
                         </div>
 
@@ -166,7 +135,6 @@
                             <label class="control-label col-md-4">Login:</label>
                             <div class="col-md-4">
                                 <input id="login_headofpractice" type="text" class="form-control" placeholder="Enter login...">
-                                <p class="text-danger" id="hint_login_headofpractice"></p>
                             </div>
                         </div>
 
@@ -174,7 +142,6 @@
                             <label class="control-label col-md-4">Password:</label>
                             <div class="col-md-4">
                                 <input id="password_headofpractice" type="text" class="form-control" placeholder="Enter password...">
-                                <p class="text-danger" id="hint_password_headofpractice"></p>
                             </div>
                         </div>
 

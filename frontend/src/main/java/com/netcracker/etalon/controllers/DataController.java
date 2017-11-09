@@ -2,22 +2,22 @@ package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.beans.*;
 import com.netcracker.etalon.dto.HeadOfPracticeRegistrationDTO;
-import com.netcracker.etalon.validator.HeadOfPracticeRegistrationDTOValidator;
-import com.netcracker.pmbackend.impl.entities.PracticesEntity;
-import com.netcracker.pmbackend.impl.entities.StudentsEntity;
-import com.netcracker.pmbackend.impl.entities.UsersEntity;
-import com.netcracker.pmbackend.interfaces.PracticesService;
-import com.netcracker.pmbackend.interfaces.StudentsService;
-import com.netcracker.pmbackend.interfaces.UsersService;
+import com.netcracker.etalon.dto.FacultyRegistrationDTO;
+import com.netcracker.etalon.dto.StudentRegistrationDTO;
+import com.netcracker.etalon.validation.converter.ValidationResponseDataConverter;
+import com.netcracker.etalon.validation.validator.HeadOfPracticeRegistrationDTOValidator;
+import com.netcracker.etalon.validation.validator.StudentRegistrationDTOValidator;
+import com.netcracker.pmbackend.impl.entities.*;
+import com.netcracker.pmbackend.impl.factory.EntityFactory;
+import com.netcracker.pmbackend.impl.services.registration.RegistrationService;
+import com.netcracker.pmbackend.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +37,28 @@ public class DataController {
     private ConversionService conversionService;
 
     @Autowired
+    private FacultyService facultyService;
+
+    @Autowired
+    private SpecialityService specialityService;
+
+    @Autowired
+    private HeadofpracticesService headofpracticesService;
+
+    @Autowired
     private HeadOfPracticeRegistrationDTOValidator headOfPracticeRegistrationDTOValidator;
+
+    @Autowired
+    private StudentRegistrationDTOValidator studentRegistrationDTOValidator;
+
+    @Autowired
+    private ValidationResponseDataConverter validationResponseDataConverter;
+
+    @Autowired
+    private EntityFactory entityFactory;
+
+    @Autowired
+    private RegistrationService registrationService;
 
 
     // Type Descriptors for custom converters
@@ -48,6 +69,15 @@ public class DataController {
 
     private final TypeDescriptor practiceEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticesEntity.class));
     private final TypeDescriptor practiceViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeViewModel.class));
+
+    // Faculty type descriptors
+    private final TypeDescriptor facultyEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(FacultyEntity.class));
+    private final TypeDescriptor facultyViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(FacultyViewModel.class));
+
+    //Speciality type descriptors
+    private final TypeDescriptor specialityEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(SpecialityEntity.class));
+    private final TypeDescriptor specialityViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(SpecialityViewModel.class));
+
 
     private final TypeDescriptor studentAndPracticeViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentAndPracticeViewModel.class));
     private final TypeDescriptor studentProfileViewModelTypeDescriptor = TypeDescriptor.valueOf(StudentProfileViewModel.class);
@@ -84,20 +114,60 @@ public class DataController {
 
     @RequestMapping(value = "/headOfPracticeRegistration", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public Map<String, String> registration(@RequestBody HeadOfPracticeRegistrationDTO headOfPracticeRegistrationDTO, BindingResult bindingResult) {
+    public Map<String, String> registrationHeadOfPractice(@RequestBody HeadOfPracticeRegistrationDTO headOfPracticeRegistrationDTO, BindingResult bindingResult) {
 
-        Map<String,String> resultMap = new HashMap<>();
         headOfPracticeRegistrationDTOValidator.validate(headOfPracticeRegistrationDTO, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            for (FieldError error : bindingResult.getFieldErrors()) {
-                resultMap.put(error.getField(),error.getCode());
-            }
-            return resultMap;
+            return validationResponseDataConverter.convertFieldErrorsToMap(bindingResult.getFieldErrors());
         }
 
-        resultMap.put("Redirect","redirect:/registration?res=success");
-        return resultMap;
+        UsersEntity usersEntity = entityFactory.getUserEntity(headOfPracticeRegistrationDTO.getLogin(),headOfPracticeRegistrationDTO.getPassword(),headOfPracticeRegistrationDTO.getRole());
+        HeadofpracticesEntity headofpracticesEntity = entityFactory.getHeadOfPracticeEntity(headOfPracticeRegistrationDTO.getName());
+
+        registrationService.registrateHeadOfPractice(usersEntity, headofpracticesEntity);
+
+        return null;
     }
+
+    @RequestMapping(value = "/studentRegistration", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public Map<String, String> registrationStudent(@RequestBody StudentRegistrationDTO studentRegistrationDTO, BindingResult bindingResult) {
+
+        studentRegistrationDTOValidator.validate(studentRegistrationDTO, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return validationResponseDataConverter.convertFieldErrorsToMap(bindingResult.getFieldErrors());
+        }
+
+        UsersEntity usersEntity = entityFactory.getUserEntity(studentRegistrationDTO.getLogin(),studentRegistrationDTO.getPassword(),studentRegistrationDTO.getRole());
+        StudentsEntity studentsEntity = entityFactory.getStudentEntity(studentRegistrationDTO.getName(),
+                studentRegistrationDTO.getSurname(),
+                studentRegistrationDTO.getPhone(),
+                studentRegistrationDTO.getEmail(),
+                Integer.parseInt(studentRegistrationDTO.getSpecialityId()),
+                studentRegistrationDTO.getGroup(),
+                Double.parseDouble(studentRegistrationDTO.getAvrMark()),
+                studentRegistrationDTO.getBudget());
+
+        registrationService.registrateStudent(usersEntity, studentsEntity);
+
+        return null;
+    }
+
+    @RequestMapping(value = "/facultyData", method = RequestMethod.POST)
+    @ResponseBody
+    public List<FacultyViewModel> getFacultyData() {
+        List<FacultyEntity> allFaculties = facultyService.findAll();
+        return (List<FacultyViewModel>) conversionService.convert(allFaculties,facultyEntityTypeDescriptor, facultyViewModelTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/specialityData", method = RequestMethod.POST)
+    @ResponseBody
+    public List<SpecialityViewModel> getSpecialityData(@RequestBody FacultyRegistrationDTO facultyRegistrationDTO) {
+        List<SpecialityEntity> allSpecialities = specialityService.findByFacultyId(Integer.parseInt(facultyRegistrationDTO.getFacultyId()));
+        return (List<SpecialityViewModel>) conversionService.convert(allSpecialities,specialityEntityTypeDescriptor, specialityViewModelTypeDescriptor);
+    }
+
 
 }
