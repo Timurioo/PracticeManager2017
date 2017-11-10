@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Choose faculty:</label>
                             <div class="col-md-4">
-                                <select id="faculty_name_student" class="form-control" onchange="doAjaxSpeciality()">
+                                <select id="faculty_name_student" class="form-control" onchange="getSpecialitiesAjaxRequest()">
 
                                 </select>
                             </div>
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="button" class="btn btn-primary btn-block" onclick="doAjaxStudent()">Sign up</button>
+                            <button type="button" class="btn btn-primary btn-block" onclick="registrationStudentAjaxRequest()">Sign up</button>
                         </div>
                     </form>
                 </div>
@@ -146,7 +146,7 @@
                         </div>
 
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="button" class="btn btn-primary btn-block" onclick="doAjaxHeadOfPractice()">Sign up</button>
+                            <button type="button" class="btn btn-primary btn-block" onclick="registrationHeadOfPracticeAjaxRequest()">Sign up</button>
                         </div>
                     </form>
                 </div>

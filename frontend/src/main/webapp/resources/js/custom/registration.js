@@ -1,4 +1,4 @@
-function doAjaxHeadOfPractice() {
+function registrationHeadOfPracticeAjaxRequest() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=UTF-8",
@@ -33,7 +33,7 @@ function doAjaxHeadOfPractice() {
     })
 }
 
-function doAjaxStudent() {
+function registrationStudentAjaxRequest() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=UTF-8",
@@ -129,7 +129,7 @@ function doAjaxStudent() {
     });
 });*/
 
-function doAjaxSpeciality() {
+function getSpecialitiesAjaxRequest() {
     $.ajax({
         url: '/specialityData',
         type: 'POST',
@@ -161,7 +161,7 @@ $(document).ready(function () {
                         .attr("value", data[i].id)
                         .text(data[i].name));
             }
-            doAjaxSpeciality();
+            getSpecialitiesAjaxRequest();
         }
     });
 });
