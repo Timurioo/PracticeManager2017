@@ -23,6 +23,7 @@
  */
 package com.netcracker.etalon.controllers;
 
+import com.netcracker.pmbackend.interfaces.StudentsService;
 import com.netcracker.pmbackend.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,6 +38,9 @@ public class PageController {
 
     @Autowired
     private UsersService usersService;
+
+    @Autowired
+    private StudentsService studentsService;
 
     @RequestMapping(value = "/roleRedirect", method = RequestMethod.GET)
     public String redirectRoleToPage() {
@@ -55,8 +59,8 @@ public class PageController {
                 break;
             }
             case "ROLE_STUDENT":{
-                long userId = usersService.findByLogin(userLogin).getId();
-                urlRedirect = "redirect:/studentProfile/" + userId;
+                long studentId = studentsService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
+                urlRedirect = "redirect:/studentProfile/" + studentId;
                 break;
             }
             case "ROLE_HEADOFPRACTICE":{
