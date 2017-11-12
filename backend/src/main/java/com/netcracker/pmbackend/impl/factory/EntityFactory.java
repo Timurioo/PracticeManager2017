@@ -1,9 +1,6 @@
 package com.netcracker.pmbackend.impl.factory;
 
-import com.netcracker.pmbackend.impl.entities.HeadofpracticesEntity;
-import com.netcracker.pmbackend.impl.entities.PracticesEntity;
-import com.netcracker.pmbackend.impl.entities.StudentsEntity;
-import com.netcracker.pmbackend.impl.entities.UsersEntity;
+import com.netcracker.pmbackend.impl.entities.*;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
@@ -52,5 +49,18 @@ public class EntityFactory {
         practicesEntity.setTotalQuantity(totalQuantity);
         practicesEntity.setAvailableQuantity(totalQuantity);
         return practicesEntity;
+    }
+
+    public FacultyEntity getFacultyEntity(String name){
+        FacultyEntity facultyEntity = new FacultyEntity();
+        facultyEntity.setName(name);
+        return facultyEntity;
+    }
+
+    public SpecialityEntity getSpecialityEntity(String name, int facultyId){
+        SpecialityEntity specialityEntity = new SpecialityEntity();
+        specialityEntity.setName(name);
+        specialityEntity.setFacultyId(facultyId);
+        return specialityEntity;
     }
 }
