@@ -7,4 +7,5 @@ import java.util.List;
 public interface SpecialityRepository extends CrudRepository<SpecialityEntity, Integer> {
 
     List<SpecialityEntity> findByFacultyId(int facultyId);
+    SpecialityEntity findByName(String name);
 }

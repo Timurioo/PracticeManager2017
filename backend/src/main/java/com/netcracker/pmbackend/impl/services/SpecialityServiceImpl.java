@@ -32,4 +32,14 @@ public class SpecialityServiceImpl implements SpecialityService {
     public List<SpecialityEntity> findByFacultyId(int facultyId) {
         return specialityRepository.findByFacultyId(facultyId);
     }
+
+    @Transactional(readOnly = true)
+    public SpecialityEntity findByName(String name) {
+        return specialityRepository.findByName(name);
+    }
+
+    public SpecialityEntity save(SpecialityEntity entity) {
+        return specialityRepository.save(entity);
+    }
+
 }

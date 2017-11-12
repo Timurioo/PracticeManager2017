@@ -6,7 +6,7 @@
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
         <script src="../resources/js/custom/registrationFaculty.js"></script>
     </head>
-    <body>
+    <body onload="getFaculties()">
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
 
         <jsp:include page="/jsp/blocks/jumbotronblock.jsp">
@@ -16,12 +16,12 @@
 
         <div class="container">
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#student" role="tab" data-toggle="tab">Faculty</a></li>
-                <li><a href="#headofpractice" role="tab" data-toggle="tab">Speciality</a></li>
+                <li class="active"><a href="#faculty_tab" role="tab" data-toggle="tab">Faculty</a></li>
+                <li><a href="#speciality_tab" role="tab" data-toggle="tab">Speciality</a></li>
             </ul>
 
             <div class="tab-content">
-                <div class="tab-pane active fade in" role="tab" id="student">
+                <div class="tab-pane active fade in" role="tab" id="faculty_tab">
                     <h2 class="text-center">Creation information:</h2>
                     <form class="form-horizontal">
 
@@ -37,17 +37,15 @@
                         </div>
                     </form>
                 </div>
-                <div class="tab-pane fade" role="tab" id="headofpractice">
+                <div class="tab-pane fade" role="tab" id="speciality_tab">
                     <h2 class="text-center">Creation information:</h2>
                     <form class="form-horizontal">
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Choose faculty:</label>
                             <div class="col-md-4">
-                                <select class="form-control">
-                                    <option>FSCAN</option>
-                                    <option>FCP</option>
-                                    <option>FTC</option>
+                                <select id="faculties" class="form-control">
+
                                 </select>
                             </div>
                         </div>
@@ -55,11 +53,11 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Name of speciality:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter speciality...">
+                                <input id="name_speciality" type="text" class="form-control" placeholder="Enter speciality...">
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create speciality</button>
+                            <button type="button" class="btn btn-primary btn-block" onclick="registrationSpecialityAjaxRequest()"><span class="glyphicon glyphicon-plus"></span> Create speciality</button>
                         </div>
                     </form>
 

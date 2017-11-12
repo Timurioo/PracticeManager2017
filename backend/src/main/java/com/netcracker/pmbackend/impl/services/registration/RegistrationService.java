@@ -52,9 +52,18 @@ public class RegistrationService {
         studentsService.save(studentsEntity);
     }
 
+    @Transactional
     public void registrateFaculty(FacultyEntity facultyEntity){
         facultyService.save(facultyEntity);
     }
+
+    @Transactional
+    public void registrateSpeciality(SpecialityEntity specialityEntity){
+        FacultyEntity facultyEntity = facultyService.findById(specialityEntity.getFacultyId());
+        specialityEntity.setFacultyByFacultyId(facultyEntity);
+        specialityService.save(specialityEntity);
+    }
+
 
 
 }
