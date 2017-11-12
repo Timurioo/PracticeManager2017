@@ -8,4 +8,5 @@ public interface PracticesRepository extends CrudRepository<PracticesEntity, Int
 
     List<PracticesEntity> findByHeadofpracticeId(int headofpracticeId);
     List<PracticesEntity> findByStatus(String status);
+    PracticesEntity findByCompany(String company);
 }

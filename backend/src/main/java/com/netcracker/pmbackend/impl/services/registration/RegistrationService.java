@@ -29,6 +29,9 @@ public class RegistrationService {
     @Autowired
     private FacultyService facultyService;
 
+    @Autowired
+    private PracticesService practicesService;
+
     @Transactional
     public void registrateHeadOfPractice(UsersEntity usersEntity, HeadofpracticesEntity headofpracticesEntity){
         usersService.save(usersEntity);
@@ -64,6 +67,21 @@ public class RegistrationService {
         specialityService.save(specialityEntity);
     }
 
+    @Transactional
+    public void registratePractice(PracticesEntity practicesEntity){
+        HeadofpracticesEntity headofpracticesEntity = headofpracticesService.findById(practicesEntity.getHeadofpracticeId());
+        practicesEntity.setHeadofpracticesByHeadofpracticeId(headofpracticesEntity);
 
+        if(practicesEntity.getFacultyId() != null){
+            FacultyEntity facultyEntity = facultyService.findById(practicesEntity.getFacultyId());
+            practicesEntity.setFacultyByFacultyId(facultyEntity);
+            if(practicesEntity.getSpecialityId() != null){
+                SpecialityEntity specialityEntity = specialityService.findById(practicesEntity.getSpecialityId());
+                practicesEntity.setSpecialityBySpecialityId(specialityEntity);
+            }
+        }
+
+        practicesService.save(practicesEntity);
+    }
 
 }

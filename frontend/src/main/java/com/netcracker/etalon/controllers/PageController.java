@@ -87,7 +87,7 @@ public class PageController {
         return "adminpage";
     }
 
-    @RequestMapping(value = "/practices", method = RequestMethod.GET)
+    @RequestMapping(value = "/practicesRequests", method = RequestMethod.GET)
     public String goToPractice() {
         return "allRequests";
     }
@@ -105,6 +105,11 @@ public class PageController {
     @RequestMapping(value = "/registration/faculty", method = RequestMethod.GET)
     public String registrationFaculty() {
         return "createFaculty";
+    }
+
+    @RequestMapping(value = "/registration/practice", method = RequestMethod.GET)
+    public String registrationPractice() {
+        return "createRequest";
     }
 
 

@@ -37,4 +37,17 @@ public class PracticesServicesImpl implements PracticesService {
     public List<PracticesEntity> findByStatus(String status) {
         return practicesRepository.findByStatus(status);
     }
+
+    @Transactional(readOnly = true)
+    public PracticesEntity findByCompany(String company) {
+        return practicesRepository.findByCompany(company);
+    }
+
+
+    @Override
+    public PracticesEntity save(PracticesEntity entity) {
+        return practicesRepository.save(entity);
+    }
+
+
 }

@@ -11,4 +11,6 @@ public interface PracticesService {
     PracticesEntity findById(int id);
     List<PracticesEntity> findByHeadofpracticeId(int HeadofpracticeId);
     List<PracticesEntity> findByStatus(String status);
+    PracticesEntity findByCompany(String company);
+    PracticesEntity save(PracticesEntity entity);
 }

@@ -39,7 +39,7 @@ public class EntityFactory {
         return studentsEntity;
     }
 
-    public PracticesEntity getPracticeEntity(int headOfPracticeId, String company, Date firstDate, Date finishDate, int totalQuantity){
+    public PracticesEntity getPracticeEntity(int headOfPracticeId, String company, Date firstDate, Date finishDate, int totalQuantity, int facultyId, int specialityId, double avrMark){
         PracticesEntity practicesEntity = new PracticesEntity();
         practicesEntity.setHeadofpracticeId(headOfPracticeId);
         practicesEntity.setCompany(company);
@@ -48,6 +48,16 @@ public class EntityFactory {
         practicesEntity.setStatus("Available");
         practicesEntity.setTotalQuantity(totalQuantity);
         practicesEntity.setAvailableQuantity(totalQuantity);
+
+        if(facultyId!=0) {
+            practicesEntity.setFacultyId(facultyId);
+        }
+        if (specialityId!=0) {
+            practicesEntity.setSpecialityId(specialityId);
+        }
+        if(avrMark!=0) {
+            practicesEntity.setAvrMark(avrMark);
+        }
         return practicesEntity;
     }
 

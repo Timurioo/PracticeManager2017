@@ -29,21 +29,21 @@ public class PracticeEntityToPracticeViewModelConverter implements Converter<Pra
 
 
 
-        if(practicesEntity.getFacultyId() != 0){
+        if(practicesEntity.getFacultyId() != null){
             //practiceViewModel.setFacultyViewModel(conversionService.convert(practicesEntity.getFacultyByFacultyId(), FacultyViewModel.class));
             practiceViewModel.setFaculty(practicesEntity.getFacultyByFacultyId().getName());
         }else{
             practiceViewModel.setFaculty(null);
         }
 
-        if(practicesEntity.getSpecialityId() != 0){
+        if(practicesEntity.getSpecialityId() != null){
             // practiceViewModel.setSpecialityViewModel(conversionService.convert(practicesEntity.getSpecialityBySpecialityId(), SpecialityViewModel.class));
             practiceViewModel.setSpeciality(practicesEntity.getSpecialityBySpecialityId().getName());
         }else{
             practiceViewModel.setSpeciality(null);
         }
 
-        if(practicesEntity.getAvrMark() != 0){
+        if(practicesEntity.getAvrMark() != null){
             practiceViewModel.setAvrMark(String.valueOf(practicesEntity.getAvrMark()));
         }else{
             practiceViewModel.setAvrMark(null);
