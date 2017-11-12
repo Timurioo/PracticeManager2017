@@ -91,9 +91,9 @@ function registrationPracticeRequest() {
             "totalQuantity":$('#total_quantity').val()}),
         success: function (data) {
 
-            $('#company').parent().next(".text-danger").remove();
+            $('#name_company').parent().next(".text-danger").remove();
             if(data.company != null) {
-                $('#company').parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.company + "</p>");
+                $('#name_company').parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.company + "</p>");
             }
 
             $('#first_date').parent().next(".text-danger").remove();
