@@ -7,7 +7,7 @@
         <script src="../resources/js/custom/registrationStudent.js"></script>
 
     </head>
-    <body onload="getFacultiesForRegistrationStudentPage()">
+    <body onload="getFaculties()">
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
 
         <jsp:include page="/jsp/blocks/jumbotronblock.jsp">

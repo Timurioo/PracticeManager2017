@@ -20,8 +20,8 @@
         <div class="container">
             <div class="btn-toolbar">
                 <div class="btn-group ">
-                    <a href="createFaculty.jsp" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create faculty / speciality</a>
-                    <a href="registration.jsp" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Register student / head of practice</a>
+                    <a href="/registration/faculty" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create faculty / speciality</a>
+                    <a href="/registration" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Register student / head of practice</a>
                 </div>
 
                 <div class="btn-group ">

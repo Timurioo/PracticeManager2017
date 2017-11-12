@@ -149,7 +149,7 @@ function getSpecialitiesAjaxRequest() {
     });
 }
 
-function getFacultiesForRegistrationStudentPage() {
+function getFaculties() {
     $.ajax({
         url: '/faculties',
         type: 'GET',
