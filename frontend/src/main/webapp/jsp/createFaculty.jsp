@@ -4,7 +4,7 @@
     <head>
         <title>Create faculty</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
-        <script src="../resources/js/custom/registration.js"></script>
+        <script src="../resources/js/custom/registrationFaculty.js"></script>
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>

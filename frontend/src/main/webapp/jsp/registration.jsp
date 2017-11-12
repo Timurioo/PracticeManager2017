@@ -4,7 +4,7 @@
     <head>
         <title>Registration</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
-        <script src="../resources/js/custom/registration.js"></script>
+        <script src="../resources/js/custom/registrationStudent.js"></script>
 
     </head>
     <body onload="getFacultiesForRegistrationStudentPage()">
