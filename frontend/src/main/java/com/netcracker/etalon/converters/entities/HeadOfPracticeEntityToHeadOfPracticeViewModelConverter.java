@@ -17,7 +17,6 @@ public class HeadOfPracticeEntityToHeadOfPracticeViewModelConverter implements C
         HeadOfPracticeViewModel headOfPracticeViewModel = new HeadOfPracticeViewModel();
         headOfPracticeViewModel.setId(String.valueOf(headofpracticesEntity.getId()));
         headOfPracticeViewModel.setName(headofpracticesEntity.getName());
-        headOfPracticeViewModel.setUserViewModel(conversionService.convert(headofpracticesEntity.getUsersByUserId(), UserViewModel.class));
         return headOfPracticeViewModel;
     }
 }

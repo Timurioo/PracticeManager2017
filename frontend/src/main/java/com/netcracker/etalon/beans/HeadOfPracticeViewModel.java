@@ -5,7 +5,6 @@ public class HeadOfPracticeViewModel {
 
     private String id;
     private String name;
-    private UserViewModel userViewModel;
 
     public String getId() {
         return id;
@@ -23,11 +22,4 @@ public class HeadOfPracticeViewModel {
         this.name = name;
     }
 
-    public UserViewModel getUserViewModel() {
-        return userViewModel;
-    }
-
-    public void setUserViewModel(UserViewModel userViewModel) {
-        this.userViewModel = userViewModel;
-    }
 }
