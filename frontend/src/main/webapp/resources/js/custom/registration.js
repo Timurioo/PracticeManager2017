@@ -131,11 +131,11 @@ function registrationStudentAjaxRequest() {
 
 function getSpecialitiesAjaxRequest() {
     $.ajax({
-        url: '/specialityData',
-        type: 'POST',
+        url: 'faculties/'+$('#faculty_name_student').val()+'/specialities',
+        type: 'GET',
         contentType: "application/json; charset=UTF-8",
-        data: JSON.stringify({"facultyId":$('#faculty_name_student').val(),
-                            "name":$('#faculty_name_student').find("option:selected").text()}),
+        //data: JSON.stringify({"facultyId":$('#faculty_name_student').val(),
+         //                   "name":$('#faculty_name_student').find("option:selected").text()}),
         success: function (data) {
             $('#speciality_name_student').empty();
             for(var i in data) {
@@ -150,8 +150,8 @@ function getSpecialitiesAjaxRequest() {
 
 $(document).ready(function () {
     $.ajax({
-        url: '/facultyData',
-        type: 'POST',
+        url: '/faculties',
+        type: 'GET',
         contentType: "application/json; charset=UTF-8",
         data: '',
         success: function (data) {
