@@ -4,6 +4,7 @@
     <head>
         <title>Create faculty</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
+        <script src="../resources/js/custom/registration.js"></script>
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
@@ -27,12 +28,12 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Name of faculty:</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Enter faculty...">
+                                <input id="name_faculty" type="text" class="form-control" placeholder="Enter faculty...">
                             </div>
                         </div>
 
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create faculty</button>
+                            <button type="button" class="btn btn-primary btn-block" onclick="registrationFacultyAjaxRequest()"><span class="glyphicon glyphicon-plus"></span> Create faculty</button>
                         </div>
                     </form>
                 </div>

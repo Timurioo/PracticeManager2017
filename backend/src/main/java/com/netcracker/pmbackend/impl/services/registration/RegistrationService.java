@@ -1,13 +1,7 @@
 package com.netcracker.pmbackend.impl.services.registration;
 
-import com.netcracker.pmbackend.impl.entities.HeadofpracticesEntity;
-import com.netcracker.pmbackend.impl.entities.SpecialityEntity;
-import com.netcracker.pmbackend.impl.entities.StudentsEntity;
-import com.netcracker.pmbackend.impl.entities.UsersEntity;
-import com.netcracker.pmbackend.interfaces.HeadofpracticesService;
-import com.netcracker.pmbackend.interfaces.SpecialityService;
-import com.netcracker.pmbackend.interfaces.StudentsService;
-import com.netcracker.pmbackend.interfaces.UsersService;
+import com.netcracker.pmbackend.impl.entities.*;
+import com.netcracker.pmbackend.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +26,9 @@ public class RegistrationService {
     @Autowired
     private SpecialityService specialityService;
 
+    @Autowired
+    private FacultyService facultyService;
+
     @Transactional
     public void registrateHeadOfPractice(UsersEntity usersEntity, HeadofpracticesEntity headofpracticesEntity){
         usersService.save(usersEntity);
@@ -53,6 +50,10 @@ public class RegistrationService {
         studentsEntity.setSpecialityBySpecialityId(specialityEntity);
 
         studentsService.save(studentsEntity);
+    }
+
+    public void registrateFaculty(FacultyEntity facultyEntity){
+        facultyService.save(facultyEntity);
     }
 
 

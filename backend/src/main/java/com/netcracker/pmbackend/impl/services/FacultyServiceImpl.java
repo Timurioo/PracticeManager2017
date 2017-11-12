@@ -32,4 +32,10 @@ public class FacultyServiceImpl implements FacultyService {
     public FacultyEntity findByName(String name) {
         return facultyRepository.findByName(name);
     }
+
+    public FacultyEntity save(FacultyEntity entity) {
+        return facultyRepository.save(entity);
+    }
+
+
 }

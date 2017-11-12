@@ -102,6 +102,11 @@ public class PageController {
         return "registration";
     }
 
+    @RequestMapping(value = "/registration/faculty", method = RequestMethod.GET)
+    public String registrationFaculty() {
+        return "createFaculty";
+    }
+
 
 }
 /*

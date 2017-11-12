@@ -155,19 +155,5 @@ public class DataController {
         return null;
     }
 
-    @RequestMapping(value = "/facultyData", method = RequestMethod.POST)
-    @ResponseBody
-    public List<FacultyViewModel> getFacultyData() {
-        List<FacultyEntity> allFaculties = facultyService.findAll();
-        return (List<FacultyViewModel>) conversionService.convert(allFaculties,facultyEntityTypeDescriptor, facultyViewModelTypeDescriptor);
-    }
-
-    @RequestMapping(value = "/specialityData", method = RequestMethod.POST)
-    @ResponseBody
-    public List<SpecialityViewModel> getSpecialityData(@RequestBody FacultyRegistrationDTO facultyRegistrationDTO) {
-        List<SpecialityEntity> allSpecialities = specialityService.findByFacultyId(Integer.parseInt(facultyRegistrationDTO.getFacultyId()));
-        return (List<SpecialityViewModel>) conversionService.convert(allSpecialities,specialityEntityTypeDescriptor, specialityViewModelTypeDescriptor);
-    }
-
 
 }

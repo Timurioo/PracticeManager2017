@@ -10,4 +10,5 @@ public interface FacultyService {
     List<FacultyEntity> findAll();
     FacultyEntity findById(int id);
     FacultyEntity findByName(String name);
+    FacultyEntity save(FacultyEntity entity);
 }
