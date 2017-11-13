@@ -4,9 +4,12 @@
     <head>
         <title>Registration</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
+        <link rel="stylesheet" href="../resources/css/custom/registration.css">
+        <script src="../resources/js/jquery.validate.min.js"></script>
+        <script src="../resources/js/additional-methods.js"></script>
         <script src="../resources/js/custom/registration/student/registrationStudentActions.js"></script>
+        <script src="../resources/js/custom/registration/student/registrationStudentValidation.js"></script>
         <script src="../resources/js/custom/registration/student/registrationStudentListeners.js"></script>
-
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
@@ -25,33 +28,33 @@
             <div class="tab-content">
                 <div class="tab-pane active fade in" role="tab" id="student">
                     <h2 class="text-center">Registration information:</h2>
-                    <form class="form-horizontal">
+                    <form id="student_form" class="form-horizontal">
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Name:</label>
                             <div class="col-md-4">
-                                <input id="name_student" type="text" class="form-control" placeholder="Enter name...">
+                                <input id="name_student" name="name_s" type="text" class="form-control" placeholder="Enter name...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Surname:</label>
                             <div class="col-md-4">
-                                <input id="surname_student" type="text" class="form-control" placeholder="Enter surname...">
+                                <input id="surname_student" name="surname_s" type="text" class="form-control" placeholder="Enter surname...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Phone number:</label>
                             <div class="col-md-4">
-                                <input id="phone_student" type="text" class="form-control" placeholder="*+375441111111...">
+                                <input id="phone_student" name="phone_s" type="tel" class="form-control" placeholder="+375291112233">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Email:</label>
                             <div class="col-md-4">
-                                <input id="email_student" type="text" class="form-control" placeholder="Enter email...">
+                                <input id="email_student" name="email_s"  type="email" class="form-control" placeholder="Enter email...">
                             </div>
                         </div>
 
@@ -76,14 +79,14 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Group:</label>
                             <div class="col-md-4">
-                                <input id="group_student" type="text" class="form-control" placeholder="*551001...">
+                                <input id="group_student" name="group_s" type="text" class="form-control" placeholder="*551001...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Average mark:</label>
                             <div class="col-md-4">
-                                <input id="average_mark_student" type="text" class="form-control" placeholder="*8...">
+                                <input id="average_mark_student" name="avr_mark_s" type="text" class="form-control" placeholder="*8...">
                             </div>
                         </div>
 
@@ -105,29 +108,29 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Login:</label>
                             <div class="col-md-4">
-                                <input id="login_student" type="text" class="form-control" placeholder="Enter login...">
+                                <input id="login_student" name="login_s" type="text" class="form-control" placeholder="Enter login...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Password:</label>
                             <div class="col-md-4">
-                                <input id="password_student" type="text" class="form-control" placeholder="Enter password...">
+                                <input id="password_student" name="pass_s" type="text" class="form-control" placeholder="Enter password...">
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-4">
-                            <button id="submit_student_btn" type="button" class="btn btn-primary btn-block">Sign up</button>
+                            <button id="submit_student_btn" disabled="disabled" type="button" class="btn btn-primary btn-block">Sign up</button>
                         </div>
                     </form>
                 </div>
                 <div class="tab-pane fade" role="tab" id="headofpractice">
                     <h2 class="text-center">Registration information:</h2>
-                    <form class="form-horizontal">
+                    <form id="head_of_practice_form" class="form-horizontal">
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Head of practice name:</label>
                             <div class="col-md-4">
-                                <input id="name_headofpractice" type="text" class="form-control" placeholder="Enter name...">
+                                <input id="name_headofpractice" name="name_h" type="text" class="form-control" placeholder="Enter name...">
 
                             </div>
                         </div>
@@ -135,19 +138,19 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Login:</label>
                             <div class="col-md-4">
-                                <input id="login_headofpractice" type="text" class="form-control" placeholder="Enter login...">
+                                <input id="login_headofpractice" name="login_h" type="text" class="form-control" placeholder="Enter login...">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Password:</label>
                             <div class="col-md-4">
-                                <input id="password_headofpractice" type="text" class="form-control" placeholder="Enter password...">
+                                <input id="password_headofpractice" name="pass_h" type="text" class="form-control" placeholder="Enter password...">
                             </div>
                         </div>
 
                         <div class="col-md-4 col-md-offset-4">
-                            <button id="submit_headofpractice_btn" type="button" class="btn btn-primary btn-block">Sign up</button>
+                            <button id="submit_headofpractice_btn" disabled="disabled" type="button" class="btn btn-primary btn-block">Sign up</button>
                         </div>
                     </form>
                 </div>
