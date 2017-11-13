@@ -17,7 +17,8 @@ $(document).ready(function () {
             phone_s: {
                 required: true,
                 minlength: 7,
-                maxlength: 13,
+                maxlength: 11,
+                digits: true
             },
             email_s: {
                 required: true,
@@ -33,9 +34,9 @@ $(document).ready(function () {
                 required: true,
                 minlength: 1,
                 maxlength: 4,
-                max: 10,
+                number: true,
                 min: 1,
-                number: true
+                max: 10
             },
             login_s: {
                 required: true,
@@ -67,7 +68,8 @@ $(document).ready(function () {
             phone_s: {
                 required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field.",
                 minlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Min length: 7.",
-                maxlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Max length: 13."
+                maxlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Max length: 11.",
+                digits: "<span class='glyphicon glyphicon-exclamation-sign'></span> Only digits."
             },
             email_s: {
                 required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field.",
@@ -83,7 +85,9 @@ $(document).ready(function () {
                 required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field.",
                 minlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Min length: 1.",
                 maxlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Max length: 4.",
-                number: "<span class='glyphicon glyphicon-exclamation-sign'></span> Only numbers."
+                number: "<span class='glyphicon glyphicon-exclamation-sign'></span> Only numbers.",
+                min: "<span class='glyphicon glyphicon-exclamation-sign'></span> Should be greater than or equal to 1.",
+                max: "<span class='glyphicon glyphicon-exclamation-sign'></span> Should be less than or equal to 10."
             },
             login_s: {
                 required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field.",
