@@ -4,8 +4,12 @@
     <head>
         <title>Create request</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
+        <link rel="stylesheet" href="../resources/css/custom/registration.css">
+        <script src="../resources/js/jquery.validate.min.js"></script>
+        <script src="../resources/js/additional-methods.js"></script>
         <script src="../resources/js/custom/registration/practice/registrationPracticeRequestActions.js"></script>
         <script src="../resources/js/custom/registration/practice/registrationPracticeRequestListeners.js"></script>
+        <script src="../resources/js/custom/registration/practice/registrationPracticeRequestValidation.js"></script>
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
@@ -17,7 +21,7 @@
 
         <div class="container">
             <h2 class="text-center">Creation information:</h2>
-            <form class="form-horizontal">
+            <form id="id_practice_form" class="form-horizontal">
 
                 <div class="form-group">
                     <label class="control-label col-md-4">Choose head of practice:</label>
@@ -31,21 +35,21 @@
                 <div class="form-group">
                     <label class="control-label col-md-4">Company name:</label>
                     <div class="col-md-4">
-                        <input id="name_company" type="text" class="form-control" placeholder="Enter name...">
+                        <input id="name_company" name="company_name" type="text" class="form-control" placeholder="Enter name...">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-4">Start date:</label>
                     <div class="col-md-4">
-                        <input id="first_date" type="date" class="form-control" placeholder="Choose date...">
+                        <input id="first_date" name="first_d" type="date" class="form-control" placeholder="Choose date...">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-4">Finish date:</label>
                     <div class="col-md-4">
-                        <input id="finish_date" type="date" class="form-control" placeholder="Choose date...">
+                        <input id="finish_date" name="finish_d" type="date" class="form-control" placeholder="Choose date...">
                     </div>
                 </div>
 
@@ -70,19 +74,19 @@
                 <div class="form-group">
                     <label class="control-label col-md-4">Average mark:</label>
                     <div class="col-md-4">
-                        <input id="avr_mark" type="text" class="form-control" placeholder="Enter minimum mark...">
+                        <input id="avr_mark" name="average_mark" type="text" class="form-control" placeholder="Enter minimum mark...">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-4">Total quantity:</label>
                     <div class="col-md-4">
-                        <input id="total_quantity" type="text" class="form-control" placeholder="*20...">
+                        <input id="total_quantity" name="total_q" type="text" class="form-control" placeholder="*20...">
                     </div>
                 </div>
 
                 <div class="col-md-4 col-md-offset-4">
-                    <button id="submit_practice_btn" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create practice request</button>
+                    <button id="submit_practice_btn" disabled="disabled" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create practice request</button>
                 </div>
             </form>
         </div>
