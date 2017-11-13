@@ -8,6 +8,6 @@ $(document).ready( function () {
 
     $('#submit_speciality_btn').click(function () {
         registrationSpecialityAjaxRequest();
-    })
+    });
 
 });

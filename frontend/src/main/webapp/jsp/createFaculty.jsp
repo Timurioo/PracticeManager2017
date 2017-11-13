@@ -4,7 +4,11 @@
     <head>
         <title>Create faculty</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
+        <link rel="stylesheet" href="../resources/css/custom/registration.css">
+        <script src="../resources/js/jquery.validate.min.js"></script>
+        <script src="../resources/js/additional-methods.js"></script>
         <script src="../resources/js/custom/registration/faculty/registrationFacultyActions.js"></script>
+        <script src="../resources/js/custom/registration/faculty/registrationFacultyValidation.js"></script>
         <script src="../resources/js/custom/registration/faculty/registrationFacultyListeners.js"></script>
     </head>
     <body>
@@ -24,23 +28,23 @@
             <div class="tab-content">
                 <div class="tab-pane active fade in" role="tab" id="faculty_tab">
                     <h2 class="text-center">Creation information:</h2>
-                    <form class="form-horizontal">
+                    <form id="faculty_form" class="form-horizontal">
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Name of faculty:</label>
                             <div class="col-md-4">
-                                <input id="name_faculty" type="text" class="form-control" placeholder="Enter faculty...">
+                                <input id="name_faculty" name="name_f" type="text" class="form-control" placeholder="Enter faculty...">
                             </div>
                         </div>
 
                         <div class="col-md-4 col-md-offset-4">
-                            <button id="submit_faculty_btn" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create faculty</button>
+                            <button id="submit_faculty_btn" disabled="disabled" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create faculty</button>
                         </div>
                     </form>
                 </div>
                 <div class="tab-pane fade" role="tab" id="speciality_tab">
                     <h2 class="text-center">Creation information:</h2>
-                    <form class="form-horizontal">
+                    <form id="speciality_form" class="form-horizontal">
 
                         <div class="form-group">
                             <label class="control-label col-md-4">Choose faculty:</label>
@@ -54,11 +58,11 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Name of speciality:</label>
                             <div class="col-md-4">
-                                <input id="name_speciality" type="text" class="form-control" placeholder="Enter speciality...">
+                                <input id="name_speciality" name="name_s" type="text" class="form-control" placeholder="Enter speciality...">
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-4">
-                            <button id="submit_speciality_btn" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create speciality</button>
+                            <button id="submit_speciality_btn" disabled="disabled" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create speciality</button>
                         </div>
                     </form>
 
