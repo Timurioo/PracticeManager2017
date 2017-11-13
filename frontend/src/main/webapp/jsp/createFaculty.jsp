@@ -4,9 +4,10 @@
     <head>
         <title>Create faculty</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
-        <script src="../resources/js/custom/registrationFaculty.js"></script>
+        <script src="../resources/js/custom/registration/faculty/registrationFacultyActions.js"></script>
+        <script src="../resources/js/custom/registration/faculty/registrationFacultyListeners.js"></script>
     </head>
-    <body onload="getFaculties()">
+    <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
 
         <jsp:include page="/jsp/blocks/jumbotronblock.jsp">
@@ -33,7 +34,7 @@
                         </div>
 
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="button" class="btn btn-primary btn-block" onclick="registrationFacultyAjaxRequest()"><span class="glyphicon glyphicon-plus"></span> Create faculty</button>
+                            <button id="submit_faculty_btn" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create faculty</button>
                         </div>
                     </form>
                 </div>
@@ -57,7 +58,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="button" class="btn btn-primary btn-block" onclick="registrationSpecialityAjaxRequest()"><span class="glyphicon glyphicon-plus"></span> Create speciality</button>
+                            <button id="submit_speciality_btn" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create speciality</button>
                         </div>
                     </form>
 

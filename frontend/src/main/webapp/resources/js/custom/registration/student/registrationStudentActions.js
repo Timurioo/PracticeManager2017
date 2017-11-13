@@ -117,20 +117,7 @@ function registrationStudentAjaxRequest() {
     })
 }
 
-
-/*$('#faculty_name_student').click(function () {
-    alert("yes");
-    $.ajax({
-        url: '/specialityData',
-        type: 'POST',
-        contentType: "application/json; charset=UTF-8",
-        data: JSON.stringify({"specialityId":this.value}),
-        success: function (data) {
-        }
-    });
-});*/
-
-function getSpecialitiesAjaxRequest() {
+function getSpecialities() {
     $.ajax({
         url: 'faculties/'+$('#faculty_name_student').val()+'/specialities',
         type: 'GET',
@@ -162,7 +149,7 @@ function getFaculties() {
                         .attr("value", data[i].id)
                         .text(data[i].name));
             }
-            getSpecialitiesAjaxRequest();
+            getSpecialities();
         }
     });
 }

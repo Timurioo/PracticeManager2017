@@ -5,10 +5,10 @@
         <title>Student profile</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
 
-        <!-- AJAX -->
-        <script src="../resources/js/custom/studentProfile.js"></script>
+        <script src="../resources/js/custom/profile/studentProfileActions.js"></script>
+        <script src="../resources/js/custom/profile/studentProfileListener.js"></script>
     </head>
-    <body onload="studentProfileDateAjaxLoad()">
+    <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
 
         <jsp:include page="/jsp/blocks/jumbotronblock.jsp">

@@ -4,10 +4,11 @@
     <head>
         <title>Registration</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
-        <script src="../resources/js/custom/registrationStudent.js"></script>
+        <script src="../resources/js/custom/registration/student/registrationStudentActions.js"></script>
+        <script src="../resources/js/custom/registration/student/registrationStudentListeners.js"></script>
 
     </head>
-    <body onload="getFaculties()">
+    <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
 
         <jsp:include page="/jsp/blocks/jumbotronblock.jsp">
@@ -57,7 +58,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Choose faculty:</label>
                             <div class="col-md-4">
-                                <select id="faculty_name_student" class="form-control" onchange="getSpecialitiesAjaxRequest()">
+                                <select id="faculty_name_student" class="form-control">
 
                                 </select>
                             </div>
@@ -115,7 +116,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="button" class="btn btn-primary btn-block" onclick="registrationStudentAjaxRequest()">Sign up</button>
+                            <button id="submit_student_btn" type="button" class="btn btn-primary btn-block">Sign up</button>
                         </div>
                     </form>
                 </div>
@@ -146,7 +147,7 @@
                         </div>
 
                         <div class="col-md-4 col-md-offset-4">
-                            <button type="button" class="btn btn-primary btn-block" onclick="registrationHeadOfPracticeAjaxRequest()">Sign up</button>
+                            <button id="submit_headofpractice_btn" type="button" class="btn btn-primary btn-block">Sign up</button>
                         </div>
                     </form>
                 </div>

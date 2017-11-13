@@ -4,9 +4,10 @@
     <head>
         <title>Create request</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
-        <script src="../resources/js/custom/registrationPracticeRequest.js"></script>
+        <script src="../resources/js/custom/registration/practice/registrationPracticeRequestActions.js"></script>
+        <script src="../resources/js/custom/registration/practice/registrationPracticeRequestListeners.js"></script>
     </head>
-    <body onload="loadDataOnStartUp()">
+    <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
 
         <jsp:include page="/jsp/blocks/jumbotronblock.jsp">
@@ -51,7 +52,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-4">Choose faculty:</label>
                     <div class="col-md-4">
-                        <select id="faculties" class="form-control" onchange="getSpecialitiesAjaxRequest()">
+                        <select id="faculties" class="form-control">
 
                         </select>
                     </div>
@@ -81,7 +82,7 @@
                 </div>
 
                 <div class="col-md-4 col-md-offset-4">
-                    <button type="button" class="btn btn-primary btn-block" onclick="registrationPracticeRequest()"><span class="glyphicon glyphicon-plus"></span> Create practice request</button>
+                    <button id="submit_practice_btn" type="button" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create practice request</button>
                 </div>
             </form>
         </div>

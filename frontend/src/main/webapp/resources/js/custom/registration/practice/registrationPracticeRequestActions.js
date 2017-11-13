@@ -1,4 +1,4 @@
-function getSpecialitiesAjaxRequest() {
+function getSpecialities() {
     if(($('#faculties').val())!= "-") {
         $.ajax({
             url: '/faculties/' + $('#faculties').val() + '/specialities',
@@ -48,7 +48,7 @@ function getFaculties() {
                         .text(data[i].name));
             }
 
-            getSpecialitiesAjaxRequest();
+            getSpecialities();
         }
     });
 }
@@ -71,12 +71,7 @@ function getHeadOfPractices() {
     });
 }
 
-function loadDataOnStartUp() {
-    getHeadOfPractices();
-    getFaculties();
-}
-
-function registrationPracticeRequest() {
+function registrationPracticeAjaxRequest() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=UTF-8",
