@@ -20,7 +20,7 @@
         <div class="container">
             <div class="btn-toolbar">
                 <div class="btn-group ">
-                    <a href="createRequest.jsp" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create request</a>
+                    <a href="/registration/practice" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create request</a>
                     <button type="submit" class="btn btn-danger"> Delete request  <span class="glyphicon glyphicon-trash"></span></button>
                 </div>
             </div>

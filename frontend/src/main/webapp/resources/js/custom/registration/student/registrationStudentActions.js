@@ -109,7 +109,7 @@ function registrationStudentAjaxRequest() {
             }
 
             if(!data){
-                alert("Head of practice successfully was registered!");
+                alert("Student successfully was registered!");
                 window.location.replace("/registration");
             }
 
