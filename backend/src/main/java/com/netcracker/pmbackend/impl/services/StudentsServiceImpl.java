@@ -61,4 +61,9 @@ public class StudentsServiceImpl implements StudentsService {
     public StudentsEntity save(StudentsEntity entity) {
         return studentsRepository.save(entity);
     }
+
+    public void delete(int id) {
+        studentsRepository.delete(id);
+    }
+
 }

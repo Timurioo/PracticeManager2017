@@ -44,9 +44,12 @@ public class PracticesServicesImpl implements PracticesService {
     }
 
 
-    @Override
     public PracticesEntity save(PracticesEntity entity) {
         return practicesRepository.save(entity);
+    }
+
+    public void delete(int id) {
+        practicesRepository.delete(id);
     }
 
 

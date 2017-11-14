@@ -13,4 +13,5 @@ public interface PracticesService {
     List<PracticesEntity> findByStatus(String status);
     PracticesEntity findByCompany(String company);
     PracticesEntity save(PracticesEntity entity);
+    void delete(int id);
 }

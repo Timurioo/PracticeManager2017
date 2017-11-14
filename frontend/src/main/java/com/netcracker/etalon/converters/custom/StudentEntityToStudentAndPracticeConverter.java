@@ -13,6 +13,7 @@ public class StudentEntityToStudentAndPracticeConverter implements Converter<Stu
     public StudentAndPracticeViewModel convert(StudentsEntity studentsEntity) {
         StudentAndPracticeViewModel studentAndPracticeViewModel = new StudentAndPracticeViewModel();
         studentAndPracticeViewModel.setId(String.valueOf(studentsEntity.getId()));
+        studentAndPracticeViewModel.setState(String.valueOf(studentsEntity.getId()));
         studentAndPracticeViewModel.setName(studentsEntity.getName());
         studentAndPracticeViewModel.setSurname(studentsEntity.getSurname());
         studentAndPracticeViewModel.setAvrMark(String.valueOf(studentsEntity.getAvrMark()));

@@ -18,6 +18,7 @@ public class PracticeEntityToPracticeViewModelConverter implements Converter<Pra
     public PracticeViewModel convert(PracticesEntity practicesEntity) {
         PracticeViewModel practiceViewModel = new PracticeViewModel();
         practiceViewModel.setId(String.valueOf(practicesEntity.getId()));
+        practiceViewModel.setState(String.valueOf(practicesEntity.getId()));
         practiceViewModel.setCompany(practicesEntity.getCompany());
         practiceViewModel.setFirstDate(String.valueOf(practicesEntity.getFirstDate()));
         practiceViewModel.setFinishDate(String.valueOf(practicesEntity.getFinishDate()));

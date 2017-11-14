@@ -7,6 +7,9 @@
 
         <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
         <script src="../resources/js/bootstrap-table.js"></script>
+        <script src="../resources/js/custom/practicespage/practicesPageActions.js"></script>
+        <script src="../resources/js/custom/practicespage/practicesPageListeners.js"></script>
+
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
@@ -21,7 +24,7 @@
             <div class="btn-toolbar">
                 <div class="btn-group ">
                     <a href="/registration/practice" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create request</a>
-                    <button type="submit" class="btn btn-danger"> Delete request  <span class="glyphicon glyphicon-trash"></span></button>
+                    <button id="delete_practices_btn" disabled="disabled" type="submit" class="btn btn-danger"> Delete request  <span class="glyphicon glyphicon-trash"></span></button>
                 </div>
             </div>
         </div>
@@ -31,7 +34,8 @@
             <table class="table table-no-bordered" id="table1" data-toggle="table"
                    data-classes="table table-no-bordered"
                    data-click-to-select="true"
-                   data-url="/practicesData" >
+                   data-url="/practicesData"
+                   data-id-field="id">
                 <thead>
                 <tr>
                     <th data-field="state" data-checkbox="true"></th>

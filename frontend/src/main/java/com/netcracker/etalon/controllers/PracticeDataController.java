@@ -8,6 +8,7 @@ import com.netcracker.pmbackend.impl.entities.FacultyEntity;
 import com.netcracker.pmbackend.impl.entities.HeadofpracticesEntity;
 import com.netcracker.pmbackend.impl.entities.PracticesEntity;
 import com.netcracker.pmbackend.impl.factory.EntityFactory;
+import com.netcracker.pmbackend.impl.services.deletion.DeletionService;
 import com.netcracker.pmbackend.impl.services.registration.RegistrationService;
 import com.netcracker.pmbackend.interfaces.PracticesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.sql.Date;
 import java.util.DoubleSummaryStatistics;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -39,6 +41,9 @@ public class PracticeDataController {
 
     @Autowired
     private RegistrationService registrationService;
+
+    @Autowired
+    private DeletionService deletionService;
 
 
     @RequestMapping(value = "/practices", method = RequestMethod.POST, produces = "application/json")
@@ -62,6 +67,16 @@ public class PracticeDataController {
 
 
         registrationService.registratePractice(practicesEntity);
+        return null;
+    }
+
+    @RequestMapping(value = "/practices", method = RequestMethod.DELETE, produces = "application/json")
+    @ResponseBody
+    public Map<String, String> deletePractices(@RequestBody List<String> practicesIds) {
+
+        for(String practiceId : practicesIds) {
+            deletionService.deletePractice(Integer.parseInt(practiceId));
+        }
         return null;
     }
 }

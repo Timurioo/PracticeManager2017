@@ -7,6 +7,8 @@
 
         <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
         <script src="../resources/js/bootstrap-table.js"></script>
+        <script src="../resources/js/custom/adminpage/adminPageActions.js"></script>
+        <script src="../resources/js/custom/adminpage/adminPageListeners.js"></script>
     </head>
     <body>
 
@@ -30,16 +32,15 @@
                 </div>
 
                 <div class="btn-group ">
-                    <a href="practices" class="btn btn-primary">Show all requests</a>
+                    <a href="/practicesRequests" class="btn btn-primary">Show all requests</a>
                 </div>
 
                 <div class="btn-group ">
-                    <button type="submit" class="btn btn-danger">Delete student(s) <span class="glyphicon glyphicon-trash"></span></button>
+                    <button type="button" id="delete_students_btn" disabled="disabled" class="btn btn-danger">Delete student(s) <span class="glyphicon glyphicon-trash"></span></button>
                 </div>
 
             </div>
         </div>
-
 
 
         <br/>
@@ -47,10 +48,11 @@
             <table class="table table-no-bordered" id="table1" data-toggle="table"
                    data-classes="table table-no-bordered"
                    data-click-to-select="true"
-                   data-url="/studentsAndPracticeData" >
+                   data-url="/studentsAndPracticeData"
+                   data-id-field="id">
                 <thead>
                 <tr>
-                    <th data-field="state" data-checkbox="true"></th>
+                    <th data-field="state" data-checkbox="true" ></th>
                     <th data-field="name" >Name</th>
                     <th data-field="surname" >Surname</th>
                     <th data-field="faculty" >Faculty</th>
@@ -115,66 +117,7 @@
 
 
         <br/>
-       <!-- <div class="container table-responsive">
-            <table class="table table-condensed table-striped">
-                <thead>
-                <tr>
-                    <th>Choice</th>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Faculty</th>
-                    <th>Speciality</th>
-                    <th>Education basis</th>
-                    <th>Average mark</th>
-                    <th>Status</th>
-                    <th>Company</th>
-                    <th>Practice period</th>
-                    <th>Show profile</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
-                    <td>Dmitry</td>
-                    <td>Chekh</td>
-                    <td>FSCAN</td>
-                    <td>ITS</td>
-                    <td>Chargeable</td>
-                    <td>8.3</td>
-                    <td>Busy</td>
-                    <td>Netcracker</td>
-                    <td>10.09.2017 - 10.12.2017</td>
-                    <td><a href="studentprofile.jsp" class="btn btn-default btn-block">Profile <span class="glyphicon glyphicon-user"></span></a></td>
-                </tr>
-                <tr>
-                    <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
-                    <td>Vlad</td>
-                    <td>Gorbunov</td>
-                    <td>FCP</td>
-                    <td>MH</td>
-                    <td>Budget</td>
-                    <td>8.0</td>
-                    <td>Available</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><a href="studentprofile.jsp" class="btn btn-default btn-block">Profile <span class="glyphicon glyphicon-user"></span></a></td>
-                </tr>
-                <tr>
-                    <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
-                    <td>Stas</td>
-                    <td>Kroshinskiy</td>
-                    <td>FSCAN</td>
-                    <td>ITS</td>
-                    <td>Budget</td>
-                    <td>9.0</td>
-                    <td>Busy</td>
-                    <td>EPAM</td>
-                    <td>21.08.2017 - 21.12.2017</td>
-                    <td><a href="studentprofile.jsp" class="btn btn-default btn-block">Profile <span class="glyphicon glyphicon-user"></span></a></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>-->
+
 
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">

@@ -4,6 +4,7 @@ package com.netcracker.etalon.beans;
 public class PracticeViewModel {
 
     private String id;
+    private String state;
     private String headOfPractice;
     private String company;
     private String firstDate;
@@ -21,6 +22,14 @@ public class PracticeViewModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getHeadOfPractice() {

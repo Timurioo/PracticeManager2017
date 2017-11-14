@@ -17,4 +17,5 @@ public interface StudentsService {
     StudentsEntity findByEmail(String email);
     StudentsEntity findByPhone(String phone);
     StudentsEntity save(StudentsEntity entity);
+    void delete(int id);
 }

@@ -46,4 +46,9 @@ public class UsersServiceImpl implements UsersService {
     public UsersEntity save(UsersEntity entity) {
         return usersRepository.save(entity);
     }
+
+    public void delete(int id) {
+        usersRepository.delete(id);
+    }
+
 }
