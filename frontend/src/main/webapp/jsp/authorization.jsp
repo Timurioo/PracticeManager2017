@@ -18,26 +18,6 @@
             <form class="form-horizontal" name="form_login" action="/j_spring_security_check" method="post">
 
                 <div class="form-group">
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="radio-inline">
-                            <label >
-                                <input checked="checked" type="radio" name="role">Student
-                            </label>
-                        </div>
-                        <div class="radio-inline">
-                            <label >
-                                <input type="radio" name="role">Head of practice
-                            </label>
-                        </div>
-                        <div class="radio-inline">
-                            <label >
-                                <input type="radio" name="role">Administrator
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="control-label col-md-4">Login:</label>
                     <div class="col-md-4">
                         <input type="text" class="form-control" name="user_login" placeholder="Enter login...">
