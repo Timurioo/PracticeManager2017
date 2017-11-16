@@ -73,4 +73,14 @@ public class EntityFactory {
         specialityEntity.setFacultyId(facultyId);
         return specialityEntity;
     }
+
+    public AssignStudentsEntity getAssignStudentEntity(int practiceId, int studentId){
+
+        AssignStudentsEntity assignStudentsEntity = new AssignStudentsEntity();
+
+        assignStudentsEntity.setPracticeId(practiceId);
+        assignStudentsEntity.setStudentId(studentId);
+
+        return assignStudentsEntity;
+    }
 }

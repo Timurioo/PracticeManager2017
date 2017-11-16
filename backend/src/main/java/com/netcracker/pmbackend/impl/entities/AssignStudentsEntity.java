@@ -85,4 +85,15 @@ public class AssignStudentsEntity {
     public void setPracticesByPracticeId(PracticesEntity practicesByPracticeId) {
         this.practicesByPracticeId = practicesByPracticeId;
     }
+
+    @Override
+    public String toString() {
+        return "AssignStudentsEntity{" +
+                "id=" + id +
+                ", studentId=" + studentId +
+                ", practiceId=" + practiceId +
+                ", studentsByStudentId=" + studentsByStudentId +
+                ", practicesByPracticeId=" + practicesByPracticeId +
+                '}';
+    }
 }

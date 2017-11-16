@@ -1,5 +1,6 @@
 package com.netcracker.etalon.controllers;
 
+import com.netcracker.pmbackend.impl.entities.StudentsEntity;
 import com.netcracker.pmbackend.impl.services.deletion.DeletionService;
 import com.netcracker.pmbackend.interfaces.StudentsService;
 import com.netcracker.pmbackend.interfaces.UsersService;

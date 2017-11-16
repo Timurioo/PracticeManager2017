@@ -1,5 +1,6 @@
 package com.netcracker.etalon.controllers;
 
+import com.netcracker.etalon.beans.PracticeViewModel;
 import com.netcracker.etalon.dto.FacultyRegistrationDTO;
 import com.netcracker.etalon.dto.PracticeRegistrationDTO;
 import com.netcracker.etalon.validation.converter.ValidationResponseDataConverter;
@@ -12,6 +13,8 @@ import com.netcracker.pmbackend.impl.services.deletion.DeletionService;
 import com.netcracker.pmbackend.impl.services.registration.RegistrationService;
 import com.netcracker.pmbackend.interfaces.PracticesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,6 +47,13 @@ public class PracticeDataController {
 
     @Autowired
     private DeletionService deletionService;
+
+    @Autowired
+    private ConversionService conversionService;
+
+    // Practice type descriptors
+    private final TypeDescriptor practiceEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticesEntity.class));
+    private final TypeDescriptor practiceViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeViewModel.class));
 
 
     @RequestMapping(value = "/practices", method = RequestMethod.POST, produces = "application/json")
@@ -79,4 +89,12 @@ public class PracticeDataController {
         }
         return null;
     }
+
+    @RequestMapping(value = "/practices/available", method = RequestMethod.GET)
+    @ResponseBody
+    public List<PracticeViewModel> getPracticesRequests() {
+        List<PracticesEntity> allPractices = practicesService.findByStatus("Available");
+        return (List<PracticeViewModel>) conversionService.convert(allPractices,practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor);
+    }
+
 }

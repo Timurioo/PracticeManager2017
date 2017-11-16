@@ -6,7 +6,6 @@ import com.netcracker.pmbackend.impl.entities.AssignStudentsEntity;
 import com.netcracker.pmbackend.interfaces.AssignStudentsService;
 import com.netcracker.pmbackend.repository.AssignStudentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,5 +37,15 @@ public class AssignStudentsServiceImpl implements AssignStudentsService {
     public List<AssignStudentsEntity> findByPracticeId(int practiceId) {
         return assignStudentsRepository.findByPracticeId(practiceId);
     }
+
+    public AssignStudentsEntity save(AssignStudentsEntity entity) {
+        return assignStudentsRepository.save(entity);
+    }
+
+    public Iterable<AssignStudentsEntity> save(List<AssignStudentsEntity> entities){
+
+        return assignStudentsRepository.save(entities);
+    }
+
 }
 

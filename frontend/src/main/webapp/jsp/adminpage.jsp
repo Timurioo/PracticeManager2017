@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="btn-group ">
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Assign student(s)</button>
+                    <button type="submit" id="assign_students_btn" disabled="disabled" class="btn btn-primary" data-toggle="modal" data-target="#assign_modal">Assign student(s)</button>
                     <button type="submit" class="btn btn-primary">Release student(s)</button>
                 </div>
 
@@ -74,52 +74,9 @@
             }
         </script>
 
-        <!-- <script>
-             $('#table1').bootstrapTable({
-                 url: '/studentsAndPracticeData',
-                 columns: [{
-                     field: 'state',
-                     title: 'State'
-                 },{
-                     field: 'name',
-                     title: 'Name'
-                 }, {
-                     field: 'surname',
-                     title: 'Surname'
-                 }, {
-                     field: 'faculty',
-                     title: 'Faculty'
-                 }, {
-                     field: 'speciality',
-                     title: 'Speciality'
-                 }, {
-                     field: 'budget',
-                     title: 'Budget'
-                 }, {
-                     field: 'avrMark',
-                     title: 'Average mark'
-                 }, {
-                     field: 'status',
-                     title: 'Status'
-                 }, {
-                     field: 'company',
-                     title: 'Company'
-                 }, {
-                     field: 'practicePeriod',
-                     title: 'Practice period'
-                 }, {
-                     field: 'profile',
-                     title: 'Show profile'
-                 }]
-             });
-         </script>-->
-
-
-
         <br/>
 
-
-        <div class="modal fade" id="myModal">
+        <div class="modal fade" id="assign_modal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -130,38 +87,34 @@
                         <h2 class="text-center">Assign information:</h2>
 
                         <div class="table-responsive">
-                            <table class="table table-condensed table-striped">
+                            <table class="table table-no-bordered"
+                                   id="assign_student_table"
+                                   data-toggle="table"
+                                   data-classes="table table-no-bordered"
+                                   data-click-to-select="true">
                                 <thead>
-                                <th>Student name</th>
+                                    <tr>
+                                        <th data-field="name">Student name</th>
+                                        <th data-field="faculty">Faculty</th>
+                                        <th data-field="speciality">Speciality</th>
+                                        <th data-field="avrMark">Average mark</th>
+                                        <th data-field="studentId">StudentId</th>
+                                    </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Chekh Dmitry</td>
-                                </tr>
-                                <tr>
-                                    <td>Vlad Gorbunov</td>
-                                </tr>
-                                <tr>
-                                    <td>Vadim Bokov</td>
-                                </tr>
-                                <tr>
-                                    <td>Roma Martsenuk</td>
-                                </tr>
-                                </tbody>
                             </table>
                         </div>
+                        <br/>
                         <form>
                             <div class="form-group">
                                 <label class="control-label ">Choose practice request:</label>
                                 <div class="">
-                                    <select class="form-control">
-                                        <option>Netcracker</option>
-                                        <option>EPAM</option>
+                                    <select id="practices_requests_select" class="form-control">
+
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-block">Assign student(s)</button>
+                                <button type="button" id="assign_student_form_btn" class="btn btn-success btn-block">Assign student(s)</button>
                             </div>
                         </form>
                     </div>

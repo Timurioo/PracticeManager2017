@@ -11,4 +11,6 @@ public interface AssignStudentsService {
     AssignStudentsEntity findById(int id);
     List<AssignStudentsEntity> findByStudentId(int studentId);
     List<AssignStudentsEntity> findByPracticeId(int practiceId);
+    AssignStudentsEntity save(AssignStudentsEntity entity);
+    Iterable<AssignStudentsEntity> save(List<AssignStudentsEntity> entities);
 }
