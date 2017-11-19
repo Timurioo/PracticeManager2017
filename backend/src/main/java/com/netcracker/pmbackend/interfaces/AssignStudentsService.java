@@ -13,4 +13,5 @@ public interface AssignStudentsService {
     List<AssignStudentsEntity> findByPracticeId(int practiceId);
     AssignStudentsEntity save(AssignStudentsEntity entity);
     Iterable<AssignStudentsEntity> save(List<AssignStudentsEntity> entities);
+    void delete(int id);
 }

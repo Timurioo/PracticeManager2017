@@ -47,5 +47,9 @@ public class AssignStudentsServiceImpl implements AssignStudentsService {
         return assignStudentsRepository.save(entities);
     }
 
+    public void delete(int id){
+        assignStudentsRepository.delete(id);
+    }
+
 }
 

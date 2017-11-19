@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,18 +50,12 @@ public class AssignService {
 
             studentsService.save(studentsEntity);
 
-
             AssignStudentsEntity assignStudentsEntity  = entityFactory.getAssignStudentEntity(practiceId,studentId);
             assignStudentsEntity.setPracticesByPracticeId(practicesEntity);
             assignStudentsEntity.setStudentsByStudentId(studentsEntity);
 
-            System.out.println(assignStudentsEntity);
-
             assignStudentsService.save(assignStudentsEntity);
-
-            System.out.println("-----");
         }
-
     }
 
     @Transactional

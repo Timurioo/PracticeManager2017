@@ -2,7 +2,7 @@ package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.dto.AssignStudentDTO;
 import com.netcracker.pmbackend.impl.services.assign.AssignService;
-import org.omg.CORBA.PRIVATE_MEMBER;
+import com.netcracker.pmbackend.impl.services.deletion.DeletionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,16 +20,25 @@ public class AssignStudentDataController {
     @Autowired
     private AssignService assignService;
 
+    @Autowired
+    private DeletionService deletionService;
+
     @RequestMapping(value = "/assignStudents", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public Map<String, String> assignStudents(@RequestBody AssignStudentDTO assignStudentDTO) {
 
         List<Integer> studentsIds = assignStudentDTO.getStudentsIds().stream().map(Integer::parseInt).collect(Collectors.toList());
 
-        //assignService.assignStudents(Integer.parseInt(assignStudentDTO.getPracticeId()),studentsIds);
+        assignService.assignStudents(Integer.parseInt(assignStudentDTO.getPracticeId()),studentsIds);
+        return null;
+    }
 
-        for(int id: studentsIds){
-            assignService.assignStudent(Integer.parseInt(assignStudentDTO.getPracticeId()), id);
+    @RequestMapping(value = "/assignStudents", method = RequestMethod.DELETE, produces = "application/json")
+    @ResponseBody
+    public Map<String, String> releaseStudents(@RequestBody List<String> studentsIds) {
+
+        for (String studentId : studentsIds){
+            deletionService.deleteAssignStudent(Integer.parseInt(studentId));
         }
 
         return null;
