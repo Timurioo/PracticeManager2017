@@ -1,13 +1,19 @@
 $(document).ready(function () {
-    $('#table1').on('load-success.bs.table',function () {
+
+    var elements = {
+        practicesTable : $('#table1'),
+        deletePracticeBtn : $('#delete_practices_btn')
+    };
+
+    elements.practicesTable.on('load-success.bs.table',function () {
         setCheckBoxesUnselected();
     });
 
-    $('#delete_practices_btn').click(function () {
+    elements.deletePracticeBtn.click(function () {
         deletePracticeAjaxRequest();
     });
 
-    $('#table1').change(function () {
+    elements.deletePracticeBtn.change(function () {
         setDeleteButtonEnable();
     });
 

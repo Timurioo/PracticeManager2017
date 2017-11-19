@@ -1,16 +1,21 @@
 $(document).ready(function () {
 
+    var elements ={
+        facultySelection : $('#faculty_name_student'),
+        studentSubmitBtn : $('#submit_student_btn'),
+        headOfPracticeSubmitBtn : $('#submit_headofpractice_btn')
+    };
     getFaculties();
 
-    $('#faculty_name_student').change(function(){
+    elements.facultySelection.change(function(){
         getSpecialities()
     });
 
-    $('#submit_student_btn').click(function(){
+    elements.studentSubmitBtn.click(function(){
         registrationStudentAjaxRequest()
     });
 
-    $('#submit_headofpractice_btn').click(function(){
+    elements.headOfPracticeSubmitBtn.click(function(){
         registrationHeadOfPracticeAjaxRequest()
     });
 

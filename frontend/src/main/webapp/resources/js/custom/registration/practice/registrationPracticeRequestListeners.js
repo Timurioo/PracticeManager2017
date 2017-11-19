@@ -1,13 +1,17 @@
 $(document).ready(function () {
 
+    var elements ={
+        facultySelection : $('#faculties'),
+        practiceSubmitBtn : $('#submit_practice_btn')
+    };
     getFaculties();
     getHeadOfPractices();
 
-    $('#faculties').change(function () {
+    elements.facultySelection.change(function () {
        getSpecialities();
     });
 
-    $('#submit_practice_btn').click(function () {
+    elements.practiceSubmitBtn.click(function () {
         registrationPracticeAjaxRequest();
     });
 

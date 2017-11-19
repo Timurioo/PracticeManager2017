@@ -14,10 +14,33 @@ function setDeleteButtonEnable() {
     }
 }
 
+function setReleaseButtonEnable() {
+    var checked = false;
+    $("tr.selected").each(function () {
+        if($(this).find('td:nth-child(8)').text()=="Available"){
+            checked=false;
+            return false;
+        }else {
+            checked = true;
+        }
+    });
+
+    if(checked){
+        $('#release_students_btn').prop("disabled", false);
+    }else{
+        $('#release_students_btn').prop("disabled", "disabled");
+    }
+}
+
 function setAssignButtonEnable() {
     var checked = false;
     $("tr.selected").each(function () {
-        checked=true;
+        if($(this).find('td:nth-child(8)').text()=="Busy"){
+            checked=false;
+            return false;
+        }else {
+            checked = true;
+        }
     });
 
     if(checked){
@@ -101,10 +124,6 @@ function checkNull(item) {
 function assignStudents() {
 
     var studentsIds = [];
-   /* $('#assign_student_table').find("tbody").find("tr").each(function () {
-        studentsIds.push($(this).find('td:nth-child(5)').text());
-    });*/
-
     for(var i in checkedStudentsData){
         studentsIds.push(checkedStudentsData[i].studentId);
     }
@@ -122,12 +141,40 @@ function assignStudents() {
         success: function (data) {
 
             $('#assign_modal').modal('toggle');
-            $('#table1').bootstrapTable('refresh');
             $('#delete_students_btn').prop("disabled", "disabled");
             $('#assign_students_btn').prop("disabled", "disabled");
+            $('#table1').bootstrapTable('refresh');
+
+            $('#table1').on('load-success.bs.table',alert("Student has been successfully assigned!"));
 
 
-            alert("Student has been successfully assigned!");
         }
     })
+}
+
+function releaseStudents() {
+    var studentsIds = [];
+    $("tr.selected").each(function () {
+        studentsIds.push($(this).find("input[checked='checked']:checkbox").val());
+    });
+
+    console.log(studentsIds);
+
+    $.ajax({
+        type: "DELETE",
+        contentType: "application/json; charset=UTF-8",
+        url:"/assignStudents",
+        data:JSON.stringify(studentsIds),
+        success: function (data) {
+
+            $('#delete_students_btn').prop("disabled", "disabled");
+            $('#assign_students_btn').prop("disabled", "disabled");
+            $('#table1').bootstrapTable('refresh');
+
+            $('#table1').on('load-success.bs.table',alert("Student has been successfully released!"));
+        }
+    })
+
+
+
 }

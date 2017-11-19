@@ -1,12 +1,16 @@
 $(document).ready( function () {
 
+    var elements = {
+        facultySubmitBtn : $('#submit_faculty_btn'),
+        specialitySubmitBtn : $('#submit_speciality_btn')
+    };
     getFaculties();
 
-    $('#submit_faculty_btn').click(function () {
+    elements.facultySubmitBtn.click(function () {
         registrationFacultyAjaxRequest();
     });
 
-    $('#submit_speciality_btn').click(function () {
+    elements.specialitySubmitBtn.click(function () {
         registrationSpecialityAjaxRequest();
     });
 

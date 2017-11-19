@@ -1,26 +1,36 @@
 $(document).ready(function () {
-    var elemets = {
-
+    var elements = {
+        studentsTable : $('#table1'),
+        deleteStudentsBtn : $('#delete_students_btn'),
+        assignStudentsBtn : $('#assign_students_btn'),
+        confirmAssignBtn : $('#assign_student_form_btn'),
+        releaseStudentsBtn : $('#release_students_btn')
     };
 
-    $('#table1').on('load-success.bs.table',function () {
+    elements.studentsTable.on('load-success.bs.table',function () {
         setCheckBoxesUnselected();
     });
 
-    $('#delete_students_btn').click(function () {
+    elements.deleteStudentsBtn.click(function () {
         deleteStudentAjaxRequest();
     });
 
-    $('#table1').change(function () {
+    elements.studentsTable.change(function () {
         setDeleteButtonEnable();
         setAssignButtonEnable();
+        setReleaseButtonEnable();
     });
 
-    $('#assign_students_btn').click(function () {
+    elements.assignStudentsBtn.click(function () {
         loadAssignStudentsTableDate();
     });
 
-    $('#assign_student_form_btn').click(function () {
+    elements.confirmAssignBtn.click(function () {
         assignStudents();
     });
+
+    elements.releaseStudentsBtn.click(function () {
+        releaseStudents();
+    });
+
 });

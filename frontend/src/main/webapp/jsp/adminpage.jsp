@@ -28,7 +28,7 @@
 
                 <div class="btn-group ">
                     <button type="submit" id="assign_students_btn" disabled="disabled" class="btn btn-primary" data-toggle="modal" data-target="#assign_modal">Assign student(s)</button>
-                    <button type="submit" class="btn btn-primary">Release student(s)</button>
+                    <button type="button" id="release_students_btn" disabled="disabled" class="btn btn-primary">Release student(s)</button>
                 </div>
 
                 <div class="btn-group ">
