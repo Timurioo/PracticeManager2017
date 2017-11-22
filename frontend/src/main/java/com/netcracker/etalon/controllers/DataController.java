@@ -2,7 +2,6 @@ package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.beans.*;
 import com.netcracker.etalon.dto.HeadOfPracticeRegistrationDTO;
-import com.netcracker.etalon.dto.FacultyRegistrationDTO;
 import com.netcracker.etalon.dto.StudentRegistrationDTO;
 import com.netcracker.etalon.validation.converter.ValidationResponseDataConverter;
 import com.netcracker.etalon.validation.validator.HeadOfPracticeRegistrationDTOValidator;
@@ -85,9 +84,14 @@ public class DataController {
 
     @RequestMapping(value = "/studentsAndPracticeData", method = RequestMethod.GET)
     @ResponseBody
-    public List<StudentAndPracticeViewModel> getStudentsAndPractice() {
-        List<StudentsEntity> allStudents = studentsService.findAll();
-        return (List<StudentAndPracticeViewModel>) conversionService.convert(allStudents,studentEntityTypeDescriptor, studentAndPracticeViewModelTypeDescriptor);
+    public StudentTableViewModel getStudentsAndPractice(@RequestParam( required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
+
+        List<StudentsEntity> allStudents = studentsService.findAllLimit(Integer.parseInt(limit), Integer.parseInt(offset));
+
+        StudentTableViewModel studentsTableViewModel = new StudentTableViewModel();
+        studentsTableViewModel.setRows((List<StudentAndPracticeViewModel>) conversionService.convert(allStudents,studentEntityTypeDescriptor, studentAndPracticeViewModelTypeDescriptor));
+        studentsTableViewModel.setTotal(studentsService.findAll().size());
+        return studentsTableViewModel;
     }
 
     @RequestMapping(value = "/practicesData", method = RequestMethod.GET)

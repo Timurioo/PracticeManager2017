@@ -49,11 +49,16 @@
                    data-classes="table table-no-bordered"
                    data-click-to-select="true"
                    data-url="/studentsAndPracticeData"
-                   data-id-field="id">
+                   data-id-field="id"
+                   data-side-pagination="server"
+                   data-pagination="true"
+                   data-page-size="5"
+                   data-page-list="[5, 10, 20]"
+                   data-search="true">
                 <thead>
                 <tr>
                     <th data-field="state" data-checkbox="true" ></th>
-                    <th data-field="name" >Name</th>
+                    <th data-field="name"  >Name</th>
                     <th data-field="surname" >Surname</th>
                     <th data-field="faculty" >Faculty</th>
                     <th data-field="speciality" >Speciality</th>

@@ -5,7 +5,6 @@ import com.netcracker.pmbackend.interfaces.StudentsService;
 import com.netcracker.pmbackend.repository.StudentsRepository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,6 +63,11 @@ public class StudentsServiceImpl implements StudentsService {
 
     public void delete(int id) {
         studentsRepository.delete(id);
+    }
+
+    @Override
+    public List<StudentsEntity> findAllLimit(int limit, int offset) {
+        return studentsRepository.findAllLimit(limit, offset);
     }
 
 }

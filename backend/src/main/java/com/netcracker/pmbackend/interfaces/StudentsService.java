@@ -18,4 +18,5 @@ public interface StudentsService {
     StudentsEntity findByPhone(String phone);
     StudentsEntity save(StudentsEntity entity);
     void delete(int id);
+    List<StudentsEntity> findAllLimit(int limit, int offset);
 }
