@@ -70,4 +70,14 @@ public class StudentsServiceImpl implements StudentsService {
         return studentsRepository.findAllLimit(limit, offset);
     }
 
+    @Override
+    public List<StudentsEntity> findAllLimitSearch(String search, int limit, int offset) {
+        return studentsRepository.findAllLimitSearch(search,limit,offset);
+    }
+
+    @Override
+    public List<StudentsEntity> findAllSearch(String search) {
+        return studentsRepository.findAllSearch(search);
+    }
+
 }

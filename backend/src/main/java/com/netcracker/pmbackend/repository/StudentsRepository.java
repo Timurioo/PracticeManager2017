@@ -17,4 +17,23 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
 
     @Query(value ="SELECT * FROM practicemanager.students LIMIT ?1 OFFSET ?2 " , nativeQuery = true)
     List<StudentsEntity> findAllLimit(int limit, int offset);
+
+    @Query(value = "SELECT * FROM practicemanager.students where name LIKE %?1% " +
+            "OR surname LIKE %?1% " +
+            "OR budget LIKE %?1% " +
+            "OR status LIKE %?1% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "LIMIT ?2 OFFSET ?3",
+            nativeQuery = true)
+    List<StudentsEntity> findAllLimitSearch(String search, int limit, int offset);
+
+    @Query(value = "SELECT * FROM practicemanager.students where name LIKE %?1% " +
+            "OR surname LIKE %?1% " +
+            "OR budget LIKE %?1% " +
+            "OR status LIKE %?1% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) ",
+            nativeQuery = true)
+    List<StudentsEntity> findAllSearch(String search);
 }

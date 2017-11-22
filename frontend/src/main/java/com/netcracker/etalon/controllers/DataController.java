@@ -86,11 +86,18 @@ public class DataController {
     @ResponseBody
     public StudentTableViewModel getStudentsAndPractice(@RequestParam( required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
 
-        List<StudentsEntity> allStudents = studentsService.findAllLimit(Integer.parseInt(limit), Integer.parseInt(offset));
-
+        List<StudentsEntity> allStudents;
+        int totalRows=0;
+        if(search != null){
+            allStudents = studentsService.findAllLimitSearch(search,Integer.parseInt(limit), Integer.parseInt(offset));
+            totalRows = studentsService.findAllSearch(search).size();
+        }else{
+            allStudents = studentsService.findAllLimit(Integer.parseInt(limit), Integer.parseInt(offset));
+            totalRows = studentsService.findAll().size();
+        }
         StudentTableViewModel studentsTableViewModel = new StudentTableViewModel();
         studentsTableViewModel.setRows((List<StudentAndPracticeViewModel>) conversionService.convert(allStudents,studentEntityTypeDescriptor, studentAndPracticeViewModelTypeDescriptor));
-        studentsTableViewModel.setTotal(studentsService.findAll().size());
+        studentsTableViewModel.setTotal(totalRows);
         return studentsTableViewModel;
     }
 

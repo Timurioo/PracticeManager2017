@@ -19,4 +19,6 @@ public interface StudentsService {
     StudentsEntity save(StudentsEntity entity);
     void delete(int id);
     List<StudentsEntity> findAllLimit(int limit, int offset);
+    List<StudentsEntity> findAllLimitSearch(String search, int limit, int offset );
+    List<StudentsEntity> findAllSearch(String search);
 }
