@@ -26,8 +26,11 @@ function registrationHeadOfPracticeAjaxRequest() {
             }
 
             if(!data){
-                alert("Head of practice successfully was registered!");
-                window.location.replace("/registration");
+                $('#alert_text').html("Head of practice");
+                $('#alert_modal').modal("show");
+                $('#alert_close_btn').click(function () {
+                    window.location.replace("/registration");
+                });
             }
         }
     })
@@ -109,8 +112,11 @@ function registrationStudentAjaxRequest() {
             }
 
             if(!data){
-                alert("Student successfully was registered!");
-                window.location.replace("/registration");
+                $('#alert_text').html("Student");
+                $('#alert_modal').modal("show");
+                $('#alert_close_btn').click(function () {
+                    window.location.replace("/registration");
+                });
             }
 
         }

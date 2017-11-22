@@ -157,6 +157,26 @@
             </div>
         </div>
 
+
+        <!--Alert Modal -->
+        <div class="modal fade" id="alert_modal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> <span id="alert_text"></span> has been saved!
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-block" data-dismiss="modal" id="alert_close_btn">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <jsp:include page="/jsp/blocks/sitefooter.jsp"/>
     </body>
 </html>

@@ -107,8 +107,11 @@ function registrationPracticeAjaxRequest() {
             }
 
             if(!data){
-                alert("Practice request successfully was registered!");
-                window.location.replace("/registration/practice");
+                $('#alert_text').html("Practice request");
+                $('#alert_modal').modal("show");
+                $('#alert_close_btn').click(function () {
+                    window.location.replace("/registration/practice");
+                });
             }
         }
     })

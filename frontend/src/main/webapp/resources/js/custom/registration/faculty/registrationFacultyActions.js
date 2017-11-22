@@ -12,8 +12,11 @@ function registrationFacultyAjaxRequest(){
             }
 
             if(!data){
-                alert("Faculty successfully was registered!");
-                window.location.replace("/registration/faculty");
+                $('#alert_text').html("Faculty");
+                $('#alert_modal').modal("show");
+                $('#alert_close_btn').click(function () {
+                    window.location.replace("/registration/faculty");
+                });
             }
         }
     })
@@ -39,8 +42,11 @@ function registrationSpecialityAjaxRequest(){
             }
 
             if(!data){
-                alert("Speciality successfully was registered!");
-                window.location.replace("/registration/faculty");
+                $('#alert_text').html("Speciality");
+                $('#alert_modal').modal("show");
+                $('#alert_close_btn').click(function () {
+                    window.location.replace("/registration/faculty");
+                });
             }
         }
     })
