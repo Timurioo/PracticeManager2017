@@ -7,6 +7,7 @@
 
         <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
         <script src="../resources/js/bootstrap-table.js"></script>
+        <script src="../resources/js/lodash.min.js"></script>
         <script src="../resources/js/custom/adminpage/adminPageActions.js"></script>
         <script src="../resources/js/custom/adminpage/adminPageListeners.js"></script>
     </head>
@@ -54,7 +55,8 @@
                    data-pagination="true"
                    data-page-size="5"
                    data-page-list="[5, 10, 20]"
-                   data-search="true">
+                   data-search="true"
+                   data-response-handler="responseHandler">
                 <thead>
                 <tr>
                     <th data-field="state" data-checkbox="true" ></th>
@@ -103,7 +105,6 @@
                                         <th data-field="faculty">Faculty</th>
                                         <th data-field="speciality">Speciality</th>
                                         <th data-field="avrMark">Average mark</th>
-                                        <th data-field="studentId">StudentId</th>
                                     </tr>
                                 </thead>
                             </table>

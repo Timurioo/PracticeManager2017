@@ -7,10 +7,6 @@ $(document).ready(function () {
         releaseStudentsBtn : $('#release_students_btn')
     };
 
-    elements.studentsTable.on('load-success.bs.table',function () {
-        setCheckBoxesUnselected();
-    });
-
     elements.deleteStudentsBtn.click(function () {
         deleteStudentAjaxRequest();
     });
@@ -33,4 +29,8 @@ $(document).ready(function () {
         releaseStudents();
     });
 
+    elements.studentsTable.on('check.bs.table check-all.bs.table ' +
+        'uncheck.bs.table uncheck-all.bs.table', function (e, row) {
+        selectionsManager(e, row);
+    });
 });

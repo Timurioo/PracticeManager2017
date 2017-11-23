@@ -1,5 +1,5 @@
 
-var checkedStudentsData;
+var checkedRows=[];
 
 function setDeleteButtonEnable() {
     var checked = false;
@@ -51,11 +51,17 @@ function setAssignButtonEnable() {
 }
 
 function deleteStudentAjaxRequest(){
+
+    var studentsIds = [];
+    for(var i in checkedRows){
+        studentsIds.push(checkedRows[i].id);
+    }
+
     $.ajax({
         type: "DELETE",
         contentType: "application/json; charset=UTF-8",
         url:"/students",
-        data:JSON.stringify(getCheckedStudentsId()),
+        data:JSON.stringify(studentsIds),
         success: function (data) {
                 $('#table1').bootstrapTable('refresh');
                 $('#delete_students_btn').prop("disabled", "disabled");
@@ -63,39 +69,9 @@ function deleteStudentAjaxRequest(){
     });
 }
 
-function getCheckedStudentsId() {
-    var resultId = [];
-    $("tr.selected").find("input[checked='checked']:checkbox").each(function () {
-        resultId.push($(this).val());
-    });
-    return resultId;
-}
-
-function setCheckBoxesUnselected() {
-    $('input:checkbox').prop('checked', false);
-    $('tr.selected').prop('class', '');
-}
-
 function loadAssignStudentsTableDate(){
 
-    var studentData = [];
-    $("tr.selected").each(function () {
-
-        var temp ={
-            name: $(this).find('td:nth-child(2)').text()+' '+$(this).find('td:nth-child(3)').text(),
-            faculty: $(this).find('td:nth-child(4)').text(),
-            speciality: $(this).find('td:nth-child(5)').text(),
-            avrMark: $(this).find('td:nth-child(7)').text(),
-            studentId: $(this).find("input[checked='checked']:checkbox").val()
-        };
-        studentData.push(temp);
-    });
-
-    //console.log(studentData);
-    checkedStudentsData = studentData;
-    $('#assign_student_table').bootstrapTable("load", studentData);
-    //$('#assign_student_table').bootstrapTable('hideColumn', 'studentId');
-
+    $('#assign_student_table').bootstrapTable("load", checkedRows);
     getPracticesRequests();
 }
 
@@ -124,8 +100,9 @@ function checkNull(item) {
 function assignStudents() {
 
     var studentsIds = [];
-    for(var i in checkedStudentsData){
-        studentsIds.push(checkedStudentsData[i].studentId);
+
+    for(var i in checkedRows){
+        studentsIds.push(checkedRows[i].id);
     }
 
     var resultData={
@@ -154,11 +131,10 @@ function assignStudents() {
 
 function releaseStudents() {
     var studentsIds = [];
-    $("tr.selected").each(function () {
-        studentsIds.push($(this).find("input[checked='checked']:checkbox").val());
-    });
 
-    console.log(studentsIds);
+    for(var i in checkedRows){
+        studentsIds.push(checkedRows[i].id);
+    }
 
     $.ajax({
         type: "DELETE",
@@ -174,7 +150,32 @@ function releaseStudents() {
             $('#table1').on('load-success.bs.table',alert("Student has been successfully released!"));
         }
     })
+}
 
+function selectionsManager(e, rows) {
 
+        var datas = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+                return {id: row.id, name: row.name+' '+row.surname, faculty: row.faculty, speciality: row.speciality, avrMark: row.avrMark};
+            }),
+            func2 = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'union' : 'differenceBy';
 
+        if($.inArray(e.type, ['check', 'check-all']) > -1) {
+            checkedRows = _[func2](checkedRows, datas);
+        }else{
+            checkedRows = _[func2](checkedRows, datas, 'id');
+        }
+        console.log(checkedRows);
+}
+
+function responseHandler(res) {
+
+    var selections = [];
+    for(var i in checkedRows){
+        selections.push(checkedRows[i].id);
+    }
+
+    $.each(res.rows, function (i, row) {
+        row.state = $.inArray(row.id, selections) !== -1;
+    });
+    return res;
 }
