@@ -9,6 +9,11 @@ $(document).ready(function () {
         deletePracticeAjaxRequest();
     });
 
+    elements.practicesTable.on('search.bs.table', function () {
+        clearSelectedRows();
+        setDeleteButtonEnable();
+    });
+
     elements.practicesTable.change(function () {
         setDeleteButtonEnable();
     });

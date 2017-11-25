@@ -17,6 +17,13 @@ $(document).ready(function () {
         setReleaseButtonEnable();
     });
 
+    elements.studentsTable.on('search.bs.table', function () {
+        clearSelectedRows();
+        setDeleteButtonEnable();
+        setAssignButtonEnable();
+        setReleaseButtonEnable();
+    });
+
     elements.assignStudentsBtn.click(function () {
         loadAssignStudentsTableDate();
     });
@@ -31,6 +38,6 @@ $(document).ready(function () {
 
     elements.studentsTable.on('check.bs.table check-all.bs.table ' +
         'uncheck.bs.table uncheck-all.bs.table', function (e, row) {
-        selectionsManager(e, row);
+        selectionManager(e, row);
     });
 });

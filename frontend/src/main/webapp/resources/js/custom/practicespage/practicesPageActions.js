@@ -21,9 +21,9 @@ function deletePracticeAjaxRequest(){
         url:"/practices",
         data:JSON.stringify(getCheckedPracticesId()),
         success: function (data) {
-            checkedRows = [];
+            clearSelectedRows();
             $('#table1').bootstrapTable('refresh');
-            $('#delete_practices_btn').prop("disabled", "disabled");
+            setDeleteButtonEnable();
         }
     });
 }
@@ -49,6 +49,10 @@ function selectionManager(e, rows) {
         checkedRows = _[func2](checkedRows, datas, 'id');
     }
     console.log(checkedRows);
+}
+
+function clearSelectedRows() {
+    checkedRows = [];
 }
 
 function responseHandler(res) {

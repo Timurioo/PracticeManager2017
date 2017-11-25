@@ -3,9 +3,9 @@ var checkedRows=[];
 
 function setDeleteButtonEnable() {
     var checked = false;
-    $("tr.selected").each(function () {
-        checked=true;
-    });
+    if(checkedRows.length>0){
+        checked= true;
+    }
 
     if(checked){
         $('#delete_students_btn').prop("disabled", false);
@@ -16,14 +16,15 @@ function setDeleteButtonEnable() {
 
 function setReleaseButtonEnable() {
     var checked = false;
-    $("tr.selected").each(function () {
-        if($(this).find('td:nth-child(8)').text()=="Available"){
+
+    for(var i in checkedRows){
+        if(checkedRows[i].status=="Available"){
             checked=false;
-            return false;
+            break;
         }else {
             checked = true;
         }
-    });
+    }
 
     if(checked){
         $('#release_students_btn').prop("disabled", false);
@@ -34,14 +35,15 @@ function setReleaseButtonEnable() {
 
 function setAssignButtonEnable() {
     var checked = false;
-    $("tr.selected").each(function () {
-        if($(this).find('td:nth-child(8)').text()=="Busy"){
+
+    for(var i in checkedRows){
+        if(checkedRows[i].status=="Busy"){
             checked=false;
-            return false;
+            break;
         }else {
             checked = true;
         }
-    });
+    }
 
     if(checked){
         $('#assign_students_btn').prop("disabled", false);
@@ -63,8 +65,9 @@ function deleteStudentAjaxRequest(){
         url:"/students",
         data:JSON.stringify(studentsIds),
         success: function (data) {
-                $('#table1').bootstrapTable('refresh');
-                $('#delete_students_btn').prop("disabled", "disabled");
+            clearSelectedRows();
+            $('#table1').bootstrapTable('refresh');
+            setDeleteButtonEnable();
         }
     });
 }
@@ -116,15 +119,13 @@ function assignStudents() {
         url:"/assignStudents",
         data:JSON.stringify(resultData),
         success: function (data) {
-
+            clearSelectedRows();
             $('#assign_modal').modal('toggle');
-            $('#delete_students_btn').prop("disabled", "disabled");
-            $('#assign_students_btn').prop("disabled", "disabled");
+            setDeleteButtonEnable();
+            setAssignButtonEnable();
             $('#table1').bootstrapTable('refresh');
 
             $('#table1').on('load-success.bs.table',alert("Student has been successfully assigned!"));
-
-
         }
     })
 }
@@ -142,9 +143,9 @@ function releaseStudents() {
         url:"/assignStudents",
         data:JSON.stringify(studentsIds),
         success: function (data) {
-
-            $('#delete_students_btn').prop("disabled", "disabled");
-            $('#assign_students_btn').prop("disabled", "disabled");
+            clearSelectedRows();
+            setDeleteButtonEnable();
+            setReleaseButtonEnable();
             $('#table1').bootstrapTable('refresh');
 
             $('#table1').on('load-success.bs.table',alert("Student has been successfully released!"));
@@ -152,10 +153,14 @@ function releaseStudents() {
     })
 }
 
-function selectionsManager(e, rows) {
+function clearSelectedRows() {
+    checkedRows = [];
+}
+
+function selectionManager(e, rows) {
 
         var datas = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
-                return {id: row.id, name: row.name+' '+row.surname, faculty: row.faculty, speciality: row.speciality, avrMark: row.avrMark};
+                return {id: row.id, name: row.name+' '+row.surname, faculty: row.faculty, speciality: row.speciality, avrMark: row.avrMark, status: row.status};
             }),
             func2 = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'union' : 'differenceBy';
 
