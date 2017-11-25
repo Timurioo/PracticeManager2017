@@ -124,8 +124,8 @@ function assignStudents() {
             setDeleteButtonEnable();
             setAssignButtonEnable();
             $('#table1').bootstrapTable('refresh');
-
-            $('#table1').on('load-success.bs.table',alert("Student has been successfully assigned!"));
+            $('#alert_text').html("Student(s) has been assigned!");
+            $('#alert_modal').modal("show");
         }
     })
 }
@@ -147,8 +147,8 @@ function releaseStudents() {
             setDeleteButtonEnable();
             setReleaseButtonEnable();
             $('#table1').bootstrapTable('refresh');
-
-            $('#table1').on('load-success.bs.table',alert("Student has been successfully released!"));
+            $('#alert_text').html("Student(s) has been released!");
+            $('#alert_modal').modal("show");
         }
     })
 }
