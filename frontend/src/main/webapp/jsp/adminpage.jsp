@@ -133,6 +133,9 @@
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">x</button>
+                    </div>
                     <div class="modal-body">
                         <div class="alert alert-success">
                             <strong>Success!</strong> <span id="alert_text"></span>
