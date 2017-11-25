@@ -14,4 +14,7 @@ public interface PracticesService {
     PracticesEntity findByCompany(String company);
     PracticesEntity save(PracticesEntity entity);
     void delete(int id);
+    List<PracticesEntity> findAllLimit(int limit, int offset);
+    List<PracticesEntity> findAllLimitSearch(String search, int limit, int offset );
+    List<PracticesEntity> findAllSearch(String search);
 }

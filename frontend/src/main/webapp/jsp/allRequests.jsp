@@ -34,7 +34,12 @@
             <table class="table table-no-bordered" id="table1" data-toggle="table"
                    data-classes="table table-no-bordered"
                    data-click-to-select="true"
-                   data-url="/practicesData"
+                   data-url="/practices"
+                   data-side-pagination="server"
+                   data-pagination="true"
+                   data-page-size="5"
+                   data-page-list="[5, 10, 20]"
+                   data-search="true"
                    data-id-field="id">
                 <thead>
                 <tr>
@@ -60,101 +65,8 @@
                 return "<button href=\"#"+value+"\" class=\"btn btn-default btn-block\" data-toggle=\"modal\" data-target=\"#myModal\">Edit <span class=\"glyphicon glyphicon-pencil\"></span></button>";
             }
         </script>
-
-        <!-- <script>
-             $('#table1').bootstrapTable({
-                 url: '/usersAsJson',
-                 columns: [{
-                     field: 'state',
-                     title: 'State'
-                 },{
-                     field: 'name',
-                     title: 'Name'
-                 }, {
-                     field: 'surname',
-                     title: 'Surname'
-                 }, {
-                     field: 'faculty',
-                     title: 'Faculty'
-                 }, {
-                     field: 'speciality',
-                     title: 'Speciality'
-                 }, {
-                     field: 'budget',
-                     title: 'Budget'
-                 }, {
-                     field: 'avrMark',
-                     title: 'Average mark'
-                 }, {
-                     field: 'status',
-                     title: 'Status'
-                 }, {
-                     field: 'company',
-                     title: 'Company'
-                 }, {
-                     field: 'practicePeriod',
-                     title: 'Practice period'
-                 }, {
-                     field: 'profile',
-                     title: 'Show profile'
-                 }]
-             });
-         </script>-->
-
-
-
-
+        
         <br/>
-       <!-- <div class="container table-responsive">
-            <table class="table table-condensed table-striped">
-                <thead>
-                    <tr>
-                        <th>Choice</th>
-                        <th>Head of practice</th>
-                        <th>Company name</th>
-                        <th>Start date</th>
-                        <th>Finish date</th>
-                        <th>Status</th>
-                        <th>Faculty</th>
-                        <th>Speciality</th>
-                        <th>Average mark</th>
-                        <th>Total quantity</th>
-                        <th>Available quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
-                        <td>Surkov K.A.</td>
-                        <td>Netcrakcer</td>
-                        <td>01.09.2017</td>
-                        <td>01.10.2017</td>
-                        <td>Available</td>
-                        <td>FSCAN</td>
-                        <td>ITS</td>
-                        <td>8</td>
-                        <td>10</td>
-                        <td>9</td>
-                        <td><button href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal">Edit <span class="glyphicon glyphicon-pencil"></span></button></td>
-                    </tr>
-                    <tr>
-                        <td><div class="checkbox"><label><input type="checkbox"></label></div></td>
-                        <td>Smolykova A.A.</td>
-                        <td>EPAM</td>
-                        <td>01.09.2017</td>
-                        <td>01.10.2017</td>
-                        <td>Available</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>7</td>
-                        <td>100</td>
-                        <td>80</td>
-                        <td><a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#myModal">Edit <span class="glyphicon glyphicon-pencil"></span></a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>-->
-
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">

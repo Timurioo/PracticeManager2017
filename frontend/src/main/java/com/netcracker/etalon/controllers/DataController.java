@@ -101,13 +101,6 @@ public class DataController {
         return studentsTableViewModel;
     }
 
-    @RequestMapping(value = "/practicesData", method = RequestMethod.GET)
-    @ResponseBody
-    public List<PracticeViewModel> getPracticeData() {
-        List<PracticesEntity> allPractices = practicesService.findAll();
-        return (List<PracticeViewModel>) conversionService.convert(allPractices,practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor);
-    }
-
     @RequestMapping(value = "/studentProfileData", method = RequestMethod.GET)
     @ResponseBody
     public StudentProfileViewModel getStudentProfileData(@RequestParam String id) {

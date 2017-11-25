@@ -1,5 +1,6 @@
 package com.netcracker.etalon.controllers;
 
+import com.netcracker.etalon.beans.PracticeTableViewModel;
 import com.netcracker.etalon.beans.PracticeViewModel;
 import com.netcracker.etalon.dto.FacultyRegistrationDTO;
 import com.netcracker.etalon.dto.PracticeRegistrationDTO;
@@ -17,10 +18,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.DoubleSummaryStatistics;
@@ -55,6 +53,24 @@ public class PracticeDataController {
     private final TypeDescriptor practiceEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticesEntity.class));
     private final TypeDescriptor practiceViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeViewModel.class));
 
+    @RequestMapping(value = "/practices", method = RequestMethod.GET)
+    @ResponseBody
+    public PracticeTableViewModel getPracticeData(@RequestParam( required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
+
+        List<PracticesEntity> allPractices;
+        int totalRows = 0;
+        if (search != null) {
+            allPractices = practicesService.findAllLimitSearch(search,Integer.parseInt(limit), Integer.parseInt(offset));
+            totalRows = practicesService.findAllSearch(search).size();
+        } else {
+            allPractices = practicesService.findAllLimit(Integer.parseInt(limit), Integer.parseInt(offset));
+            totalRows = practicesService.findAll().size();
+        }
+        PracticeTableViewModel practiceTableViewModel = new PracticeTableViewModel();
+        practiceTableViewModel.setRows((List<PracticeViewModel>) conversionService.convert(allPractices, practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor));
+        practiceTableViewModel.setTotal(totalRows);
+        return practiceTableViewModel;
+    }
 
     @RequestMapping(value = "/practices", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody

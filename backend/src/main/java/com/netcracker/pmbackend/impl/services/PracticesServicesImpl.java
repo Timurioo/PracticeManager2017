@@ -43,7 +43,6 @@ public class PracticesServicesImpl implements PracticesService {
         return practicesRepository.findByCompany(company);
     }
 
-
     public PracticesEntity save(PracticesEntity entity) {
         return practicesRepository.save(entity);
     }
@@ -52,5 +51,16 @@ public class PracticesServicesImpl implements PracticesService {
         practicesRepository.delete(id);
     }
 
+    public List<PracticesEntity> findAllLimit(int limit, int offset) {
+        return practicesRepository.findAllLimit(limit,offset);
+    }
+
+    public List<PracticesEntity> findAllLimitSearch(String search, int limit, int offset) {
+        return practicesRepository.findAllLimitSearch(search,limit,offset);
+    }
+
+    public List<PracticesEntity> findAllSearch(String search) {
+        return practicesRepository.findAllSearch(search);
+    }
 
 }
