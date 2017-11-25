@@ -5,17 +5,16 @@ $(document).ready(function () {
         deletePracticeBtn : $('#delete_practices_btn')
     };
 
-    elements.practicesTable.on('load-success.bs.table',function () {
-        setCheckBoxesUnselected();
-    });
-
     elements.deletePracticeBtn.click(function () {
         deletePracticeAjaxRequest();
     });
 
-    elements.deletePracticeBtn.change(function () {
+    elements.practicesTable.change(function () {
         setDeleteButtonEnable();
     });
 
-
+    elements.practicesTable.on('check.bs.table check-all.bs.table ' +
+        'uncheck.bs.table uncheck-all.bs.table', function (e, row) {
+        selectionManager(e, row);
+    });
 });

@@ -7,6 +7,7 @@
 
         <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
         <script src="../resources/js/bootstrap-table.js"></script>
+        <script src="../resources/js/lodash.min.js"></script>
         <script src="../resources/js/custom/practicespage/practicesPageActions.js"></script>
         <script src="../resources/js/custom/practicespage/practicesPageListeners.js"></script>
 
@@ -37,9 +38,10 @@
                    data-url="/practices"
                    data-side-pagination="server"
                    data-pagination="true"
+                   data-page-list="[5, 10]"
                    data-page-size="5"
-                   data-page-list="[5, 10, 20]"
                    data-search="true"
+                   data-response-handler="responseHandler"
                    data-id-field="id">
                 <thead>
                 <tr>
@@ -65,7 +67,7 @@
                 return "<button href=\"#"+value+"\" class=\"btn btn-default btn-block\" data-toggle=\"modal\" data-target=\"#myModal\">Edit <span class=\"glyphicon glyphicon-pencil\"></span></button>";
             }
         </script>
-        
+
         <br/>
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
