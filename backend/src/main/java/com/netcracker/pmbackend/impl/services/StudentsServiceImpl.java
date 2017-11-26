@@ -80,4 +80,24 @@ public class StudentsServiceImpl implements StudentsService {
         return studentsRepository.findAllSearch(search);
     }
 
+    @Override
+    public List<StudentsEntity> findAllByCuratorId(int curatorId) {
+        return studentsRepository.findAllByCuratorId(curatorId);
+    }
+
+    @Override
+    public List<StudentsEntity> findAllByCuratorIdLimit(int curatorId, int limit, int offset) {
+        return studentsRepository.findAllByCuratorIdLimit(curatorId, limit, offset);
+    }
+
+    @Override
+    public List<StudentsEntity> findAllByCuratorIdSearch(int curatorId, String search) {
+        return studentsRepository.findAllByCuratorIdSearch(curatorId, search);
+    }
+
+    @Override
+    public List<StudentsEntity> findAllByCuratorIdSearchLimit(int curatorId, String search, int limit, int offset) {
+        return studentsRepository.findAllByCuratorIdSearchLimit(curatorId, search, limit, offset);
+    }
+
 }

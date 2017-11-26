@@ -36,4 +36,42 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) ",
             nativeQuery = true)
     List<StudentsEntity> findAllSearch(String search);
+
+    @Query(value = "SELECT * FROM practicemanager.students WHERE " +
+            "id IN (SELECT student_id FROM practicemanager.assignstudents WHERE " +
+            "practice_id IN (SELECT id FROM practicemanager.practices WHERE headofpractice_id=?1))",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByCuratorId(int curatorId);
+
+    @Query(value = "SELECT * FROM practicemanager.students WHERE " +
+            "id IN (SELECT student_id FROM practicemanager.assignstudents WHERE " +
+            "practice_id IN (SELECT id FROM practicemanager.practices WHERE headofpractice_id=?1))" +
+            " LIMIT ?2 OFFSET ?3",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByCuratorIdLimit(int curatorId, int limit, int offset);
+
+    @Query(value = "SELECT * FROM practicemanager.students WHERE " +
+            "id IN (SELECT student_id FROM practicemanager.assignstudents WHERE " +
+            "practice_id IN (SELECT id FROM practicemanager.practices WHERE headofpractice_id=?1))"+
+            "AND (name LIKE %?2% " +
+            "OR surname LIKE %?2% " +
+            "OR budget LIKE %?2% " +
+            "OR status LIKE %?2% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?2%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?2%)))",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByCuratorIdSearch(int curatorId, String search);
+
+    @Query(value = "SELECT * FROM practicemanager.students WHERE " +
+            "id IN (SELECT student_id FROM practicemanager.assignstudents WHERE " +
+            "practice_id IN (SELECT id FROM practicemanager.practices WHERE headofpractice_id=?1))"+
+            "AND (name LIKE %?2% " +
+            "OR surname LIKE %?2% " +
+            "OR budget LIKE %?2% " +
+            "OR status LIKE %?2% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?2%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?2%))) " +
+            "LIMIT ?3 OFFSET ?4",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByCuratorIdSearchLimit(int curatorId, String search, int limit, int offset);
 }

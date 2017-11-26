@@ -21,4 +21,8 @@ public interface StudentsService {
     List<StudentsEntity> findAllLimit(int limit, int offset);
     List<StudentsEntity> findAllLimitSearch(String search, int limit, int offset );
     List<StudentsEntity> findAllSearch(String search);
+    List<StudentsEntity> findAllByCuratorId(int curatorId);
+    List<StudentsEntity> findAllByCuratorIdLimit(int curatorId, int limit, int offset);
+    List<StudentsEntity> findAllByCuratorIdSearch(int curatorId, String search);
+    List<StudentsEntity> findAllByCuratorIdSearchLimit(int curatorId, String search, int limit, int offset);
 }
