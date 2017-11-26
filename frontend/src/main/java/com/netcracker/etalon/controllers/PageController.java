@@ -23,6 +23,7 @@
  */
 package com.netcracker.etalon.controllers;
 
+import com.netcracker.pmbackend.interfaces.HeadofpracticesService;
 import com.netcracker.pmbackend.interfaces.StudentsService;
 import com.netcracker.pmbackend.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,9 @@ public class PageController {
 
     @Autowired
     private StudentsService studentsService;
+
+    @Autowired
+    private HeadofpracticesService headofpracticesService;
 
     @RequestMapping(value = "/roleRedirect", method = RequestMethod.GET)
     public String redirectRoleToPage() {
@@ -64,8 +68,8 @@ public class PageController {
                 break;
             }
             case "ROLE_HEADOFPRACTICE":{
-                long userId = usersService.findByLogin(userLogin).getId();
-                urlRedirect = "redirect:/practices";
+                long curatorId = headofpracticesService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
+                urlRedirect = "redirect:/curator/" + curatorId;
                 break;
             }
         }
@@ -85,6 +89,11 @@ public class PageController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String goToAdmin() {
         return "adminpage";
+    }
+
+    @RequestMapping(value = "/curator/{id}", method = RequestMethod.GET)
+    public String goToCuratorPage() {
+        return "curator";
     }
 
     @RequestMapping(value = "/practicesRequests", method = RequestMethod.GET)
