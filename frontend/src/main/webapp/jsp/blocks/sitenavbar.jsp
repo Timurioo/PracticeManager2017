@@ -1,5 +1,6 @@
-
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -14,9 +15,10 @@
 
         <div class="navbar-collapse collapse">
             <form class="navbar-form navbar-right">
-                <a href="/j_spring_security_logout" class="btn btn-danger">Sign out <span class="	glyphicon glyphicon-remove"></span> </a>
-
+                <a href="/j_spring_security_logout" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
             </form>
+            <h4 class="navbar-text navbar-right"><%= SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")? "" : SecurityContextHolder.getContext().getAuthentication().getName()%></h4>
         </div>
+
     </div>
 </div>
