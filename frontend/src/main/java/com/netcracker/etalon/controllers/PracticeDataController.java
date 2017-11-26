@@ -113,4 +113,23 @@ public class PracticeDataController {
         return (List<PracticeViewModel>) conversionService.convert(allPractices,practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor);
     }
 
+    @RequestMapping(value = "/practices/curator/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public PracticeTableViewModel getPracticeDataByCurator(@PathVariable int id, @RequestParam(required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
+
+        List<PracticesEntity> allPractices;
+        int totalRows = 0;
+        if (search != null) {
+            allPractices = practicesService.findAllByCuratorIdSearchLimit(id,search,Integer.parseInt(limit), Integer.parseInt(offset));
+            totalRows = practicesService.findAllByCuratorIdSearch(id, search).size();
+        } else {
+            allPractices = practicesService.findAllByCuratorIdLimit(id, Integer.parseInt(limit), Integer.parseInt(offset));
+            totalRows = practicesService.findByCuratorId(id).size();
+        }
+        PracticeTableViewModel practiceTableViewModel = new PracticeTableViewModel();
+        practiceTableViewModel.setRows((List<PracticeViewModel>) conversionService.convert(allPractices, practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor));
+        practiceTableViewModel.setTotal(totalRows);
+        return practiceTableViewModel;
+    }
+
 }

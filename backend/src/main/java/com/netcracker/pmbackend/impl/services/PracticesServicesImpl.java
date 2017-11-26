@@ -29,7 +29,7 @@ public class PracticesServicesImpl implements PracticesService {
     }
 
     @Transactional(readOnly = true)
-    public List<PracticesEntity> findByHeadofpracticeId(int id) {
+    public List<PracticesEntity> findByCuratorId(int id) {
         return practicesRepository.findByHeadofpracticeId(id);
     }
 
@@ -61,6 +61,21 @@ public class PracticesServicesImpl implements PracticesService {
 
     public List<PracticesEntity> findAllSearch(String search) {
         return practicesRepository.findAllSearch(search);
+    }
+
+    @Override
+    public List<PracticesEntity> findAllByCuratorIdLimit(int curatorId, int limit, int offset) {
+        return practicesRepository.findByCuratorIdLimit(curatorId, limit, offset);
+    }
+
+    @Override
+    public List<PracticesEntity> findAllByCuratorIdSearch(int curatorId, String search) {
+        return practicesRepository.findByCuratorIdSearch(curatorId, search);
+    }
+
+    @Override
+    public List<PracticesEntity> findAllByCuratorIdSearchLimit(int curatorId, String search, int limit, int offset) {
+        return practicesRepository.findByCuratorIdSearchLimit(curatorId, search, limit, offset);
     }
 
 }
