@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="../resources/css/custom/registration.css">
         <script src="../resources/js/jquery.validate.min.js"></script>
         <script src="../resources/js/additional-methods.js"></script>
+        <script src="../resources/js/jquery.md5.js"></script>
         <script src="../resources/js/custom/registration/student/registrationStudentActions.js"></script>
         <script src="../resources/js/custom/registration/student/registrationStudentValidation.js"></script>
         <script src="../resources/js/custom/registration/student/registrationStudentListeners.js"></script>

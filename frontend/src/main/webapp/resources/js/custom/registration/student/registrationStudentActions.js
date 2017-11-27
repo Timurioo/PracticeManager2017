@@ -4,7 +4,7 @@ function registrationHeadOfPracticeAjaxRequest() {
         contentType: "application/json; charset=UTF-8",
         url:"/headOfPracticeRegistration",
         data:JSON.stringify({"login":$('#login_headofpractice').val(),
-            "password":$('#password_headofpractice').val(),
+            "password":$.md5($('#password_headofpractice').val()),
             "role":"ROLE_HEADOFPRACTICE",
             "name":$('#name_headofpractice').val()}),
         success: function (data) {
@@ -42,7 +42,7 @@ function registrationStudentAjaxRequest() {
         contentType: "application/json; charset=UTF-8",
         url:"/studentRegistration",
         data:JSON.stringify({"login":$('#login_student').val(),
-            "password":$('#password_student').val(),
+            "password":$.md5($('#password_student').val()),
             "role":"ROLE_STUDENT",
             "name":$('#name_student').val(),
             "surname":$('#surname_student').val(),
