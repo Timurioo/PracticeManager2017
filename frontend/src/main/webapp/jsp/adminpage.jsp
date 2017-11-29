@@ -60,12 +60,12 @@
                 <thead>
                 <tr>
                     <th data-field="state" data-checkbox="true" ></th>
+                    <th data-field="surname" data-sortable="true">Surname</th>
                     <th data-field="name"  >Name</th>
-                    <th data-field="surname" >Surname</th>
                     <th data-field="faculty" >Faculty</th>
                     <th data-field="speciality" >Speciality</th>
                     <th data-field="budget" >Education basis</th>
-                    <th data-field="avrMark">Average mark</th>
+                    <th data-field="avrMark" data-sortable="true">Average mark</th>
                     <th data-field="status" >Status</th>
                     <th data-field="company" >Company</th>
                     <th data-field="practicePeriod" >Practice period</th>

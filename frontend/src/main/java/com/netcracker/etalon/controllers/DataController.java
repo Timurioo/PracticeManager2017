@@ -9,6 +9,7 @@ import com.netcracker.etalon.validation.validator.StudentRegistrationDTOValidato
 import com.netcracker.pmbackend.impl.entities.*;
 import com.netcracker.pmbackend.impl.factory.EntityFactory;
 import com.netcracker.pmbackend.impl.services.registration.RegistrationService;
+import com.netcracker.pmbackend.impl.services.table.StudentTableDataService;
 import com.netcracker.pmbackend.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -30,19 +31,7 @@ public class DataController {
     private StudentsService studentsService;
 
     @Autowired
-    private PracticesService practicesService;
-
-    @Autowired
     private ConversionService conversionService;
-
-    @Autowired
-    private FacultyService facultyService;
-
-    @Autowired
-    private SpecialityService specialityService;
-
-    @Autowired
-    private HeadofpracticesService headofpracticesService;
 
     @Autowired
     private HeadOfPracticeRegistrationDTOValidator headOfPracticeRegistrationDTOValidator;
@@ -59,6 +48,8 @@ public class DataController {
     @Autowired
     private RegistrationService registrationService;
 
+    @Autowired
+    private StudentTableDataService studentTableDataService;
 
     // Type Descriptors for custom converters
     private final TypeDescriptor userEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UsersEntity.class));
@@ -66,38 +57,17 @@ public class DataController {
 
     private final TypeDescriptor studentEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentsEntity.class));
 
-    private final TypeDescriptor practiceEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticesEntity.class));
-    private final TypeDescriptor practiceViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeViewModel.class));
-
-    // Faculty type descriptors
-    private final TypeDescriptor facultyEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(FacultyEntity.class));
-    private final TypeDescriptor facultyViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(FacultyViewModel.class));
-
-    //Speciality type descriptors
-    private final TypeDescriptor specialityEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(SpecialityEntity.class));
-    private final TypeDescriptor specialityViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(SpecialityViewModel.class));
-
-
     private final TypeDescriptor studentAndPracticeViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentAndPracticeViewModel.class));
     private final TypeDescriptor studentProfileViewModelTypeDescriptor = TypeDescriptor.valueOf(StudentProfileViewModel.class);
     private final TypeDescriptor singleStudentEntityTypeDescriptor = TypeDescriptor.valueOf(StudentsEntity.class);
 
     @RequestMapping(value = "/studentsAndPracticeData", method = RequestMethod.GET)
     @ResponseBody
-    public StudentTableViewModel getStudentsAndPractice(@RequestParam( required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
-
-        List<StudentsEntity> allStudents;
-        int totalRows=0;
-        if(search != null){
-            allStudents = studentsService.findAllLimitSearch(search,Integer.parseInt(limit), Integer.parseInt(offset));
-            totalRows = studentsService.findAllSearch(search).size();
-        }else{
-            allStudents = studentsService.findAllLimit(Integer.parseInt(limit), Integer.parseInt(offset));
-            totalRows = studentsService.findAll().size();
-        }
+    public StudentTableViewModel getStudentsAndPractice(@RequestParam(required = false, name = "search", defaultValue = "") String search, @RequestParam(required = false, name = "sort", defaultValue = "") String sort, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
+        StudentTableData studentTableData = studentTableDataService.getActualTableData(search, sort, order, Integer.parseInt(limit), Integer.parseInt(offset));
         StudentTableViewModel studentsTableViewModel = new StudentTableViewModel();
-        studentsTableViewModel.setRows((List<StudentAndPracticeViewModel>) conversionService.convert(allStudents,studentEntityTypeDescriptor, studentAndPracticeViewModelTypeDescriptor));
-        studentsTableViewModel.setTotal(totalRows);
+        studentsTableViewModel.setRows((List<StudentAndPracticeViewModel>) conversionService.convert(studentTableData.getRowsData(),studentEntityTypeDescriptor, studentAndPracticeViewModelTypeDescriptor));
+        studentsTableViewModel.setTotal(studentTableData.getTotalRows());
         return studentsTableViewModel;
     }
 

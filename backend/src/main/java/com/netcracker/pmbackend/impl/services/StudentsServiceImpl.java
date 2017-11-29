@@ -7,7 +7,6 @@ import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service("jpaStudentsService")
@@ -20,6 +19,11 @@ public class StudentsServiceImpl implements StudentsService {
     @Transactional(readOnly = true)
     public List<StudentsEntity> findAll() {
         return Lists.newArrayList(studentsRepository.findAll());
+    }
+
+    @Transactional(readOnly = true)
+    public long countAll() {
+        return  studentsRepository.count();
     }
 
     @Transactional(readOnly = true)
@@ -65,37 +69,129 @@ public class StudentsServiceImpl implements StudentsService {
         studentsRepository.delete(id);
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public List<StudentsEntity> findAllLimit(int limit, int offset) {
         return studentsRepository.findAllLimit(limit, offset);
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public List<StudentsEntity> findAllLimitSearch(String search, int limit, int offset) {
         return studentsRepository.findAllLimitSearch(search,limit,offset);
     }
 
-    @Override
-    public List<StudentsEntity> findAllSearch(String search) {
-        return studentsRepository.findAllSearch(search);
+    @Transactional(readOnly = true)
+    public int countAllSearch(String search) {
+        return studentsRepository.countAllSearch(search);
     }
 
-    @Override
-    public List<StudentsEntity> findAllByCuratorId(int curatorId) {
-        return studentsRepository.findAllByCuratorId(curatorId);
+
+    //Sort order by surname
+    @Transactional(readOnly = true)
+    public int countAllOrderBySurnameAsc() {
+        return studentsRepository.countAllOrderBySurnameAsc();
     }
 
-    @Override
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllOrderBySurnameAscLimit(int limit, int offset) {
+        return studentsRepository.findAllOrderBySurnameAscLimit(limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllOrderBySurnameDesc() {
+        return studentsRepository.countAllOrderBySurnameDesc();
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllOrderBySurnameDescLimit(int limit, int offset) {
+        return studentsRepository.findAllOrderBySurnameDescLimit(limit, offset);
+    }
+
+
+    //Sort order by average mark
+    @Transactional(readOnly = true)
+    public int countAllOrderByAvrMarkAsc() {
+        return studentsRepository.countAllOrderByAvrMarkAsc();
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllOrderByAvrMarkAscLimit(int limit, int offset) {
+        return studentsRepository.findAllOrderByAvrMarkAscLimit(limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllOrderByAvrMarkDesc() {
+        return studentsRepository.countAllOrderByAvrMarkDesc();
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllOrderByAvrMarkDescLimit(int limit, int offset) {
+        return studentsRepository.findAllOrderByAvrMarkDescLimit(limit, offset);
+    }
+
+
+    //Search and Sort order by surname
+    @Transactional(readOnly = true)
+    public int countAllSearchOrderBySurnameAsc(String search){
+        return studentsRepository.countAllSearchOrderBySurnameAsc(search);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllSearchOrderBySurnameAscLimit(String search, int limit, int offset){
+        return studentsRepository.findAllSearchOrderBySurnameAscLimit(search, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllSearchOrderBySurnameDesc(String search){
+        return studentsRepository.countAllSearchOrderBySurnameDesc(search);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllSearchOrderBySurnameDescLimit(String search, int limit, int offset){
+        return studentsRepository.findAllSearchOrderBySurnameDescLimit(search, limit, offset);
+    }
+
+
+    //Search and Sort order by average mark
+    @Transactional(readOnly = true)
+    public int countAllSearchOrderByAvrMarkAsc(String search){
+        return studentsRepository.countAllSearchOrderByAvrMarkAsc(search);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllSearchOrderByAvrMarkAscLimit(String search, int limit, int offset){
+        return studentsRepository.findAllSearchOrderByAvrMarkAscLimit(search, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllSearchOrderByAvrMarkDesc(String search){
+        return studentsRepository.countAllSearchOrderByAvrMarkDesc(search);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllSearchOrderByAvrMarkDescLimit(String search, int limit, int offset){
+        return studentsRepository.findAllSearchOrderByAvrMarkDescLimit(search, limit, offset);
+    }
+
+
+    //Find by curator
+    @Transactional(readOnly = true)
+    public int countAllByCuratorId(int curatorId) {
+        return studentsRepository.countAllByCuratorId(curatorId);
+    }
+
+    @Transactional(readOnly = true)
     public List<StudentsEntity> findAllByCuratorIdLimit(int curatorId, int limit, int offset) {
         return studentsRepository.findAllByCuratorIdLimit(curatorId, limit, offset);
     }
 
-    @Override
-    public List<StudentsEntity> findAllByCuratorIdSearch(int curatorId, String search) {
-        return studentsRepository.findAllByCuratorIdSearch(curatorId, search);
+
+    //Search and Find by curator
+    @Transactional(readOnly = true)
+    public int countAllByCuratorIdSearch(int curatorId, String search) {
+        return studentsRepository.countAllByCuratorIdSearch(curatorId, search);
     }
 
-    @Override
+    @Transactional(readOnly = true)
     public List<StudentsEntity> findAllByCuratorIdSearchLimit(int curatorId, String search, int limit, int offset) {
         return studentsRepository.findAllByCuratorIdSearchLimit(curatorId, search, limit, offset);
     }

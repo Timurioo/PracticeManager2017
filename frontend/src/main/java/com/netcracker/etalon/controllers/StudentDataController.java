@@ -1,12 +1,10 @@
 package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.beans.StudentAndPracticeViewModel;
-import com.netcracker.etalon.beans.StudentProfileViewModel;
 import com.netcracker.etalon.beans.StudentTableViewModel;
 import com.netcracker.pmbackend.impl.entities.StudentsEntity;
 import com.netcracker.pmbackend.impl.services.deletion.DeletionService;
 import com.netcracker.pmbackend.interfaces.StudentsService;
-import com.netcracker.pmbackend.interfaces.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -52,10 +50,10 @@ public class StudentDataController {
         int totalRows=0;
         if(search != null){
             allStudents = studentsService.findAllByCuratorIdSearchLimit(id,search,Integer.parseInt(limit), Integer.parseInt(offset));
-            totalRows = studentsService.findAllByCuratorIdSearch(id,search).size();
+            totalRows = studentsService.countAllByCuratorIdSearch(id,search);
         }else{
             allStudents = studentsService.findAllByCuratorIdLimit(id, Integer.parseInt(limit), Integer.parseInt(offset));
-            totalRows = studentsService.findAllByCuratorId(id).size();
+            totalRows = studentsService.countAllByCuratorId(id);
         }
         StudentTableViewModel studentsTableViewModel = new StudentTableViewModel();
         studentsTableViewModel.setRows((List<StudentAndPracticeViewModel>) conversionService.convert(allStudents,studentEntityTypeDescriptor, studentAndPracticeViewModelTypeDescriptor));
