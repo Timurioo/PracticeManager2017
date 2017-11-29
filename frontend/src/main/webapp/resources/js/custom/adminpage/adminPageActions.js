@@ -184,3 +184,8 @@ function responseHandler(res) {
     });
     return res;
 }
+
+function setSearchFiledPlaceholder() {
+    var $search = $('.fixed-table-toolbar .search input');
+    $search.attr('placeholder', 'Fast search ...');
+}

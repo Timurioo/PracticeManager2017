@@ -40,4 +40,6 @@ $(document).ready(function () {
         'uncheck.bs.table uncheck-all.bs.table', function (e, row) {
         selectionManager(e, row);
     });
+
+    setSearchFiledPlaceholder();
 });

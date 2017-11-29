@@ -15,3 +15,8 @@ function setTablesDataUrls() {
     $practicesTable .bootstrapTable('refreshOptions', practicesOptions);
     $practicesTable .bootstrapTable('refresh');
 }
+
+function setSearchFiledPlaceholder() {
+    var $search = $('.fixed-table-toolbar .search input');
+    $search.attr('placeholder', 'Fast search ...');
+}
