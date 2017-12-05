@@ -10,7 +10,7 @@
 
         <jsp:include page="/jsp/blocks/jumbotronblock.jsp">
             <jsp:param name="pageTitle" value="Authorization page"/>
-            <jsp:param name="titleDescription" value="Choose necessary role to continue authorization in right way."/>
+            <jsp:param name="titleDescription" value="Enter necessary login and password to continue authorization in right way."/>
         </jsp:include>
 
         <div class="container">
