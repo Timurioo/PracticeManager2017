@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
         <script src="../resources/js/bootstrap-table.js"></script>
         <script src="../resources/js/lodash.min.js"></script>
+        <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>--%>
+        <script src="../resources/js/bootstrap-table-filter-control.min.js"></script>
         <script src="../resources/js/custom/adminpage/adminPageActions.js"></script>
         <script src="../resources/js/custom/adminpage/adminPageListeners.js"></script>
     </head>
@@ -56,22 +58,29 @@
                    data-page-size="5"
                    data-page-list="[5, 10, 20]"
                    data-search="true"
-                   data-response-handler="responseHandler">
+                   data-response-handler="responseHandler"
+                   data-show-columns="true"
+                   data-show-refresh="true"
+                   data-show-toggle="true"
+                   data-filter-control="true"
+                   >
                 <thead>
                 <tr>
-                    <th data-field="state" data-checkbox="true" ></th>
-                    <th data-field="surname" data-sortable="true">Surname</th>
-                    <th data-field="name"  >Name</th>
-                    <th data-field="faculty" >Faculty</th>
-                    <th data-field="speciality" >Speciality</th>
-                    <th data-field="budget" >Education basis</th>
-                    <th data-field="avrMark" data-sortable="true">Average mark</th>
-                    <th data-field="status" >Status</th>
-                    <th data-field="company" >Company</th>
-                    <th data-field="practicePeriod" >Practice period</th>
-                    <th data-field="id" data-formatter="LinkFormatter">Show profile</th>
+                    <th data-field="state" data-checkbox="true" data-align="center"></th>
+                    <th data-field="surname" data-sortable="true" data-align="center">Surname</th>
+                    <th data-field="name"  data-align="center">Name</th>
+                    <th data-field="faculty" data-align="center">Faculty</th>
+                    <th data-field="speciality" data-align="center">Speciality</th>
+                    <th data-field="budget" data-filter-control="select" data-align="center">Education basis</th>
+                    <th data-field="avrMark" data-sortable="true" data-align="center">Average mark</th>
+                    <th data-field="status" data-filter-control="select" data-align="center">Status</th>
+                    <th data-field="company" data-align="center">Company</th>
+                    <th data-field="practicePeriod" data-align="center">Practice period</th>
+                    <th data-field="id" data-formatter="LinkFormatter" data-align="center">Show profile</th>
                 </tr>
                 </thead>
+                <tbody>
+                </tbody>
             </table>
         </div>
 
