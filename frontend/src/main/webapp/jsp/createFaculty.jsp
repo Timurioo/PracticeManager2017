@@ -9,7 +9,6 @@
         <script src="../resources/js/additional-methods.js"></script>
         <script src="../resources/js/custom/registration/faculty/registrationFacultyActions.js"></script>
         <script src="../resources/js/custom/registration/faculty/registrationFacultyValidation.js"></script>
-        <script src="../resources/js/custom/registration/faculty/registrationFacultyListeners.js"></script>
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>

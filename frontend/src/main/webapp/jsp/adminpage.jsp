@@ -8,10 +8,8 @@
         <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
         <script src="../resources/js/bootstrap-table.js"></script>
         <script src="../resources/js/lodash.min.js"></script>
-        <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>--%>
         <script src="../resources/js/bootstrap-table-filter-control.min.js"></script>
         <script src="../resources/js/custom/adminpage/adminPageActions.js"></script>
-        <script src="../resources/js/custom/adminpage/adminPageListeners.js"></script>
     </head>
     <body>
 

@@ -10,7 +10,6 @@
         <script src="../resources/js/jquery.md5.js"></script>
         <script src="../resources/js/custom/registration/student/registrationStudentActions.js"></script>
         <script src="../resources/js/custom/registration/student/registrationStudentValidation.js"></script>
-        <script src="../resources/js/custom/registration/student/registrationStudentListeners.js"></script>
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>

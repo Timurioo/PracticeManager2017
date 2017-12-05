@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    studentProfileDateAjaxLoad();
+});
+
 function getIdParam() {
     var s = window.location.href;
     s = s.match(new RegExp('studentProfile' + '\/([^&=]+)'));

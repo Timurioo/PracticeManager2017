@@ -1,3 +1,8 @@
+$(document).ready(function () {
+    setTablesDataUrls();
+    setSearchFiledPlaceholder();
+});
+
 function setTablesDataUrls() {
     var s = window.location.href;
     s = s.match(new RegExp('curator' + '\/([^&=]+)'));

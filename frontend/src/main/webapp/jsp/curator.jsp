@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
     <script src="../resources/js/bootstrap-table.js"></script>
     <script src="../resources/js/custom/curator/curatorPageActions.js"></script>
-    <script src="../resources/js/custom/curator/curatorPageListeners.js"></script>
 </head>
 <body>
     <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>

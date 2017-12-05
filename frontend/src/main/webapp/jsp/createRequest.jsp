@@ -8,7 +8,6 @@
         <script src="../resources/js/jquery.validate.min.js"></script>
         <script src="../resources/js/additional-methods.js"></script>
         <script src="../resources/js/custom/registration/practice/registrationPracticeRequestActions.js"></script>
-        <script src="../resources/js/custom/registration/practice/registrationPracticeRequestListeners.js"></script>
         <script src="../resources/js/custom/registration/practice/registrationPracticeRequestValidation.js"></script>
     </head>
     <body>

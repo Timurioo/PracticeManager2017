@@ -4,9 +4,7 @@
     <head>
         <title>Student profile</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
-
         <script src="../resources/js/custom/profile/studentProfileActions.js"></script>
-        <script src="../resources/js/custom/profile/studentProfileListener.js"></script>
     </head>
     <body>
         <jsp:include page="/jsp/blocks/sitenavbar.jsp"/>
