@@ -214,4 +214,229 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             nativeQuery = true)
     List<StudentsEntity> findAllByCuratorIdSearchLimit(int curatorId, String search, int limit, int offset);
     ///////////////////////////////////////////////////////////////
+
+
+    //Filter all data
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% ",
+            nativeQuery = true)
+    int countAllByFilter(String filterBudget, String filterStatus);
+
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% " +
+            "LIMIT ?3 OFFSET ?4",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterLimit(String filterBudget, String filterStatus, int limit, int offset);
+    /////////////////////////////////////////////////////////////////
+
+
+    //Filter and Sort order by surname
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% " +
+            "ORDER BY surname ASC",
+            nativeQuery = true)
+    int countAllByFilterOrderBySurnameAsc(String filterBudget, String filterStatus);
+
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% " +
+            "ORDER BY surname ASC " +
+            "LIMIT ?3 OFFSET ?4",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterOrderBySurnameAscLimit(String filterBudget, String filterStatus, int limit, int offset);
+
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% " +
+            "ORDER BY surname DESC",
+            nativeQuery = true)
+    int countAllByFilterOrderBySurnameDesc(String filterBudget, String filterStatus);
+
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% " +
+            "ORDER BY surname DESC " +
+            "LIMIT ?3 OFFSET ?4",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterOrderBySurnameDescLimit(String filterBudget, String filterStatus, int limit, int offset);
+    //////////////////////////////////////////////////////////////////
+
+    //Filter and Sort order by average mark
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% " +
+            "ORDER BY avr_mark ASC",
+            nativeQuery = true)
+    int countAllByFilterOrderByAvrMarkAsc(String filterBudget, String filterStatus);
+
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% " +
+            "ORDER BY avr_mark ASC " +
+            "LIMIT ?3 OFFSET ?4",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterOrderByAvrMarkAscLimit(String filterBudget, String filterStatus, int limit, int offset);
+
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% " +
+            "ORDER BY avr_mark DESC",
+            nativeQuery = true)
+    int countAllByFilterOrderByAvrMarkDesc(String filterBudget, String filterStatus);
+
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "budget LIKE %?1% " +
+            "AND status LIKE %?2% " +
+            "ORDER BY avr_mark DESC " +
+            "LIMIT ?3 OFFSET ?4",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterOrderByAvrMarkDescLimit(String filterBudget, String filterStatus, int limit, int offset);
+    ///////////////////////////////////////////////////////////////
+
+    //Filter and Search all
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "LIMIT ?4 OFFSET ?5",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterAndSearchLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
+
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) ",
+            nativeQuery = true)
+    int countAllByFilterAndSearch(String filterBudget, String filterStatus, String search);
+    /////////////////////////////////////////////////////////////////////
+
+
+    //Filter, Search and Sort order by surname
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "ORDER BY surname ASC",
+            nativeQuery = true)
+    int countAllByFilterAndSearchOrderBySurnameAsc(String filterBudget, String filterStatus, String search);
+
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "ORDER BY surname ASC " +
+            "LIMIT ?4 OFFSET ?5",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterAndSearchOrderBySurnameAscLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
+
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "ORDER BY surname DESC",
+            nativeQuery = true)
+    int countAllByFilterAndSearchOrderBySurnameDesc(String filterBudget, String filterStatus, String search);
+
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "ORDER BY surname DESC " +
+            "LIMIT ?4 OFFSET ?5",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterAndSearchOrderBySurnameDescLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
+    ////////////////////////////////////////////////////////
+
+
+    //Filter, Search and Sort order by average mark
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "ORDER BY avr_mark ASC",
+            nativeQuery = true)
+    int countAllByFilterAndSearchOrderByAvrMarkAsc(String filterBudget, String filterStatus, String search);
+
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "ORDER BY avr_mark ASC " +
+            "LIMIT ?4 OFFSET ?5",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterAndSearchOrderByAvrMarkAscLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
+
+    @Query(value = "SELECT count(*) FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "ORDER BY avr_mark DESC",
+            nativeQuery = true)
+    int countAllByFilterAndSearchOrderByAvrMarkDesc(String filterBudget, String filterStatus, String search);
+
+    @Query(value = "SELECT * FROM practicemanager.students where " +
+            "(budget LIKE %?1% " +
+            "AND status LIKE %?2%) " +
+            "AND (name LIKE %?3% " +
+            "OR surname LIKE %?3% " +
+            "OR budget LIKE %?3% " +
+            "OR status LIKE %?3% " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "ORDER BY avr_mark DESC " +
+            "LIMIT ?4 OFFSET ?5",
+            nativeQuery = true)
+    List<StudentsEntity> findAllByFilterAndSearchOrderByAvrMarkDescLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
+    /////////////////////////////////////////////////////
+
+
+
 }

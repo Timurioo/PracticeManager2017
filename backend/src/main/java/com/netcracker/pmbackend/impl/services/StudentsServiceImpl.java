@@ -196,4 +196,115 @@ public class StudentsServiceImpl implements StudentsService {
         return studentsRepository.findAllByCuratorIdSearchLimit(curatorId, search, limit, offset);
     }
 
+
+    //Filter for all data
+    @Transactional(readOnly = true)
+    public int countAllByFilter(String filterBudget, String filterStatus) {
+        return studentsRepository.countAllByFilter(filterBudget, filterStatus);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterLimit(String filterBudget, String filterStatus, int limit, int offset) {
+        return studentsRepository.findAllByFilterLimit(filterBudget, filterStatus, limit, offset);
+    }
+
+
+    //Filter and Sort order by surname
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterOrderBySurnameAscLimit(String filterBudget, String filterStatus, int limit, int offset) {
+        return studentsRepository.findAllByFilterOrderBySurnameAscLimit(filterBudget, filterStatus, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllByFilterOrderBySurnameAsc(String filterBudget, String filterStatus) {
+        return studentsRepository.countAllByFilterOrderBySurnameAsc(filterBudget, filterStatus);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterOrderBySurnameDescLimit(String filterBudget, String filterStatus, int limit, int offset) {
+        return studentsRepository.findAllByFilterOrderBySurnameDescLimit(filterBudget, filterStatus, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllByFilterOrderBySurnameDesc(String filterBudget, String filterStatus) {
+        return studentsRepository.countAllByFilterOrderBySurnameDesc(filterBudget, filterStatus);
+    }
+
+
+    //Filter and Sort order by average mark
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterOrderByAvrMarkAscLimit(String filterBudget, String filterStatus, int limit, int offset) {
+        return studentsRepository.findAllByFilterOrderByAvrMarkAscLimit(filterBudget, filterStatus, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllByFilterOrderByAvrMarkAsc(String filterBudget, String filterStatus) {
+        return studentsRepository.countAllByFilterOrderByAvrMarkAsc(filterBudget, filterStatus);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterOrderByAvrMarkDescLimit(String filterBudget, String filterStatus, int limit, int offset) {
+        return studentsRepository.findAllByFilterOrderByAvrMarkDescLimit(filterBudget, filterStatus, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllByFilterOrderByAvrMarkDesc(String filterBudget, String filterStatus) {
+        return studentsRepository.countAllByFilterOrderByAvrMarkDesc(filterBudget, filterStatus);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterAndSearchLimit(String filterBudget, String filterStatus, String search, int limit, int offset) {
+        return studentsRepository.findAllByFilterAndSearchLimit(filterBudget, filterStatus, search, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllByFilterAndSearch(String filterBudget, String filterStatus, String search) {
+        return studentsRepository.countAllByFilterAndSearch(filterBudget, filterStatus, search);
+    }
+
+
+    //Filter, Search and Sort order by surname
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterAndSearchOrderBySurnameAscLimit(String filterBudget, String filterStatus, String search, int limit, int offset) {
+        return studentsRepository.findAllByFilterAndSearchOrderBySurnameAscLimit(filterBudget, filterStatus, search, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllByFilterAndSearchOrderBySurnameAsc(String filterBudget, String filterStatus, String search) {
+        return studentsRepository.countAllByFilterAndSearchOrderBySurnameAsc(filterBudget, filterStatus, search);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterAndSearchOrderBySurnameDescLimit(String filterBudget, String filterStatus, String search, int limit, int offset) {
+        return studentsRepository.findAllByFilterAndSearchOrderBySurnameDescLimit(filterBudget, filterStatus, search, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllByFilterAndSearchOrderBySurnameDesc(String filterBudget, String filterStatus, String search) {
+        return studentsRepository.countAllByFilterAndSearchOrderBySurnameDesc(filterBudget, filterStatus, search);
+    }
+
+
+    //Filter, Search and Sort order by average mark
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterAndSearchOrderByAvrMarkAscLimit(String filterBudget, String filterStatus, String search, int limit, int offset) {
+        return studentsRepository.findAllByFilterAndSearchOrderByAvrMarkAscLimit(filterBudget, filterStatus, search, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllByFilterAndSearchOrderByAvrMarkAsc(String filterBudget, String filterStatus, String search) {
+        return studentsRepository.countAllByFilterAndSearchOrderByAvrMarkAsc(filterBudget, filterStatus, search);
+    }
+
+    @Transactional(readOnly = true)
+    public List<StudentsEntity> findAllByFilterAndSearchOrderByAvrMarkDescLimit(String filterBudget, String filterStatus, String search, int limit, int offset) {
+        return studentsRepository.findAllByFilterAndSearchOrderByAvrMarkDescLimit(filterBudget, filterStatus, search, limit, offset);
+    }
+
+    @Transactional(readOnly = true)
+    public int countAllByFilterAndSearchOrderByAvrMarkDesc(String filterBudget, String filterStatus, String search) {
+        return studentsRepository.countAllByFilterAndSearchOrderByAvrMarkDesc(filterBudget, filterStatus, search);
+    }
+
+
 }

@@ -63,8 +63,8 @@ public class DataController {
 
     @RequestMapping(value = "/studentsAndPracticeData", method = RequestMethod.GET)
     @ResponseBody
-    public StudentTableViewModel getStudentsAndPractice(@RequestParam(required = false, name = "search", defaultValue = "") String search, @RequestParam(required = false, name = "sort", defaultValue = "") String sort, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
-        StudentTableData studentTableData = studentTableDataService.getActualTableData(search, sort, order, Integer.parseInt(limit), Integer.parseInt(offset));
+    public StudentTableViewModel getStudentsAndPractice(@RequestParam(required = false, name = "search", defaultValue = "") String search, @RequestParam(required = false, name = "sort", defaultValue = "") String sort, @RequestParam String order, @RequestParam String offset, @RequestParam String limit, @RequestParam(required = false, name = "filter", defaultValue = "") String filter) {
+        StudentTableData studentTableData = studentTableDataService.getActualTableData(search, filter, sort, order, Integer.parseInt(limit), Integer.parseInt(offset));
         StudentTableViewModel studentsTableViewModel = new StudentTableViewModel();
         studentsTableViewModel.setRows((List<StudentAndPracticeViewModel>) conversionService.convert(studentTableData.getRowsData(),studentEntityTypeDescriptor, studentAndPracticeViewModelTypeDescriptor));
         studentsTableViewModel.setTotal(studentTableData.getTotalRows());

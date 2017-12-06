@@ -54,4 +54,36 @@ public interface StudentsService {
     int countAllByCuratorIdSearch(int curatorId, String search);
     List<StudentsEntity> findAllByCuratorIdSearchLimit(int curatorId, String search, int limit, int offset);
 
+    //Filter for all data
+    int countAllByFilter(String filterBudget, String filterStatus);
+    List<StudentsEntity> findAllByFilterLimit(String filterBudget, String filterStatus, int limit, int offset);
+
+    //Filter and Sort order by surname
+    List<StudentsEntity> findAllByFilterOrderBySurnameAscLimit(String filterBudget, String filterStatus, int limit, int offset);
+    int countAllByFilterOrderBySurnameAsc(String filterBudget, String filterStatus);
+    List<StudentsEntity> findAllByFilterOrderBySurnameDescLimit(String filterBudget, String filterStatus, int limit, int offset);
+    int countAllByFilterOrderBySurnameDesc(String filterBudget, String filterStatus);
+
+    //Filter and Sort order by average mark
+    List<StudentsEntity> findAllByFilterOrderByAvrMarkAscLimit(String filterBudget, String filterStatus, int limit, int offset);
+    int countAllByFilterOrderByAvrMarkAsc(String filterBudget, String filterStatus);
+    List<StudentsEntity> findAllByFilterOrderByAvrMarkDescLimit(String filterBudget, String filterStatus, int limit, int offset);
+    int countAllByFilterOrderByAvrMarkDesc(String filterBudget, String filterStatus);
+
+    //Filter and Search all
+    List<StudentsEntity> findAllByFilterAndSearchLimit(String filterBudget, String filterStatus, String search, int limit, int offset );
+    int countAllByFilterAndSearch(String filterBudget, String filterStatus, String search);
+
+    //Filter, Search and Sort order by surname
+    List<StudentsEntity> findAllByFilterAndSearchOrderBySurnameAscLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
+    int countAllByFilterAndSearchOrderBySurnameAsc(String filterBudget, String filterStatus, String search);
+    List<StudentsEntity> findAllByFilterAndSearchOrderBySurnameDescLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
+    int countAllByFilterAndSearchOrderBySurnameDesc(String filterBudget, String filterStatus, String search);
+
+    //Filter, Search and Sort order by average mark
+    List<StudentsEntity> findAllByFilterAndSearchOrderByAvrMarkAscLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
+    int countAllByFilterAndSearchOrderByAvrMarkAsc(String filterBudget, String filterStatus, String search);
+    List<StudentsEntity> findAllByFilterAndSearchOrderByAvrMarkDescLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
+    int countAllByFilterAndSearchOrderByAvrMarkDesc(String filterBudget, String filterStatus, String search);
+
 }
