@@ -61,6 +61,7 @@
                    data-show-refresh="true"
                    data-show-toggle="true"
                    data-filter-control="true"
+                   data-filter-show-clear="true"
                    >
                 <thead>
                 <tr>
