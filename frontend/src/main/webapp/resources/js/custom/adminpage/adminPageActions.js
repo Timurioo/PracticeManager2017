@@ -1,10 +1,20 @@
+var elements={};
+
 $(document).ready(function () {
-    var elements = {
+    elements = {
         studentsTable : $('#table1'),
+        assignStudentsTable : $('#assign_student_table'),
         deleteStudentsBtn : $('#delete_students_btn'),
         assignStudentsBtn : $('#assign_students_btn'),
         confirmAssignBtn : $('#assign_student_form_btn'),
-        releaseStudentsBtn : $('#release_students_btn')
+        releaseStudentsBtn : $('#release_students_btn'),
+        practicesSelect : $('#practices_requests_select'),
+        assignStudentsModal : $('#assign_modal'),
+        alertModal: $('#alert_modal'),
+        alertText: $('#alert_text'),
+        tableToolbarSearchInput: $('.fixed-table-toolbar .search input'),
+        filterForBudget: null,
+        filterForStatus: null
     };
 
     elements.deleteStudentsBtn.click(function () {
@@ -18,6 +28,7 @@ $(document).ready(function () {
     });
 
     elements.studentsTable.on('search.bs.table', function () {
+        elements.studentsTable.bootstrapTable('resetSearch',$('.search').find('input').val());
         clearSelectedRows();
         setDeleteButtonEnable();
         setAssignButtonEnable();
@@ -41,6 +52,18 @@ $(document).ready(function () {
         selectionManager(e, row);
     });
 
+    // elements.studentsTable.on('post-body.bs.table', function(data){
+    //     $('.bootstrap-table-filter-control-budget').change(function () {
+    //         elements.studentsTable.bootstrapTable('resetSearch',$('.search').find('input').val());
+    //         alert("budget: "+$('.search').find('input').val());
+    //     });
+    //
+    //     $('.bootstrap-table-filter-control-status').change(function () {
+    //         elements.studentsTable.bootstrapTable('resetSearch',$('.search').find('input').val());
+    //         alert("status: "+$('.search').find('input').val());
+    //     });
+    // });
+
     setSearchFiledPlaceholder();
 });
 
@@ -53,9 +76,9 @@ function setDeleteButtonEnable() {
     }
 
     if(checked){
-        $('#delete_students_btn').prop("disabled", false);
+        elements.deleteStudentsBtn.prop("disabled", false);
     }else{
-        $('#delete_students_btn').prop("disabled", "disabled");
+        elements.deleteStudentsBtn.prop("disabled", "disabled");
     }
 }
 
@@ -72,9 +95,9 @@ function setReleaseButtonEnable() {
     }
 
     if(checked){
-        $('#release_students_btn').prop("disabled", false);
+        elements.releaseStudentsBtn.prop("disabled", false);
     }else{
-        $('#release_students_btn').prop("disabled", "disabled");
+        elements.releaseStudentsBtn.prop("disabled", "disabled");
     }
 }
 
@@ -91,9 +114,9 @@ function setAssignButtonEnable() {
     }
 
     if(checked){
-        $('#assign_students_btn').prop("disabled", false);
+        elements.assignStudentsBtn.prop("disabled", false);
     }else{
-        $('#assign_students_btn').prop("disabled", "disabled");
+        elements.assignStudentsBtn.prop("disabled", "disabled");
     }
 }
 
@@ -111,7 +134,7 @@ function deleteStudentAjaxRequest(){
         data:JSON.stringify(studentsIds),
         success: function (data) {
             clearSelectedRows();
-            $('#table1').bootstrapTable('refresh');
+            elements.studentsTable.bootstrapTable('refresh');
             setDeleteButtonEnable();
         }
     });
@@ -119,7 +142,7 @@ function deleteStudentAjaxRequest(){
 
 function loadAssignStudentsTableDate(){
 
-    $('#assign_student_table').bootstrapTable("load", checkedRows);
+    elements.assignStudentsTable.bootstrapTable("load", checkedRows);
     getPracticesRequests();
 }
 
@@ -130,9 +153,9 @@ function getPracticesRequests() {
         contentType: "application/json; charset=UTF-8",
         data: '',
         success: function (data) {
-            $('#practices_requests_select').empty();
+            elements.practicesSelect.empty();
             for(var i in data) {
-                $('#practices_requests_select')
+                elements.practicesSelect
                     .append($("<option></option>")
                         .attr("value", data[i].id)
                         .text(data[i].company+' (F:'+checkNull(data[i].faculty)+' S:'+checkNull(data[i].speciality)+' M:'+checkNull(data[i].avrMark)+') Available:'+data[i].availableQuantity));
@@ -154,7 +177,7 @@ function assignStudents() {
     }
 
     var resultData={
-        practiceId : $('#practices_requests_select').val(),
+        practiceId : elements.practicesSelect.val(),
         studentsIds : studentsIds
     };
 
@@ -165,12 +188,12 @@ function assignStudents() {
         data:JSON.stringify(resultData),
         success: function (data) {
             clearSelectedRows();
-            $('#assign_modal').modal('toggle');
+            elements.assignStudentsModal.modal('toggle');
             setDeleteButtonEnable();
             setAssignButtonEnable();
-            $('#table1').bootstrapTable('refresh');
-            $('#alert_text').html("Student(s) has been assigned!");
-            $('#alert_modal').modal("show");
+            elements.studentsTable.bootstrapTable('refresh');
+            elements.alertText.html("Student(s) has been assigned!");
+            elements.alertModal.modal("show");
         }
     })
 }
@@ -191,9 +214,9 @@ function releaseStudents() {
             clearSelectedRows();
             setDeleteButtonEnable();
             setReleaseButtonEnable();
-            $('#table1').bootstrapTable('refresh');
-            $('#alert_text').html("Student(s) has been released!");
-            $('#alert_modal').modal("show");
+            elements.studentsTable.bootstrapTable('refresh');
+            elements.alertText.html("Student(s) has been released!");
+            elements.alertModal.modal("show");
         }
     })
 }
@@ -231,6 +254,5 @@ function responseHandler(res) {
 }
 
 function setSearchFiledPlaceholder() {
-    var $search = $('.fixed-table-toolbar .search input');
-    $search.attr('placeholder', 'Fast search ...');
+    elements.tableToolbarSearchInput.attr('placeholder', 'Fast search ...');
 }
