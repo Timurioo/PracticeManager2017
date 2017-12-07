@@ -13,8 +13,8 @@ $(document).ready(function () {
         alertModal: $('#alert_modal'),
         alertText: $('#alert_text'),
         tableToolbarSearchInput: $('.fixed-table-toolbar .search input'),
-        filterForBudget: null,
-        filterForStatus: null
+        filterSelectForBudget: $('.bootstrap-table-filter-control-budget'),
+        filterSelectForStatus: $('.bootstrap-table-filter-control-status')
     };
 
     elements.deleteStudentsBtn.click(function () {
@@ -52,17 +52,9 @@ $(document).ready(function () {
         selectionManager(e, row);
     });
 
-    // elements.studentsTable.on('post-body.bs.table', function(data){
-    //     $('.bootstrap-table-filter-control-budget').change(function () {
-    //         elements.studentsTable.bootstrapTable('resetSearch',$('.search').find('input').val());
-    //         alert("budget: "+$('.search').find('input').val());
-    //     });
-    //
-    //     $('.bootstrap-table-filter-control-status').change(function () {
-    //         elements.studentsTable.bootstrapTable('resetSearch',$('.search').find('input').val());
-    //         alert("status: "+$('.search').find('input').val());
-    //     });
-    // });
+    elements.studentsTable.on('post-header.bs.table',function () {
+        setFilterSelectOptions();
+    });
 
     setSearchFiledPlaceholder();
 });
@@ -255,4 +247,26 @@ function responseHandler(res) {
 
 function setSearchFiledPlaceholder() {
     elements.tableToolbarSearchInput.attr('placeholder', 'Fast search ...');
+}
+
+function setFilterSelectOptions(){
+    if(!elements.filterSelectForStatus.find("option[value='Available']").length){
+        elements.filterSelectForStatus.append($("<option value='Available'>Available</option>"));
+    }
+
+    if(!elements.filterSelectForStatus.find("option[value='Waiting']").length){
+        elements.filterSelectForStatus.append($("<option value='Waiting'>Waiting</option>"));
+    }
+
+    if(!elements.filterSelectForStatus.find("option[value='Busy']").length){
+        elements.filterSelectForStatus.append($("<option value='Busy'>Busy</option>"));
+    }
+
+    if(!elements.filterSelectForBudget.find("option[value='Budget']").length){
+        elements.filterSelectForBudget.append($("<option value='Budget'>Budget</option>"));
+    }
+
+    if(!elements.filterSelectForBudget.find("option[value='Chargeable']").length){
+        elements.filterSelectForBudget.append($("<option value='Chargeable'>Chargeable</option>"));
+    }
 }
