@@ -11,15 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
 @Transactional
 public class AssignService {
-
 
     @Autowired
     private StudentsService studentsService;
@@ -33,7 +30,6 @@ public class AssignService {
     @Autowired
     private EntityFactory entityFactory;
 
-
     @Transactional
     public void assignStudents(int practiceId, List<Integer> studentsIds){
 
@@ -46,7 +42,8 @@ public class AssignService {
 
         for(int studentId : studentsIds){
             StudentsEntity studentsEntity = studentsService.findById(studentId);
-            studentsEntity.setStatus("Busy");
+
+            studentsEntity.setStatus(defineStatus(practicesEntity));
 
             studentsService.save(studentsEntity);
 
@@ -58,25 +55,16 @@ public class AssignService {
         }
     }
 
-    @Transactional
-    public void assignStudent(int practiceId, int studentId){
-
-        PracticesEntity practicesEntity = practicesService.findById(practiceId);
-        practicesEntity.setAvailableQuantity(practicesEntity.getAvailableQuantity()-1);
-        if(practicesEntity.getAvailableQuantity()==0){
-            practicesEntity.setStatus("Filled");
+    private String defineStatus(PracticesEntity practicesEntity){
+        Date startDate = practicesEntity.getFirstDate();
+        Date finishDate = practicesEntity.getFinishDate();
+        Date currentDate = new Date();
+        if(currentDate.compareTo(startDate)<0){
+            return "Waiting";
+        }else if(currentDate.compareTo(startDate)>=0 && currentDate.compareTo(finishDate)<=0){
+            return "Busy";
+        }else{
+            return "Passed";
         }
-        practicesService.save(practicesEntity);
-
-        StudentsEntity studentsEntity = studentsService.findById(studentId);
-        studentsEntity.setStatus("Busy");
-
-        studentsService.save(studentsEntity);
-
-        AssignStudentsEntity assignStudentsEntity  = entityFactory.getAssignStudentEntity(practiceId,studentId);
-        assignStudentsEntity.setPracticesByPracticeId(practicesEntity);
-        assignStudentsEntity.setStudentsByStudentId(studentsEntity);
-
-        assignStudentsService.save(assignStudentsEntity);
     }
 }
