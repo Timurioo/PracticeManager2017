@@ -140,21 +140,16 @@ public class StudentTableDataService {
 
     private StudentTableData findFilterData(String filterJson, int limit, int offset){
         FilterData filterData =convertFilterJsonToFilterData(filterJson);
-
         StudentTableData studentTableData = new StudentTableData();
         String filterBudget = filterData.getBudget()==null? "" : filterData.getBudget();
         String filterStatus = filterData.getStatus()==null? "" : filterData.getStatus();
         studentTableData.setRowsData(studentsService.findAllByFilterLimit(filterBudget, filterStatus, limit, offset));
         studentTableData.setTotalRows(studentsService.countAllByFilter(filterBudget, filterStatus));
-
         return studentTableData;
-
     }
 
     private StudentTableData findFilterAndSortData(String filterJson, String sort, String order, int limit, int offset){
-
         FilterData filterData =convertFilterJsonToFilterData(filterJson);
-
         String filterBudget = filterData.getBudget()==null? "" : filterData.getBudget();
         String filterStatus = filterData.getStatus()==null? "" : filterData.getStatus();
 
@@ -194,25 +189,18 @@ public class StudentTableDataService {
 
     private StudentTableData findFilterAndSearchData(String filterJson, String search, int limit, int offset){
         FilterData filterData =convertFilterJsonToFilterData(filterJson);
-
         String filterBudget = filterData.getBudget()==null? "" : filterData.getBudget();
         String filterStatus = filterData.getStatus()==null? "" : filterData.getStatus();
-
         StudentTableData studentTableData = new StudentTableData();
         studentTableData.setRowsData(studentsService.findAllByFilterAndSearchLimit(filterBudget, filterStatus, search, limit, offset));
         studentTableData.setTotalRows(studentsService.countAllByFilterAndSearch(filterBudget, filterStatus, search));
-
         return studentTableData;
-
     }
 
     private StudentTableData findFilterAndSearchAndSortData(String filterJson, String search, String sort, String order, int limit, int offset){
         FilterData filterData =convertFilterJsonToFilterData(filterJson);
-
-        System.out.println("yes");
         String filterBudget = filterData.getBudget()==null? "" : filterData.getBudget();
         String filterStatus = filterData.getStatus()==null? "" : filterData.getStatus();
-
         if (order.equals("asc")) {
             switch (sort) {
                 case "surname": {
@@ -245,7 +233,6 @@ public class StudentTableDataService {
             }
         }
         return null;
-
     }
 
     private FilterData convertFilterJsonToFilterData(String filterJson){
@@ -253,7 +240,6 @@ public class StudentTableDataService {
         FilterData filterData=null;
         try {
             filterData = objectMapper.readValue(filterJson, FilterData.class);
-            System.out.println(filterData);
         } catch (IOException e) {
             e.printStackTrace();
         }
