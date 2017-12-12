@@ -1,4 +1,12 @@
+var elements={};
+
 $(document).ready(function () {
+    elements = {
+        studentsTable: $('#table1'),
+        practicesTable: $('#curator_practices_table'),
+        searchInputField: $('.fixed-table-toolbar .search input')
+    };
+
     setTablesDataUrls();
     setSearchFiledPlaceholder();
 });
@@ -6,22 +14,19 @@ $(document).ready(function () {
 function setTablesDataUrls() {
     var s = window.location.href;
     s = s.match(new RegExp('curator' + '\/([^&=]+)'));
-    id= s ? s[1] : null;
+    var id= s ? s[1] : null;
 
-    var $studentsTable = $('#table1');
-    var studentsOptions = $studentsTable.bootstrapTable('getOptions');
+    var studentsOptions = elements.studentsTable.bootstrapTable('getOptions');
     studentsOptions.url = '/studentsAndPracticeData/curator/'+id;
-    $studentsTable.bootstrapTable('refreshOptions', studentsOptions);
-    $studentsTable.bootstrapTable('refresh');
+    elements.studentsTable.bootstrapTable('refreshOptions', studentsOptions);
+    elements.studentsTable.bootstrapTable('refresh');
 
-    var $practicesTable = $('#curator_practices_table');
-    var practicesOptions = $practicesTable.bootstrapTable('getOptions');
+    var practicesOptions = elements.practicesTable.bootstrapTable('getOptions');
     practicesOptions.url = '/practices/curator/'+id;
-    $practicesTable .bootstrapTable('refreshOptions', practicesOptions);
-    $practicesTable .bootstrapTable('refresh');
+    elements.practicesTable .bootstrapTable('refreshOptions', practicesOptions);
+    elements.practicesTable .bootstrapTable('refresh');
 }
 
 function setSearchFiledPlaceholder() {
-    var $search = $('.fixed-table-toolbar .search input');
-    $search.attr('placeholder', 'Fast search ...');
+    elements.searchInputField.attr('placeholder', 'Fast search ...');
 }

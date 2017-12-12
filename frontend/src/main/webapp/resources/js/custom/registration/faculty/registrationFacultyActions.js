@@ -1,8 +1,16 @@
+var elements ={};
+
 $(document).ready( function () {
 
-    var elements = {
+    elements = {
         facultySubmitBtn : $('#submit_faculty_btn'),
-        specialitySubmitBtn : $('#submit_speciality_btn')
+        specialitySubmitBtn : $('#submit_speciality_btn'),
+        facultyNameInputField: $('#name_faculty'),
+        alertModal: $('#alert_modal'),
+        alertText: $('#alert_text'),
+        alertCloseBtn: $('#alert_close_btn'),
+        specialityNameInputField: $('#name_speciality'),
+        facultyNameSelectionField: $('#faculties')
     };
     getFaculties();
 
@@ -21,18 +29,18 @@ function registrationFacultyAjaxRequest(){
         type: "POST",
         contentType: "application/json; charset=UTF-8",
         url:"/faculties",
-        data:JSON.stringify({"name":$('#name_faculty').val()}),
+        data:JSON.stringify({"name":elements.facultyNameInputField.val()}),
         success: function (data) {
 
-            $('#name_faculty').parent().next(".text-danger").remove();
+            elements.facultyNameInputField.parent().next(".text-danger").remove();
             if(data.name != null) {
-                $('#name_faculty').parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.name + "</p>");
+                elements.facultyNameInputField.parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.name + "</p>");
             }
 
             if(!data){
-                $('#alert_text').html("Faculty");
-                $('#alert_modal').modal("show");
-                $('#alert_close_btn').click(function () {
+                elements.alertText.html("Faculty");
+                elements.alertModal.modal("show");
+                elements.alertCloseBtn.click(function () {
                     window.location.replace("/registration/faculty");
                 });
             }
@@ -45,24 +53,24 @@ function registrationSpecialityAjaxRequest(){
         type: "POST",
         contentType: "application/json; charset=UTF-8",
         url:"/specialities",
-        data:JSON.stringify({"name":$('#name_speciality').val(),
-            "facultyId":$('#faculties').val()}),
+        data:JSON.stringify({"name":elements.specialityNameInputField.val(),
+            "facultyId":elements.facultyNameSelectionField.val()}),
         success: function (data) {
 
-            $('#name_speciality').parent().next(".text-danger").remove();
+            elements.specialityNameInputField.parent().next(".text-danger").remove();
             if(data.name != null) {
-                $('#name_speciality').parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.name + "</p>");
+                elements.specialityNameInputField.parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.name + "</p>");
             }
 
-            $('#faculties').parent().next(".text-danger").remove();
+            elements.facultyNameSelectionField.parent().next(".text-danger").remove();
             if(data.facultyId != null) {
-                $('#faculties').parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.facultyId + "</p>");
+                elements.facultyNameSelectionField.parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.facultyId + "</p>");
             }
 
             if(!data){
-                $('#alert_text').html("Speciality");
-                $('#alert_modal').modal("show");
-                $('#alert_close_btn').click(function () {
+                elements.alertText.html("Speciality");
+                elements.alertModal.modal("show");
+                elements.alertCloseBtn.click(function () {
                     window.location.replace("/registration/faculty");
                 });
             }
@@ -78,10 +86,9 @@ function getFaculties() {
         data: '',
         success: function (data) {
             for(var i in data) {
-                $('#faculties')
-                    .append($("<option></option>")
-                        .attr("value", data[i].id)
-                        .text(data[i].name));
+                elements.facultyNameSelectionField.append($("<option></option>")
+                    .attr("value", data[i].id)
+                    .text(data[i].name));
             }
         }
     });

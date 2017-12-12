@@ -1,6 +1,8 @@
+var elements={};
+
 $(document).ready(function () {
 
-    var elements = {
+    elements = {
         practicesTable : $('#table1'),
         deletePracticeBtn : $('#delete_practices_btn')
     };
@@ -34,9 +36,9 @@ function setDeleteButtonEnable() {
     }
 
     if(checked){
-        $('#delete_practices_btn').prop("disabled", false);
+        elements.deletePracticeBtn.prop("disabled", false);
     }else{
-        $('#delete_practices_btn').prop("disabled", "disabled");
+        elements.deletePracticeBtn.prop("disabled", "disabled");
     }
 }
 
@@ -48,7 +50,7 @@ function deletePracticeAjaxRequest(){
         data:JSON.stringify(getCheckedPracticesId()),
         success: function (data) {
             clearSelectedRows();
-            $('#table1').bootstrapTable('refresh');
+            elements.practicesTable.bootstrapTable('refresh');
             setDeleteButtonEnable();
         }
     });

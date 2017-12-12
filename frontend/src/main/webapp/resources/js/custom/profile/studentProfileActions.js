@@ -1,4 +1,20 @@
+var elements = {};
+
 $(document).ready(function () {
+    elements={
+        nameField: $('#name'),
+        surnameField: $('#surname'),
+        phoneField: $('#phone'),
+        emailField: $('#email'),
+        facultyFiled: $('#faculty'),
+        specialityField: $('#speciality'),
+        groupField: $('#group'),
+        budgetField: $('#budget'),
+        avrMarkField: $('#avrMark'),
+        statusField: $('#status'),
+        companyField: $('#company'),
+        practicePeriodField: $('#practicePeriod')
+    };
     studentProfileDateAjaxLoad();
 });
 
@@ -13,22 +29,22 @@ function studentProfileDateAjaxLoad() {
         url: '/studentProfileData',
         data: ({id:getIdParam()}),
         success: function (data) {
-            $('#name').html("Name: "+data.name);
-            $('#surname').html("Surname: "+data.surname);
-            $('#phone').html("Phone: "+data.phone);
-            $('#email').html("Name: "+data.email);
-            $('#faculty').html("Faculty: "+data.faculty);
-            $('#speciality').html("Speciality: "+data.speciality);
-            $('#group').html("Group: "+data.group);
-            $('#budget').html("Education basis: "+data.budget);
-            $('#avrMark').html("Average mark: "+data.avrMark);
-            $('#status').html("Status: "+data.status);
+            elements.nameField.html("Name: "+data.name);
+            elements.surnameField.html("Surname: "+data.surname);
+            elements.phoneField.html("Phone: "+data.phone);
+            elements.emailField.html("Email: "+data.email);
+            elements.facultyFiled.html("Faculty: "+data.faculty);
+            elements.specialityField.html("Speciality: "+data.speciality);
+            elements.groupField.html("Group: "+data.group);
+            elements.budgetField.html("Education basis: "+data.budget);
+            elements.avrMarkField.html("Average mark: "+data.avrMark);
+            elements.statusField.html("Status: "+data.status);
             if (data.company != null && data.practicePeriod != null){
-                $('#company').html("Company name: "+data.company);
-                $('#practicePeriod').html("Period of practice: "+data.practicePeriod);
+                elements.companyField.html("Company name: "+data.company);
+                elements.practicePeriodField.html("Period of practice: "+data.practicePeriod);
             }else{
-                $('#company').html("Company name: - ");
-                $('#practicePeriod').html("Period of practice: - ");
+                elements.companyField.html("Company name: - ");
+                elements.practicePeriodField.html("Period of practice: - ");
             }
 
         }

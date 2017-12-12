@@ -1,13 +1,25 @@
+var elements = {};
+
 $(document).ready(function () {
 
-    var elements ={
-        facultySelection : $('#faculties'),
-        practiceSubmitBtn : $('#submit_practice_btn')
+    elements ={
+        facultyNameSelectionField : $('#faculties'),
+        specialityNameSelectionField : $('#specialities'),
+        companyNameInputField: $('#name_company'),
+        headOfPracticeSelectionField: $('#head_of_practices'),
+        startDateInputFiled: $('#first_date'),
+        finishDateInputField: $('#finish_date'),
+        avrMarkInputField: $('#avr_mark'),
+        totalQuantityInputField: $('#total_quantity'),
+        practiceSubmitBtn : $('#submit_practice_btn'),
+        alertModal: $('#alert_modal'),
+        alertText: $('#alert_text'),
+        alertCloseBtn: $('#alert_close_btn')
     };
     getFaculties();
     getHeadOfPractices();
 
-    elements.facultySelection.change(function () {
+    elements.facultyNameSelectionField.change(function () {
         getSpecialities();
     });
 
@@ -19,30 +31,27 @@ $(document).ready(function () {
 
 
 function getSpecialities() {
-    if(($('#faculties').val())!= "-") {
+    if((elements.facultyNameSelectionField.val())!= "-") {
         $.ajax({
-            url: '/faculties/' + $('#faculties').val() + '/specialities',
+            url: '/faculties/' + elements.facultyNameSelectionField.val() + '/specialities',
             type: 'GET',
             contentType: "application/json; charset=UTF-8",
             success: function (data) {
-                $('#specialities').empty();
-                $('#specialities')
-                    .append($("<option></option>")
+                elements.specialityNameSelectionField.empty();
+                elements.specialityNameSelectionField.append($("<option></option>")
                         .attr("value", "-")
                         .text("-"));
 
                 for (var i in data) {
-                    $('#specialities')
-                        .append($("<option></option>")
+                    elements.specialityNameSelectionField.append($("<option></option>")
                             .attr("value", data[i].id)
                             .text(data[i].name));
                 }
             }
         });
     }else{
-        $('#specialities').empty();
-        $('#specialities')
-            .append($("<option></option>")
+        elements.specialityNameSelectionField.empty();
+        elements.specialityNameSelectionField.append($("<option></option>")
                 .attr("value", "-")
                 .text("-"));
     }
@@ -56,14 +65,12 @@ function getFaculties() {
         data: '',
         success: function (data) {
 
-            $('#faculties')
-                .append($("<option></option>")
+            elements.facultyNameSelectionField.append($("<option></option>")
                     .attr("value", "-")
                     .text("-"));
 
             for(var i in data) {
-                $('#faculties')
-                    .append($("<option></option>")
+                elements.facultyNameSelectionField.append($("<option></option>")
                         .attr("value", data[i].id)
                         .text(data[i].name));
             }
@@ -82,8 +89,7 @@ function getHeadOfPractices() {
         success: function (data) {
 
             for(var i in data) {
-                $('#head_of_practices')
-                    .append($("<option></option>")
+                elements.headOfPracticeSelectionField.append($("<option></option>")
                         .attr("value", data[i].id)
                         .text(data[i].name));
             }
@@ -96,40 +102,40 @@ function registrationPracticeAjaxRequest() {
         type: "POST",
         contentType: "application/json; charset=UTF-8",
         url:"/practices",
-        data:JSON.stringify({"company":$('#name_company').val(),
-            "headOfPracticeId":$('#head_of_practices').val(),
-            "firstDate":$('#first_date').val(),
-            "finishDate":$('#finish_date').val(),
-            "facultyId":$('#faculties').val(),
-            "specialityId":$('#specialities').val(),
-            "avrMark":$('#avr_mark').val(),
-            "totalQuantity":$('#total_quantity').val()}),
+        data:JSON.stringify({"company":elements.companyNameInputField.val(),
+            "headOfPracticeId":elements.headOfPracticeSelectionField.val(),
+            "firstDate":elements.startDateInputFiled.val(),
+            "finishDate":elements.finishDateInputField.val(),
+            "facultyId":elements.facultyNameSelectionField.val(),
+            "specialityId":elements.specialityNameSelectionField.val(),
+            "avrMark":elements.avrMarkInputField.val(),
+            "totalQuantity":elements.totalQuantityInputField.val()}),
         success: function (data) {
 
-            $('#name_company').parent().next(".text-danger").remove();
+            elements.companyNameInputField.parent().next(".text-danger").remove();
             if(data.company != null) {
-                $('#name_company').parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.company + "</p>");
+                elements.companyNameInputField.parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.company + "</p>");
             }
 
-            $('#first_date').parent().next(".text-danger").remove();
+            elements.startDateInputFiled.parent().next(".text-danger").remove();
             if(data.firstDate != null) {
-                $('#first_date').parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.firstDate + "</p>");
+                elements.startDateInputFiled.parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.firstDate + "</p>");
             }
 
-            $('#finish_date').parent().next(".text-danger").remove();
+            elements.finishDateInputField.parent().next(".text-danger").remove();
             if(data.finishDate != null) {
-                $('#finish_date').parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.finishDate + "</p>");
+                elements.finishDateInputField.parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.finishDate + "</p>");
             }
 
-            $('#total_quantity').parent().next(".text-danger").remove();
+            elements.totalQuantityInputField.parent().next(".text-danger").remove();
             if(data.totalQuantity != null) {
-                $('#total_quantity').parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.totalQuantity + "</p>");
+                elements.totalQuantityInputField.parent().after("<p class='text-danger'><span class='glyphicon glyphicon-ban-circle'></span> " + data.totalQuantity + "</p>");
             }
 
             if(!data){
-                $('#alert_text').html("Practice request");
-                $('#alert_modal').modal("show");
-                $('#alert_close_btn').click(function () {
+                elements.alertText.html("Practice request");
+                elements.alertModal.modal("show");
+                elements.alertCloseBtn.click(function () {
                     window.location.replace("/registration/practice");
                 });
             }
