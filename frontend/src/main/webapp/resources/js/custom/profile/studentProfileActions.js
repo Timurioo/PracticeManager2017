@@ -26,8 +26,9 @@ function getIdParam() {
 
 function studentProfileDateAjaxLoad() {
     $.ajax({
-        url: '/studentProfileData',
-        data: ({id:getIdParam()}),
+        type: "GET",
+        url: '/students/'+getIdParam(),
+        data: '',
         success: function (data) {
             elements.nameField.html("Name: "+data.name);
             elements.surnameField.html("Surname: "+data.surname);

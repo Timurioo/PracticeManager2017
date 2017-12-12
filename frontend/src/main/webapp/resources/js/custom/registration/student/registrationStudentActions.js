@@ -44,7 +44,7 @@ function registrationHeadOfPracticeAjaxRequest() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=UTF-8",
-        url:"/headOfPracticeRegistration",
+        url:"/headOfPractice",
         data:JSON.stringify({"login":elements.headOfPracticeLoginInputField.val(),
             "password":$.md5(elements.headOfPracticePasswordInputField.val()),
             "role":"ROLE_HEADOFPRACTICE",
@@ -82,7 +82,7 @@ function registrationStudentAjaxRequest() {
     $.ajax({
         type: "POST",
         contentType: "application/json; charset=UTF-8",
-        url:"/studentRegistration",
+        url:"/students",
         data:JSON.stringify({"login":elements.studentLoginInputField.val(),
             "password":$.md5(elements.studentPasswordInputField.val()),
             "role":"ROLE_STUDENT",
