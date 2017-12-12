@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.jsp"><span class="	glyphicon glyphicon-blackboard"></span> PracticeManager</a>
+            <a class="navbar-brand" href="/home"><span class="	glyphicon glyphicon-blackboard"></span> PracticeManager</a>
         </div>
 
         <div class="navbar-collapse collapse">

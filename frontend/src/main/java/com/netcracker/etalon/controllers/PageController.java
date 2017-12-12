@@ -46,9 +46,14 @@ public class PageController {
     @Autowired
     private HeadofpracticesService headofpracticesService;
 
-    @RequestMapping(value = "/roleRedirect", method = RequestMethod.GET)
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String redirectRoleToPage() {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user;
+        try {
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }catch (ClassCastException e){
+            return "redirect:/authorization";
+        }
         String userLogin = user.getUsername();
         String userRole = null;
         String urlRedirect = "redirect:/authorization";

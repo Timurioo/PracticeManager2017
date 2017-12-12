@@ -19,7 +19,7 @@
 
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/authorization"
-                    default-target-url="/roleRedirect"
+                    default-target-url="/home"
                     always-use-default-target="true"
                     authentication-failure-url="/authorization?error=true"
                     username-parameter="user_login"
