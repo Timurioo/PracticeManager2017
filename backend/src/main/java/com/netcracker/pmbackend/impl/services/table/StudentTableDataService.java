@@ -20,31 +20,31 @@ public class StudentTableDataService {
 
     public StudentTableData getActualTableData(String search, String filter, String sort, String order, int limit, int offset) {
 
-        if(!filter.equals("")) {
+        if(!StringUtils.isEmpty(filter)) {
 
-            if(!search.equals("")){
+            if(!StringUtils.isEmpty(search)){
 
-                if(!sort.equals("")){
+                if(!StringUtils.isEmpty(sort)){
                     return findFilterAndSearchAndSortData(filter, search, sort, order, limit, offset);
                 }else {
                     return findFilterAndSearchData(filter, search, limit, offset);
                 }
 
-            }else if(!sort.equals("")) {
+            }else if(!StringUtils.isEmpty(sort)) {
                 return findFilterAndSortData(filter, sort, order, limit, offset);
             }else{
                 return findFilterData(filter, limit, offset);
             }
 
-        }else if(!search.equals("")) {
+        }else if(!StringUtils.isEmpty(search)) {
 
-            if(!sort.equals("")) {
+            if(!StringUtils.isEmpty(sort)) {
                 return findSearchAndSortData(search, sort, order, limit, offset);
             } else {
                 return findSearchData(search, limit, offset);
             }
 
-        } else if(!sort.equals("")) {
+        } else if(!StringUtils.isEmpty(sort)) {
             return findSortData(sort, order, limit, offset);
 
         } else {
