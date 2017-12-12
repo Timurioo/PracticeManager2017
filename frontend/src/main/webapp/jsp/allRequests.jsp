@@ -9,7 +9,6 @@
         <script src="../resources/js/bootstrap-table.js"></script>
         <script src="../resources/js/lodash.min.js"></script>
         <script src="../resources/js/custom/practicespage/practicesPageActions.js"></script>
-        <script src="../resources/js/custom/practicespage/practicesPageListeners.js"></script>
 
     </head>
     <body>
