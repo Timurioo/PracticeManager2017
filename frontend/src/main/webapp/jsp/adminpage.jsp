@@ -21,66 +21,78 @@
         </jsp:include>
 
         <div class="container">
-            <div class="btn-toolbar">
-                <div class="btn-group ">
-                    <a href="/registration/faculty" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create faculty / speciality</a>
-                    <a href="/registration" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Register student / head of practice</a>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <a href="/registration/faculty" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create faculty / speciality</a>
+                        </div>
+                        <div class="col-md-5">
+                            <a href="/registration" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Register student / head of practice</a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="/practicesRequests" class="btn btn-primary btn-block">Show all requests</a>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="btn-group ">
-                    <button type="submit" id="assign_students_btn" disabled="disabled" class="btn btn-success" data-toggle="modal" data-target="#assign_modal">Assign student(s)</button>
-                    <button type="button" id="release_students_btn" disabled="disabled" class="btn btn-primary">Release student(s)</button>
-                </div>
-
-                <div class="btn-group ">
-                    <a href="/practicesRequests" class="btn btn-primary">Show all requests</a>
-                </div>
-
-                <div class="btn-group ">
-                    <button type="button" id="delete_students_btn" disabled="disabled" class="btn btn-danger">Delete student(s) <span class="glyphicon glyphicon-trash"></span></button>
-                </div>
-
             </div>
         </div>
-
-
-        <br/>
+        
         <div class="container">
-            <table class="table table-no-bordered" id="table1" data-toggle="table"
-                   data-classes="table table-no-bordered"
-                   data-click-to-select="true"
-                   data-url="/studentsAndPracticeData"
-                   data-id-field="id"
-                   data-side-pagination="server"
-                   data-pagination="true"
-                   data-page-size="5"
-                   data-page-list="[5, 10, 20]"
-                   data-search="true"
-                   data-response-handler="responseHandler"
-                   data-show-columns="true"
-                   data-show-refresh="true"
-                   data-show-toggle="true"
-                   data-filter-control="true"
-                   data-filter-show-clear="true"
-                   >
-                <thead>
-                <tr>
-                    <th data-field="state" data-checkbox="true" data-align="center"></th>
-                    <th data-field="surname" data-sortable="true" data-align="center">Surname</th>
-                    <th data-field="name"  data-align="center">Name</th>
-                    <th data-field="faculty" data-align="center">Faculty</th>
-                    <th data-field="speciality" data-align="center">Speciality</th>
-                    <th data-field="budget" data-filter-control="select" data-align="center">Education basis</th>
-                    <th data-field="avrMark" data-sortable="true" data-align="center">Average mark</th>
-                    <th data-field="status" data-filter-control="select" data-align="center">Status</th>
-                    <th data-field="company" data-align="center">Company</th>
-                    <th data-field="practicePeriod" data-align="center">Practice period</th>
-                    <th data-field="id" data-formatter="LinkFormatter" data-align="center">Show profile</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center" style="text-decoration: underline; color: rgba(180, 176, 176, 0.80); font-weight: bold;" >Students information table</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type="submit" id="assign_students_btn" disabled="disabled" class="btn btn-success btn-block" data-toggle="modal" data-target="#assign_modal">Assign student(s)</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" id="release_students_btn" disabled="disabled" class="btn btn-primary btn-block">Release student(s)</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" id="delete_students_btn" disabled="disabled" class="btn btn-danger btn-block">Delete student(s) <span class="glyphicon glyphicon-trash"></span></button>
+                        </div>
+                    </div>
+
+                    <table class="table table-no-bordered" id="table1" data-toggle="table"
+                           data-classes="table table-no-bordered"
+                           data-click-to-select="true"
+                           data-url="/studentsAndPracticeData"
+                           data-id-field="id"
+                           data-side-pagination="server"
+                           data-pagination="true"
+                           data-page-size="5"
+                           data-page-list="[5, 10, 20]"
+                           data-search="true"
+                           data-response-handler="responseHandler"
+                           data-show-columns="true"
+                           data-show-refresh="true"
+                           data-show-toggle="true"
+                           data-filter-control="true"
+                           data-filter-show-clear="true"
+                           >
+                        <thead>
+                            <tr>
+                                <th data-field="state" data-checkbox="true" data-align="center"></th>
+                                <th data-field="surname" data-sortable="true" data-align="center">Surname</th>
+                                <th data-field="name"  data-align="center">Name</th>
+                                <th data-field="faculty" data-align="center">Faculty</th>
+                                <th data-field="speciality" data-align="center">Speciality</th>
+                                <th data-field="budget" data-filter-control="select" data-align="center">Education basis</th>
+                                <th data-field="avrMark" data-sortable="true" data-align="center">Average mark</th>
+                                <th data-field="status" data-filter-control="select" data-align="center">Status</th>
+                                <th data-field="company" data-align="center">Company</th>
+                                <th data-field="practicePeriod" data-align="center">Practice period</th>
+                                <th data-field="id" data-formatter="LinkFormatter" data-align="center">Show profile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <script>
