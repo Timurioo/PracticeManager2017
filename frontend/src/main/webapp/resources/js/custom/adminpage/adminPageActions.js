@@ -97,7 +97,7 @@ function setAssignButtonEnable() {
     var checked = false;
 
     for(var i in checkedRows){
-        if(checkedRows[i].status=="Busy"){
+        if(checkedRows[i].status=="Busy" || checkedRows[i].status=="Waiting"){
             checked=false;
             break;
         }else {
