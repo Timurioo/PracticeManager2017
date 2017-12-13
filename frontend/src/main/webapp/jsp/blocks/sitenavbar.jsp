@@ -15,7 +15,9 @@
 
         <div class="navbar-collapse collapse">
             <form class="navbar-form navbar-right">
+                <% if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")){%>
                 <a href="/j_spring_security_logout" class="btn btn-danger"><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+                <%}%>
             </form>
             <h4 class="navbar-text navbar-right"><%= SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")? "" : SecurityContextHolder.getContext().getAuthentication().getName()%></h4>
         </div>
