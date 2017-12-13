@@ -11,7 +11,7 @@
     <http pattern="/favicon.ico" security="none" />
 
     <http use-expressions="true">
-        <intercept-url pattern="/authorization" access="permitAll"/>
+        <intercept-url pattern="/authorization" access="hasRole('ROLE_ANONYMOUS')"/>
         <intercept-url pattern="/resources/**" access="permitAll"/>
         <intercept-url pattern="/studentProfile/*" access="hasRole('ROLE_STUDENT') or hasRole('ROLE_ADMIN') or hasRole('ROLE_HEADOFPRACTICE')"/>
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
