@@ -50,8 +50,12 @@ public class PracticeDataController {
     private ConversionService conversionService;
 
     // Practice type descriptors
-    private final TypeDescriptor practiceEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticesEntity.class));
-    private final TypeDescriptor practiceViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeViewModel.class));
+    private final TypeDescriptor practiceEntityListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticesEntity.class));
+    private final TypeDescriptor practiceViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeViewModel.class));
+
+    private final TypeDescriptor practiceEntityTypeDescriptor = TypeDescriptor.valueOf(PracticesEntity.class);
+    private final TypeDescriptor practiceViewModelTypeDescriptor = TypeDescriptor.valueOf(PracticeViewModel.class);
+
 
     @RequestMapping(value = "/practices", method = RequestMethod.GET)
     @ResponseBody
@@ -67,9 +71,18 @@ public class PracticeDataController {
             totalRows = practicesService.findAll().size();
         }
         PracticeTableViewModel practiceTableViewModel = new PracticeTableViewModel();
-        practiceTableViewModel.setRows((List<PracticeViewModel>) conversionService.convert(allPractices, practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor));
+        practiceTableViewModel.setRows((List<PracticeViewModel>) conversionService.convert(allPractices, practiceEntityListTypeDescriptor, practiceViewModelListTypeDescriptor));
         practiceTableViewModel.setTotal(totalRows);
         return practiceTableViewModel;
+    }
+
+    @RequestMapping(value = "/practices/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public PracticeViewModel getPracticeData(@PathVariable int id) {
+
+        PracticesEntity practicesEntity = practicesService.findById(id);
+        PracticeViewModel practiceViewModel = (PracticeViewModel) conversionService.convert(practicesEntity,practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor);
+        return practiceViewModel;
     }
 
     @RequestMapping(value = "/practices", method = RequestMethod.POST, produces = "application/json")
@@ -110,7 +123,7 @@ public class PracticeDataController {
     @ResponseBody
     public List<PracticeViewModel> getPracticesRequests() {
         List<PracticesEntity> allPractices = practicesService.findByStatus("Available");
-        return (List<PracticeViewModel>) conversionService.convert(allPractices,practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor);
+        return (List<PracticeViewModel>) conversionService.convert(allPractices,practiceEntityListTypeDescriptor, practiceViewModelListTypeDescriptor);
     }
 
     @RequestMapping(value = "/practices/curator/{id}", method = RequestMethod.GET)
@@ -127,7 +140,7 @@ public class PracticeDataController {
             totalRows = practicesService.findByCuratorId(id).size();
         }
         PracticeTableViewModel practiceTableViewModel = new PracticeTableViewModel();
-        practiceTableViewModel.setRows((List<PracticeViewModel>) conversionService.convert(allPractices, practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor));
+        practiceTableViewModel.setRows((List<PracticeViewModel>) conversionService.convert(allPractices, practiceEntityListTypeDescriptor, practiceViewModelListTypeDescriptor));
         practiceTableViewModel.setTotal(totalRows);
         return practiceTableViewModel;
     }
