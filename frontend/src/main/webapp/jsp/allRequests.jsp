@@ -21,17 +21,21 @@
 
 
         <div class="container">
-            <div class="btn-toolbar">
-                <div class="btn-group ">
-                    <a href="/registration/practice" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create request</a>
-                    <button id="delete_practices_btn" disabled="disabled" type="submit" class="btn btn-danger"> Delete request  <span class="glyphicon glyphicon-trash"></span></button>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center" style="text-decoration: underline; color: rgba(180, 176, 176, 0.80); font-weight: bold;" >Practice information table</h3>
                 </div>
-            </div>
-        </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a href="/registration/practice" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Create request</a>
+                        </div>
+                        <div class="col-md-2">
+                            <button id="delete_practices_btn" disabled="disabled" type="submit" class="btn btn-danger btn-block"> Delete request  <span class="glyphicon glyphicon-trash"></span></button>
+                        </div>
+                    </div>
 
-        <br/>
-        <div class="container">
-            <table class="table table-no-bordered" id="table1" data-toggle="table"
+                    <table class="table table-no-bordered" id="table1" data-toggle="table"
                    data-classes="table table-no-bordered"
                    data-click-to-select="true"
                    data-url="/practices"
@@ -41,116 +45,48 @@
                    data-page-size="5"
                    data-search="true"
                    data-response-handler="responseHandler"
-                   data-id-field="id">
-                <thead>
-                <tr>
-                    <th data-field="state" data-checkbox="true"></th>
-                    <th data-field="headOfPractice" >Head of practice</th>
-                    <th data-field="company" >Company name</th>
-                    <th data-field="firstDate" >Start date</th>
-                    <th data-field="finishDate" >Finish date</th>
-                    <th data-field="status" >Status</th>
-                    <th data-field="faculty">Faculty</th>
-                    <th data-field="speciality" >Speciality</th>
-                    <th data-field="avrMark" >Average mark</th>
-                    <th data-field="totalQuantity" >Total quantity</th>
-                    <th data-field="availableQuantity">Available quantity</th>
-                    <th data-field="id" data-formatter="LinkFormatter">Edit</th>
-                </tr>
-                </thead>
-            </table>
+                   data-id-field="id"
+                   data-filter-show-clear="true"
+                   data-show-refresh="true"
+                   data-show-toggle="true">
+                        <thead>
+                            <tr>
+                                <th data-field="state" data-checkbox="true" data-align="center"></th>
+                                <th data-field="headOfPractice" data-align="center">Head of practice</th>
+                                <th data-field="company" data-align="center">Company name</th>
+                                <th data-field="firstDate" data-align="center">Start date</th>
+                                <th data-field="finishDate" data-align="center">Finish date</th>
+                                <th data-field="status" data-align="center">Status</th>
+                                <th data-field="faculty" data-align="center">Faculty</th>
+                                <th data-field="speciality" data-align="center">Speciality</th>
+                                <th data-field="avrMark" data-align="center">Average mark</th>
+                                <th data-field="totalQuantity" data-align="center">Total quantity</th>
+                                <th data-field="availableQuantity" data-align="center">Available quantity</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
         </div>
 
-        <script>
-            function LinkFormatter(value, row, index) {
-                return "<button href=\"#"+value+"\" class=\"btn btn-default btn-block\" data-toggle=\"modal\" data-target=\"#myModal\">Edit <span class=\"glyphicon glyphicon-pencil\"></span></button>";
-            }
-        </script>
 
-        <br/>
-        <div class="modal fade" id="myModal">
+
+
+        <!--Alert Modal -->
+        <div class="modal fade" id="alert_modal" role="dialog">
             <div class="modal-dialog">
+                <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button class="close" data-dismiss="modal">x</button>
-                        <h4 class="modal-title">Edit request</h4>
                     </div>
                     <div class="modal-body">
-                        <h2 class="text-center">Edit request information:</h2>
-                        <form>
-                            <div class="form-group">
-                                <label class="control-label">Choose head of practice:</label>
-                                <div>
-                                    <select class="form-control">
-                                        <option>Surkov K.A.</option>
-                                        <option>Smolykova A.A</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Company name:</label>
-                                <div>
-                                    <input type="text" class="form-control" placeholder="Enter name...">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Start date:</label>
-                                <div >
-                                    <input type="date" class="form-control" placeholder="Choose date...">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Finish date:</label>
-                                <div>
-                                    <input type="date" class="form-control" placeholder="Choose date...">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Choose faculty:</label>
-                                <div>
-                                    <select class="form-control">
-                                        <option>-</option>
-                                        <option>FSCAN</option>
-                                        <option>FCP</option>
-                                        <option>FTC</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Choose speciality:</label>
-                                <div>
-                                    <select class="form-control">
-                                        <option>-</option>
-                                        <option>ITS</option>
-                                        <option>VMSIS</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Average mark:</label>
-                                <div>
-                                    <input type="text" class="form-control" placeholder="Enter minimum mark...">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Total quantity:</label>
-                                <div>
-                                    <input type="text" class="form-control" placeholder="*20...">
-                                </div>
-                            </div>
-
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-block">Edit practice request</button>
-                            </div>
-                        </form>
-
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> <span id="alert_text"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-block" data-dismiss="modal" id="alert_close_btn">Ok</button>
                     </div>
                 </div>
             </div>

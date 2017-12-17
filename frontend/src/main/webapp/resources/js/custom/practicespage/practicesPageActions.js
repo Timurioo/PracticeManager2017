@@ -4,7 +4,8 @@ $(document).ready(function () {
 
     elements = {
         practicesTable : $('#table1'),
-        deletePracticeBtn : $('#delete_practices_btn')
+        deletePracticeBtn : $('#delete_practices_btn'),
+        searchInputField: $('.fixed-table-toolbar .search input')
     };
 
     elements.deletePracticeBtn.click(function () {
@@ -24,6 +25,8 @@ $(document).ready(function () {
         'uncheck.bs.table uncheck-all.bs.table', function (e, row) {
         selectionManager(e, row);
     });
+
+    setSearchFiledPlaceholder();
 });
 
 var checkedRows=[];
@@ -94,4 +97,8 @@ function responseHandler(res) {
         row.state = $.inArray(row.id, selections) !== -1;
     });
     return res;
+}
+
+function setSearchFiledPlaceholder() {
+    elements.searchInputField.attr('placeholder', 'Fast search ...');
 }

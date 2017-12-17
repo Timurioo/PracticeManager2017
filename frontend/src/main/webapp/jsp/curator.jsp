@@ -17,32 +17,41 @@
         <jsp:param name="titleDescription" value="Actual information for curator."/>
     </jsp:include>
 
-    <h3 class="text-center" style="text-decoration: underline;">Assigned students</h3>
     <div class="container">
-        <table class="table table-no-bordered" id="table1" data-toggle="table"
-               data-classes="table table-no-bordered"
-               data-url=""
-               data-id-field="id"
-               data-side-pagination="server"
-               data-pagination="true"
-               data-page-size="5"
-               data-page-list="[5, 10, 20]"
-               data-search="true">
-            <thead>
-            <tr>
-                <th data-field="name"  >Name</th>
-                <th data-field="surname" >Surname</th>
-                <th data-field="faculty" >Faculty</th>
-                <th data-field="speciality" >Speciality</th>
-                <th data-field="budget" >Education basis</th>
-                <th data-field="avrMark">Average mark</th>
-                <th data-field="status" >Status</th>
-                <th data-field="company" >Company</th>
-                <th data-field="practicePeriod" >Practice period</th>
-                <th data-field="id" data-formatter="LinkFormatter">Show profile</th>
-            </tr>
-            </thead>
-        </table>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center" style="text-decoration: underline; color: rgba(180, 176, 176, 0.80); font-weight: bold;" >Assign students information table</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-no-bordered" id="table1" data-toggle="table"
+                       data-classes="table table-no-bordered"
+                       data-url=""
+                       data-id-field="id"
+                       data-side-pagination="server"
+                       data-pagination="true"
+                       data-page-size="5"
+                       data-page-list="[5, 10, 20]"
+                       data-search="true"
+                       data-filter-show-clear="true"
+                       data-show-refresh="true"
+                       data-show-toggle="true">
+                    <thead>
+                    <tr>
+                        <th data-field="name" data-align="center">Name</th>
+                        <th data-field="surname" data-align="center">Surname</th>
+                        <th data-field="faculty" data-align="center">Faculty</th>
+                        <th data-field="speciality" data-align="center">Speciality</th>
+                        <th data-field="budget" data-align="center">Education basis</th>
+                        <th data-field="avrMark" data-align="center">Average mark</th>
+                        <th data-field="status" data-align="center">Status</th>
+                        <th data-field="company" data-align="center">Company</th>
+                        <th data-field="practicePeriod" data-align="center">Practice period</th>
+                        <th data-field="id" data-formatter="LinkFormatter">Show profile</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -53,32 +62,41 @@
 
 
     <br/>
-    <h3 class="text-center" style="text-decoration: underline;">Practices requests</h3>
     <div class="container">
-        <table class="table table-no-bordered" id="curator_practices_table" data-toggle="table"
-               data-classes="table table-no-bordered"
-               data-url=""
-               data-side-pagination="server"
-               data-pagination="true"
-               data-page-list="[5, 10]"
-               data-page-size="5"
-               data-search="true"
-               data-id-field="id">
-            <thead>
-            <tr>
-                <th data-field="headOfPractice" >Head of practice</th>
-                <th data-field="company" >Company name</th>
-                <th data-field="firstDate" >Start date</th>
-                <th data-field="finishDate" >Finish date</th>
-                <th data-field="status" >Status</th>
-                <th data-field="faculty">Faculty</th>
-                <th data-field="speciality" >Speciality</th>
-                <th data-field="avrMark" >Average mark</th>
-                <th data-field="totalQuantity" >Total quantity</th>
-                <th data-field="availableQuantity">Available quantity</th>
-            </tr>
-            </thead>
-        </table>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center" style="text-decoration: underline; color: rgba(180, 176, 176, 0.80); font-weight: bold;" >Practice information table</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-no-bordered" id="curator_practices_table" data-toggle="table"
+                       data-classes="table table-no-bordered"
+                       data-url=""
+                       data-side-pagination="server"
+                       data-pagination="true"
+                       data-page-list="[5, 10]"
+                       data-page-size="5"
+                       data-search="true"
+                       data-id-field="id"
+                       data-filter-show-clear="true"
+                       data-show-refresh="true"
+                       data-show-toggle="true">
+                    <thead>
+                    <tr>
+                        <th data-field="headOfPractice" data-align="center">Head of practice</th>
+                        <th data-field="company" data-align="center">Company name</th>
+                        <th data-field="firstDate" data-align="center">Start date</th>
+                        <th data-field="finishDate" data-align="center">Finish date</th>
+                        <th data-field="status" data-align="center">Status</th>
+                        <th data-field="faculty" data-align="center">Faculty</th>
+                        <th data-field="speciality" data-align="center">Speciality</th>
+                        <th data-field="avrMark" data-align="center">Average mark</th>
+                        <th data-field="totalQuantity" data-align="center">Total quantity</th>
+                        <th data-field="availableQuantity" data-align="center">Available quantity</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
