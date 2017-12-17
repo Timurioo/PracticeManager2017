@@ -89,6 +89,16 @@ $.validator.addMethod( "alphanumeric", function( value, element ) {
 	return this.optional( element ) || /^\w+$/i.test( value );
 }, "Letters, numbers, and underscores only please" );
 
+$.validator.addMethod("greaterThan",
+	function(value, element, params) {
+
+		if (!/Invalid|NaN/.test(new Date(value))) {
+			return new Date(value) > new Date($(params).val());
+		}
+
+		return isNaN(value) && isNaN($(params).val())
+			|| (Number(value) > Number($(params).val()));
+	},'Must be greater than start date.');
 /*
  * Dutch bank account numbers (not 'giro' numbers) have 9 digits
  * and pass the '11 check'.

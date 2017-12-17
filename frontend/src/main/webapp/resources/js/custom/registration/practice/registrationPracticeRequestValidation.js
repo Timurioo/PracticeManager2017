@@ -12,7 +12,8 @@ $(document).ready(function () {
                 required: true
             },
             finish_d: {
-                required: true
+                required: true,
+                greaterThan: "#first_date"
             },
             average_mark: {
                 minlength: 1,
