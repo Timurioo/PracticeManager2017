@@ -23,62 +23,20 @@
  */
 package com.netcracker.etalon.controllers;
 
-import com.netcracker.pmbackend.interfaces.HeadofpracticesService;
-import com.netcracker.pmbackend.interfaces.StudentsService;
-import com.netcracker.pmbackend.interfaces.UsersService;
+import com.netcracker.etalon.resolver.CustomViewResolver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 
 @Controller
 public class PageController {
 
     @Autowired
-    private UsersService usersService;
-
-    @Autowired
-    private StudentsService studentsService;
-
-    @Autowired
-    private HeadofpracticesService headofpracticesService;
+    private CustomViewResolver customViewResolver;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String redirectRoleToPage() {
-        User user;
-        try {
-            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        }catch (ClassCastException e){
-            return "redirect:/authorization";
-        }
-        String userLogin = user.getUsername();
-        String userRole = null;
-        String urlRedirect = "redirect:/authorization";
-
-        for (GrantedAuthority authority : user.getAuthorities()) {
-            userRole = authority.getAuthority();
-        }
-
-        switch (userRole){
-            case "ROLE_ADMIN":{
-                urlRedirect = "redirect:/admin";
-                break;
-            }
-            case "ROLE_STUDENT":{
-                long studentId = studentsService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
-                urlRedirect = "redirect:/studentProfile/" + studentId;
-                break;
-            }
-            case "ROLE_HEADOFPRACTICE":{
-                long curatorId = headofpracticesService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
-                urlRedirect = "redirect:/curator/" + curatorId;
-                break;
-            }
-        }
-        return urlRedirect;
+        return customViewResolver.resolveHomePageByRole();
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -97,8 +55,8 @@ public class PageController {
     }
 
     @RequestMapping(value = "/curator/{id}", method = RequestMethod.GET)
-    public String goToCuratorPage() {
-        return "curator";
+    public String goToCuratorPage(@PathVariable int id) {
+        return customViewResolver.resolveCuratorPageById(id);
     }
 
     @RequestMapping(value = "/practicesRequests", method = RequestMethod.GET)
@@ -107,8 +65,8 @@ public class PageController {
     }
 
     @RequestMapping(value = "/studentProfile/{id}", method = RequestMethod.GET)
-    public String goToStudentProfile() {
-        return "studentprofile";
+    public String goToStudentProfile(@PathVariable int id) {
+        return customViewResolver.resolveStudentProfilePageById(id);
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -125,7 +83,6 @@ public class PageController {
     public String registrationPractice() {
         return "createRequest";
     }
-
 
 }
 /*
