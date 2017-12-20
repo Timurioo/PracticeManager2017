@@ -21,14 +21,18 @@ public class SpecialityRegistrationDTOValidator implements Validator {
     }
 
     @Override
-    public void validate(Object o, Errors errors) {
-        SpecialityRegistrationDTO specialityRegistrationDTO = (SpecialityRegistrationDTO) o;
+    public void validate(Object object, Errors errors) {
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", ErrorMessage.EMPTYFIELD.getMessage());
+        final String FIELD_NAME = "name";
+        final String FIELD_FACULTY_ID = "facultyId";
+
+        SpecialityRegistrationDTO specialityRegistrationDTO = (SpecialityRegistrationDTO) object;
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_NAME, ErrorMessage.EMPTYFIELD.getMessage());
         if(specialityService.findByName(specialityRegistrationDTO.getName()) != null){
-            errors.rejectValue("name",ErrorMessage.SPECIALITYEXIST.getMessage());
+            errors.rejectValue(FIELD_NAME, ErrorMessage.SPECIALITYEXIST.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"facultyId", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_FACULTY_ID, ErrorMessage.EMPTYFIELD.getMessage());
     }
 }

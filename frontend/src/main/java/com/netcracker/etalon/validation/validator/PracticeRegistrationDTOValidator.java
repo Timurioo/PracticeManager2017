@@ -22,17 +22,24 @@ public class PracticeRegistrationDTOValidator implements Validator {
     }
 
     @Override
-    public void validate(Object o, Errors errors) {
-        PracticeRegistrationDTO practiceRegistrationDTO = (PracticeRegistrationDTO) o;
+    public void validate(Object object, Errors errors) {
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"company", ErrorMessage.EMPTYFIELD.getMessage());
+        final String FIELD_COMPANY = "company";
+        final String FIELD_HEAD_OF_PRACTICE_ID = "headOfPracticeId";
+        final String FIELD_FIRST_DATE = "firstDate";
+        final String FIELD_FINISH_DATE = "finishDate";
+        final String FIELD_TOTAL_QUANTITY = "totalQuantity";
+
+        PracticeRegistrationDTO practiceRegistrationDTO = (PracticeRegistrationDTO) object;
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_COMPANY, ErrorMessage.EMPTYFIELD.getMessage());
         if(practicesService.findByCompany(practiceRegistrationDTO.getCompany()) != null){
-            errors.rejectValue("company", ErrorMessage.COMPANYEXIST.getMessage());
+            errors.rejectValue(FIELD_COMPANY, ErrorMessage.COMPANYEXIST.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"headOfPracticeId", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"firstDate", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"finishDate", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"totalQuantity",ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_HEAD_OF_PRACTICE_ID, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_FIRST_DATE, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_FINISH_DATE, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_TOTAL_QUANTITY,ErrorMessage.EMPTYFIELD.getMessage());
     }
 }

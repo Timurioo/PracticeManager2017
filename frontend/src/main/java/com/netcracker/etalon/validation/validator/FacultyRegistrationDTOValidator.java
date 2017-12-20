@@ -22,12 +22,15 @@ public class FacultyRegistrationDTOValidator implements Validator {
     }
 
     @Override
-    public void validate(Object o, Errors errors) {
-        FacultyRegistrationDTO facultyRegistrationDTO = (FacultyRegistrationDTO) o;
+    public void validate(Object object, Errors errors) {
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", ErrorMessage.EMPTYFIELD.getMessage());
+        final String FIELD_NAME = "name";
+
+        FacultyRegistrationDTO facultyRegistrationDTO = (FacultyRegistrationDTO) object;
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_NAME, ErrorMessage.EMPTYFIELD.getMessage());
         if(facultyService.findByName(facultyRegistrationDTO.getName()) != null){
-            errors.rejectValue("name", ErrorMessage.FACULTYEXIST.getMessage());
+            errors.rejectValue(FIELD_NAME, ErrorMessage.FACULTYEXIST.getMessage());
         }
     }
 }

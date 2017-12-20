@@ -28,37 +28,50 @@ public class StudentRegistrationDTOValidator implements Validator {
     }
 
     @Override
-    public void validate(Object o, Errors errors) {
+    public void validate(Object object, Errors errors) {
 
-        StudentRegistrationDTO studentRegistrationDTO = (StudentRegistrationDTO) o;
+        final String FIELD_LOGIN = "login";
+        final String FIELD_PASSWORD = "password";
+        final String FIELD_NAME = "name";
+        final String FIELD_ROLE = "role";
+        final String FIELD_EMAIL = "email";
+        final String FIELD_PHONE = "phone";
+        final String FIELD_SURNAME = "surname";
+        final String FIELD_CLASS_GROUP = "classgroup";
+        final String FIELD_BUDGET = "budget";
+        final String FIELD_AVR_MARK = "avrMark";
+        final String FIELD_FACULTY_ID = "facultyId";
+        final String FIELD_SPECIALITY_ID = "specialityId";
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"login", ErrorMessage.EMPTYFIELD.getMessage());
+        StudentRegistrationDTO studentRegistrationDTO = (StudentRegistrationDTO) object;
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_LOGIN, ErrorMessage.EMPTYFIELD.getMessage());
         if(usersService.findByLogin(studentRegistrationDTO.getLogin()) != null){
-            errors.rejectValue("login", ErrorMessage.LOGININUSE.getMessage());
+            errors.rejectValue(FIELD_LOGIN, ErrorMessage.LOGININUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"password", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_PASSWORD, ErrorMessage.EMPTYFIELD.getMessage());
         if(usersService.findByPassword(studentRegistrationDTO.getPassword()) != null){
-            errors.rejectValue("password", ErrorMessage.PASSWORDINUSE.getMessage());
+            errors.rejectValue(FIELD_PASSWORD, ErrorMessage.PASSWORDINUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"email", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_EMAIL, ErrorMessage.EMPTYFIELD.getMessage());
         if(studentsService.findByEmail(studentRegistrationDTO.getEmail()) != null){
-            errors.rejectValue("email", ErrorMessage.EMAILINUSE.getMessage());
+            errors.rejectValue(FIELD_EMAIL, ErrorMessage.EMAILINUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"phone", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_PHONE, ErrorMessage.EMPTYFIELD.getMessage());
         if(studentsService.findByPhone(studentRegistrationDTO.getPhone()) != null){
-            errors.rejectValue("phone", ErrorMessage.PHONEINUSE.getMessage());
+            errors.rejectValue(FIELD_PHONE, ErrorMessage.PHONEINUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"surname", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"group", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"budget", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"avrMark", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"role", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"facultyId", ErrorMessage.EMPTYFIELD.getMessage());
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"specialityId", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_NAME, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_SURNAME, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_CLASS_GROUP, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_BUDGET, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_AVR_MARK, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_ROLE, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_FACULTY_ID, ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, FIELD_SPECIALITY_ID, ErrorMessage.EMPTYFIELD.getMessage());
     }
 }
