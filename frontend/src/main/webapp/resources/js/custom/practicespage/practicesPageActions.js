@@ -1,4 +1,4 @@
-var elements={};
+let elements={};
 
 $(document).ready(function () {
 
@@ -29,10 +29,10 @@ $(document).ready(function () {
     setSearchFiledPlaceholder();
 });
 
-var checkedRows=[];
+let checkedRows=[];
 
 function setDeleteButtonEnable() {
-    var checked = false;
+    let checked = false;
 
     if(checkedRows.length>0){
         checked= true;
@@ -60,8 +60,8 @@ function deletePracticeAjaxRequest(){
 }
 
 function getCheckedPracticesId() {
-    var selections = [];
-    for(var i in checkedRows){
+    let selections = [];
+    for(let i in checkedRows){
         selections.push(checkedRows[i].id);
     }
     return selections;
@@ -69,15 +69,15 @@ function getCheckedPracticesId() {
 
 function selectionManager(e, rows) {
 
-    var datas = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+    let data = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
             return {id: row.id};
         }),
         func2 = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'union' : 'differenceBy';
 
     if($.inArray(e.type, ['check', 'check-all']) > -1) {
-        checkedRows = _[func2](checkedRows, datas);
+        checkedRows = _[func2](checkedRows, data);
     }else{
-        checkedRows = _[func2](checkedRows, datas, 'id');
+        checkedRows = _[func2](checkedRows, data, 'id');
     }
     console.log(checkedRows);
 }
@@ -88,8 +88,8 @@ function clearSelectedRows() {
 
 function responseHandler(res) {
 
-    var selections = [];
-    for(var i in checkedRows){
+    let selections = [];
+    for(let i in checkedRows){
         selections.push(checkedRows[i].id);
     }
 

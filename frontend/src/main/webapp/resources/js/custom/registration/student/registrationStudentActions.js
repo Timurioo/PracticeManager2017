@@ -1,4 +1,4 @@
-var elements = {};
+let elements = {};
 
 $(document).ready(function () {
 
@@ -172,7 +172,7 @@ function getSpecialities() {
         contentType: "application/json; charset=UTF-8",
         success: function (data) {
             elements.specialityNameSelectionField.empty();
-            for(var i in data) {
+            for(let i in data) {
                 elements.specialityNameSelectionField.append($("<option></option>")
                         .attr("value", data[i].id)
                         .text(data[i].name));
@@ -188,7 +188,7 @@ function getFaculties() {
         contentType: "application/json; charset=UTF-8",
         data: '',
         success: function (data) {
-            for(var i in data) {
+            for(let i in data) {
                 elements.facultyNameSelectionField.append($("<option></option>")
                         .attr("value", data[i].id)
                         .text(data[i].name));

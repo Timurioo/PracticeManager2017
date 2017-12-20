@@ -1,4 +1,4 @@
-var elements={};
+let elements={};
 
 $(document).ready(function () {
     elements = {
@@ -59,10 +59,10 @@ $(document).ready(function () {
     setSearchFiledPlaceholder();
 });
 
-var checkedRows=[];
+let checkedRows=[];
 
 function setDeleteButtonEnable() {
-    var checked = false;
+    let checked = false;
     if(checkedRows.length>0){
         checked= true;
     }
@@ -75,11 +75,11 @@ function setDeleteButtonEnable() {
 }
 
 function setReleaseButtonEnable() {
-    var checked = false;
+    let checked = false;
 
-    for(var i in checkedRows){
+    for(let i in checkedRows){
         if(checkedRows[i].status=="Available"){
-            checked=false;
+            checked = false;
             break;
         }else {
             checked = true;
@@ -94,9 +94,9 @@ function setReleaseButtonEnable() {
 }
 
 function setAssignButtonEnable() {
-    var checked = false;
+    let checked = false;
 
-    for(var i in checkedRows){
+    for(let i in checkedRows){
         if(checkedRows[i].status=="Busy" || checkedRows[i].status=="Waiting"){
             checked=false;
             break;
@@ -114,8 +114,8 @@ function setAssignButtonEnable() {
 
 function deleteStudentAjaxRequest(){
 
-    var studentsIds = [];
-    for(var i in checkedRows){
+    let studentsIds = [];
+    for(let i in checkedRows){
         studentsIds.push(checkedRows[i].id);
     }
 
@@ -146,7 +146,7 @@ function getPracticesRequests() {
         data: '',
         success: function (data) {
             elements.practicesSelect.empty();
-            for(var i in data) {
+            for(let i in data) {
                 elements.practicesSelect
                     .append($("<option></option>")
                         .attr("value", data[i].id)
@@ -162,13 +162,13 @@ function checkNull(item) {
 
 function assignStudents() {
 
-    var studentsIds = [];
+    let studentsIds = [];
 
-    for(var i in checkedRows){
+    for(let i in checkedRows){
         studentsIds.push(checkedRows[i].id);
     }
 
-    var resultData={
+    let resultData={
         practiceId : elements.practicesSelect.val(),
         studentsIds : studentsIds
     };
@@ -191,9 +191,9 @@ function assignStudents() {
 }
 
 function releaseStudents() {
-    var studentsIds = [];
+    let studentsIds = [];
 
-    for(var i in checkedRows){
+    for(let i in checkedRows){
         studentsIds.push(checkedRows[i].id);
     }
 
@@ -219,7 +219,7 @@ function clearSelectedRows() {
 
 function selectionManager(e, rows) {
 
-    var datas = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
+    let datas = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
             return {id: row.id, name: row.name+' '+row.surname, faculty: row.faculty, speciality: row.speciality, avrMark: row.avrMark, status: row.status};
         }),
         func2 = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'union' : 'differenceBy';
@@ -234,8 +234,8 @@ function selectionManager(e, rows) {
 
 function responseHandler(res) {
 
-    var selections = [];
-    for(var i in checkedRows){
+    let selections = [];
+    for(let i in checkedRows){
         selections.push(checkedRows[i].id);
     }
 

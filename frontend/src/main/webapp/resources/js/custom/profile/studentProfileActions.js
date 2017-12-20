@@ -1,4 +1,4 @@
-var elements = {};
+let elements = {};
 
 $(document).ready(function () {
     elements={
@@ -19,7 +19,7 @@ $(document).ready(function () {
 });
 
 function getIdParam() {
-    var s = window.location.href;
+    let s = window.location.href;
     s = s.match(new RegExp('studentProfile' + '\/([^&=]+)'));
     return s ? s[1] : null;
 }

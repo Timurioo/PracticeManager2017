@@ -1,4 +1,4 @@
-var elements={};
+let elements={};
 
 $(document).ready(function () {
     elements = {
@@ -12,16 +12,16 @@ $(document).ready(function () {
 });
 
 function setTablesDataUrls() {
-    var s = window.location.href;
+    let s = window.location.href;
     s = s.match(new RegExp('curator' + '\/([^&=]+)'));
-    var id= s ? s[1] : null;
+    let id= s ? s[1] : null;
 
-    var studentsOptions = elements.studentsTable.bootstrapTable('getOptions');
+    let studentsOptions = elements.studentsTable.bootstrapTable('getOptions');
     studentsOptions.url = '/students/practiceData/curator/'+id;
     elements.studentsTable.bootstrapTable('refreshOptions', studentsOptions);
     elements.studentsTable.bootstrapTable('refresh');
 
-    var practicesOptions = elements.practicesTable.bootstrapTable('getOptions');
+    let practicesOptions = elements.practicesTable.bootstrapTable('getOptions');
     practicesOptions.url = '/practices/curator/'+id;
     elements.practicesTable .bootstrapTable('refreshOptions', practicesOptions);
     elements.practicesTable .bootstrapTable('refresh');

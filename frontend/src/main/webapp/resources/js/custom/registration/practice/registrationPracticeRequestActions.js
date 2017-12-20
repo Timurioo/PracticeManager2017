@@ -1,4 +1,4 @@
-var elements = {};
+let elements = {};
 
 $(document).ready(function () {
 
@@ -42,7 +42,7 @@ function getSpecialities() {
                         .attr("value", "-")
                         .text("-"));
 
-                for (var i in data) {
+                for (let i in data) {
                     elements.specialityNameSelectionField.append($("<option></option>")
                             .attr("value", data[i].id)
                             .text(data[i].name));
@@ -69,7 +69,7 @@ function getFaculties() {
                     .attr("value", "-")
                     .text("-"));
 
-            for(var i in data) {
+            for(let i in data) {
                 elements.facultyNameSelectionField.append($("<option></option>")
                         .attr("value", data[i].id)
                         .text(data[i].name));
@@ -88,7 +88,7 @@ function getHeadOfPractices() {
         data: '',
         success: function (data) {
 
-            for(var i in data) {
+            for(let i in data) {
                 elements.headOfPracticeSelectionField.append($("<option></option>")
                         .attr("value", data[i].id)
                         .text(data[i].name));
