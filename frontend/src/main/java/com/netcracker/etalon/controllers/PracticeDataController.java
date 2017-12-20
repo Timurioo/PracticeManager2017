@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/practices")
 public class PracticeDataController {
 
     @Autowired
@@ -53,7 +54,7 @@ public class PracticeDataController {
     private final TypeDescriptor practiceViewModelTypeDescriptor = TypeDescriptor.valueOf(PracticeViewModel.class);
 
 
-    @RequestMapping(value = "/practices", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public PracticeTableViewModel getPracticeData(@RequestParam( required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
 
@@ -72,7 +73,7 @@ public class PracticeDataController {
         return practiceTableViewModel;
     }
 
-    @RequestMapping(value = "/practices/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public PracticeViewModel getPracticeData(@PathVariable int id) {
 
@@ -81,7 +82,7 @@ public class PracticeDataController {
         return practiceViewModel;
     }
 
-    @RequestMapping(value = "/practices", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public Map<String, String> registerPractice(@RequestBody PracticeRegistrationDTO practiceRegistrationDTO, BindingResult bindingResult) {
 
@@ -105,7 +106,7 @@ public class PracticeDataController {
         return null;
     }
 
-    @RequestMapping(value = "/practices", method = RequestMethod.DELETE, produces = "application/json")
+    @RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
     @ResponseBody
     public Map<String, String> deletePractices(@RequestBody List<String> practicesIds) {
 
@@ -115,14 +116,14 @@ public class PracticeDataController {
         return null;
     }
 
-    @RequestMapping(value = "/practices/available", method = RequestMethod.GET)
+    @RequestMapping(value = "/available", method = RequestMethod.GET)
     @ResponseBody
     public List<PracticeViewModel> getPracticesRequests() {
         List<PracticesEntity> allPractices = practicesService.findByStatus("Available");
         return (List<PracticeViewModel>) conversionService.convert(allPractices,practiceEntityListTypeDescriptor, practiceViewModelListTypeDescriptor);
     }
 
-    @RequestMapping(value = "/practices/curator/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/curator/{id}", method = RequestMethod.GET)
     @ResponseBody
     public PracticeTableViewModel getPracticeDataByCurator(@PathVariable int id, @RequestParam(required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
 

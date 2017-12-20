@@ -23,17 +23,15 @@ public class ErrorController {
     }
 
     @RequestMapping(value = "/errors/{code}", method = RequestMethod.GET)
-    public ModelAndView renderErrorPage(@PathVariable String code) {
+    public ModelAndView renderErrorPage(@PathVariable int code) {
         ModelAndView errorPage = new ModelAndView("errPage");
-        int httpErrorCode = Integer.parseInt(code);
-        String errorMsg = getErrorMsg(httpErrorCode);
+        String errorMsg = getErrorMsg(code);
         errorPage.addObject("errorMsg", errorMsg);
         return errorPage;
     }
 
     private int getErrorCode(HttpServletRequest httpRequest) {
-        return (Integer) httpRequest
-                .getAttribute("javax.servlet.error.status_code");
+        return (Integer) httpRequest.getAttribute("javax.servlet.error.status_code");
     }
 
     private String getErrorMsg(int code){

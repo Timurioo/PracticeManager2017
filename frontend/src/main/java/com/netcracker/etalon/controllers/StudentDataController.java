@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/students")
 public class StudentDataController {
 
     @Autowired
@@ -58,7 +59,7 @@ public class StudentDataController {
     private final TypeDescriptor singleStudentEntityTypeDescriptor = TypeDescriptor.valueOf(StudentsEntity.class);
 
 
-    @RequestMapping(value = "/students", method = RequestMethod.DELETE, produces = "application/json")
+    @RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
     @ResponseBody
     public Map<String, String> deleteStudents(@RequestBody List<String> studentsIds) {
 
@@ -68,7 +69,7 @@ public class StudentDataController {
         return null;
     }
 
-    @RequestMapping(value = "/students", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public Map<String, String> registrationStudent(@RequestBody StudentRegistrationDTO studentRegistrationDTO, BindingResult bindingResult) {
 
@@ -93,14 +94,14 @@ public class StudentDataController {
         return null;
     }
 
-    @RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public StudentProfileViewModel getStudentProfileData(@PathVariable String id) {
-        StudentsEntity student = studentsService.findById(Integer.parseInt(id));
+    public StudentProfileViewModel getStudentProfileData(@PathVariable int id) {
+        StudentsEntity student = studentsService.findById(id);
         return (StudentProfileViewModel) conversionService.convert(student,singleStudentEntityTypeDescriptor, studentProfileViewModelTypeDescriptor);
     }
 
-    @RequestMapping(value = "/studentsAndPracticeData", method = RequestMethod.GET)
+    @RequestMapping(value = "/practiceData", method = RequestMethod.GET)
     @ResponseBody
     public StudentTableViewModel getStudentsAndPractice(@RequestParam(required = false, name = "search", defaultValue = "") String search, @RequestParam(required = false, name = "sort", defaultValue = "") String sort, @RequestParam String order, @RequestParam String offset, @RequestParam String limit, @RequestParam(required = false, name = "filter", defaultValue = "") String filter) {
         StudentTableData studentTableData = studentTableDataService.getActualTableData(search, filter, sort, order, Integer.parseInt(limit), Integer.parseInt(offset));
@@ -110,7 +111,7 @@ public class StudentDataController {
         return studentsTableViewModel;
     }
 
-    @RequestMapping(value = "/studentsAndPracticeData/curator/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/practiceData/curator/{id}", method = RequestMethod.GET)
     @ResponseBody
     public StudentTableViewModel getStudentsAndPractice(@PathVariable int id, @RequestParam( required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
 

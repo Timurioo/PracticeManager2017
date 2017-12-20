@@ -1,7 +1,6 @@
 package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.dto.AssignStudentDTO;
-import com.netcracker.pmbackend.impl.services.deletion.DeletionServiceImpl;
 import com.netcracker.pmbackend.interfaces.assign.AssignService;
 import com.netcracker.pmbackend.interfaces.deletion.DeletionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+@RequestMapping("/assignStudents")
 public class AssignStudentDataController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class AssignStudentDataController {
     @Autowired
     private DeletionService deletionService;
 
-    @RequestMapping(value = "/assignStudents", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public void assignStudents(@RequestBody AssignStudentDTO assignStudentDTO) {
 
@@ -31,7 +31,7 @@ public class AssignStudentDataController {
         assignService.assignStudents(Integer.parseInt(assignStudentDTO.getPracticeId()),studentsIds);
     }
 
-    @RequestMapping(value = "/assignStudents", method = RequestMethod.DELETE, produces = "application/json")
+    @RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
     @ResponseBody
     public void releaseStudents(@RequestBody List<String> studentsIds) {
 

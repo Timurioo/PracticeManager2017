@@ -59,7 +59,7 @@
                     <table class="table table-no-bordered" id="table1" data-toggle="table"
                            data-classes="table table-no-bordered"
                            data-click-to-select="true"
-                           data-url="/studentsAndPracticeData"
+                           data-url="/students/practiceData"
                            data-id-field="id"
                            data-side-pagination="server"
                            data-pagination="true"

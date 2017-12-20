@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/headOfPractice")
 public class HeadOfPracticeDataController {
 
 
@@ -50,14 +51,14 @@ public class HeadOfPracticeDataController {
     private final TypeDescriptor headOfPracticeViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(HeadOfPracticeViewModel.class));
 
 
-    @RequestMapping(value = "/headOfPractice", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<HeadOfPracticeViewModel> getHeadOfPractice() {
         List<HeadofpracticesEntity> allHeadsOfPractice = headofpracticesService.findAll();
         return (List<HeadOfPracticeViewModel>) conversionService.convert(allHeadsOfPractice,headOfPracticeEntityListTypeDescriptor,headOfPracticeViewModelListTypeDescriptor);
     }
 
-    @RequestMapping(value = "/headOfPractice", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public Map<String, String> registrationHeadOfPractice(@RequestBody HeadOfPracticeRegistrationDTO headOfPracticeRegistrationDTO, BindingResult bindingResult) {
 

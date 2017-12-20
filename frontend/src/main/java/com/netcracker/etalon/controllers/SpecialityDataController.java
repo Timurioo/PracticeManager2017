@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/specialities")
 public class SpecialityDataController {
 
     @Autowired
@@ -47,14 +48,14 @@ public class SpecialityDataController {
     private final TypeDescriptor specialityViewModelTypeDescriptor = TypeDescriptor.valueOf(SpecialityViewModel.class);
 
 
-    @RequestMapping(value = "/specialities", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<SpecialityViewModel> getSpecialities() {
         List<SpecialityEntity> allSpecialitiesEntities = specialityService.findAll();
         return (List<SpecialityViewModel>) conversionService.convert(allSpecialitiesEntities,specialityEntityListTypeDescriptor,specialityViewModelListTypeDescriptor);
     }
 
-    @RequestMapping(value = "/specialities", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public Map<String, String> registerSpeciality(@RequestBody SpecialityRegistrationDTO specialityRegistrationDTO, BindingResult bindingResult) {
 
@@ -70,17 +71,9 @@ public class SpecialityDataController {
         return null;
     }
 
-
-    @RequestMapping(value = "faculties/{id}/specialities", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public List<SpecialityViewModel> getSpecialities(@PathVariable int id) {
-        List<SpecialityEntity> allSpecialitiesEntities = specialityService.findByFacultyId(id);
-        return (List<SpecialityViewModel>) conversionService.convert(allSpecialitiesEntities,specialityEntityListTypeDescriptor,specialityViewModelListTypeDescriptor);
-    }
-
-    @RequestMapping(value = "/specialities/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public SpecialityViewModel getFacultyById(@PathVariable int id) {
+    public SpecialityViewModel getSpecialityById(@PathVariable int id) {
         SpecialityEntity specialityEntity = specialityService.findById(id);
         return (SpecialityViewModel) conversionService.convert(specialityEntity, specialityEntityTypeDescriptor, specialityViewModelTypeDescriptor);
     }

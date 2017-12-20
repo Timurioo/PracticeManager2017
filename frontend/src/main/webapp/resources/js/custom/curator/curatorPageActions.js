@@ -17,7 +17,7 @@ function setTablesDataUrls() {
     var id= s ? s[1] : null;
 
     var studentsOptions = elements.studentsTable.bootstrapTable('getOptions');
-    studentsOptions.url = '/studentsAndPracticeData/curator/'+id;
+    studentsOptions.url = '/students/practiceData/curator/'+id;
     elements.studentsTable.bootstrapTable('refreshOptions', studentsOptions);
     elements.studentsTable.bootstrapTable('refresh');
 
