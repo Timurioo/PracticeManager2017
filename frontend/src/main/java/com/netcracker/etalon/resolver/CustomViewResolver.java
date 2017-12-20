@@ -1,5 +1,6 @@
 package com.netcracker.etalon.resolver;
 
+import com.netcracker.etalon.role.Role;
 import com.netcracker.pmbackend.interfaces.basic.HeadofpracticesService;
 import com.netcracker.pmbackend.interfaces.basic.StudentsService;
 import com.netcracker.pmbackend.interfaces.basic.UsersService;
@@ -34,17 +35,17 @@ public class CustomViewResolver {
         String userLogin = user.getUsername();
         String userRole = user.getAuthorities().stream().findFirst().get().getAuthority();
 
-        switch (userRole){
-            case "ROLE_ADMIN":{
+        switch (Role.valueOf(userRole)){
+            case ROLE_ADMIN:{
                 urlRedirect = "redirect:/admin";
                 break;
             }
-            case "ROLE_STUDENT":{
+            case ROLE_STUDENT:{
                 long studentId = studentsService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
                 urlRedirect = "redirect:/studentProfile/" + studentId;
                 break;
             }
-            case "ROLE_HEADOFPRACTICE":{
+            case ROLE_HEADOFPRACTICE:{
                 long curatorId = headofpracticesService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
                 urlRedirect = "redirect:/curator/" + curatorId;
                 break;
@@ -64,7 +65,7 @@ public class CustomViewResolver {
         String userLogin = user.getUsername();
         String userRole = user.getAuthorities().stream().findFirst().get().getAuthority();
 
-        if(userRole.equals("ROLE_STUDENT")) {
+        if(Role.valueOf(userRole).equals(Role.ROLE_STUDENT)) {
             long currentStudentId = studentsService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
 
             if (currentStudentId != studentId) {
@@ -84,7 +85,7 @@ public class CustomViewResolver {
         String userLogin = user.getUsername();
         String userRole = user.getAuthorities().stream().findFirst().get().getAuthority();
 
-        if(userRole.equals("ROLE_HEADOFPRACTICE")) {
+        if(Role.valueOf(userRole).equals(Role.ROLE_HEADOFPRACTICE)) {
             long currentCuratorId = headofpracticesService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
 
             if (currentCuratorId != curatorId) {
