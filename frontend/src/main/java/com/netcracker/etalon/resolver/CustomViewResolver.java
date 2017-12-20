@@ -1,10 +1,9 @@
 package com.netcracker.etalon.resolver;
 
-import com.netcracker.pmbackend.interfaces.HeadofpracticesService;
-import com.netcracker.pmbackend.interfaces.StudentsService;
-import com.netcracker.pmbackend.interfaces.UsersService;
+import com.netcracker.pmbackend.interfaces.basic.HeadofpracticesService;
+import com.netcracker.pmbackend.interfaces.basic.StudentsService;
+import com.netcracker.pmbackend.interfaces.basic.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;

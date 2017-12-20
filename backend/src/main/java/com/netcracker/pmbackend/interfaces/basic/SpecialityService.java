@@ -1,4 +1,4 @@
-package com.netcracker.pmbackend.interfaces;
+package com.netcracker.pmbackend.interfaces.basic;
 
 import com.netcracker.pmbackend.impl.entities.SpecialityEntity;
 

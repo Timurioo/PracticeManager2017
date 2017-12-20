@@ -1,7 +1,7 @@
 package com.netcracker.etalon.validation.validator;
 
 import com.netcracker.etalon.dto.FacultyRegistrationDTO;
-import com.netcracker.pmbackend.interfaces.FacultyService;
+import com.netcracker.pmbackend.interfaces.basic.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

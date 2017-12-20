@@ -1,7 +1,7 @@
-package com.netcracker.pmbackend.impl.services;
+package com.netcracker.pmbackend.impl.services.basic;
 
 import com.netcracker.pmbackend.impl.entities.StudentsEntity;
-import com.netcracker.pmbackend.interfaces.StudentsService;
+import com.netcracker.pmbackend.interfaces.basic.StudentsService;
 import com.netcracker.pmbackend.repository.StudentsRepository;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;

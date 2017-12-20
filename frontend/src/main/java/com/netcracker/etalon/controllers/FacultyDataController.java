@@ -6,8 +6,8 @@ import com.netcracker.etalon.validation.converter.ValidationResponseDataConverte
 import com.netcracker.etalon.validation.validator.FacultyRegistrationDTOValidator;
 import com.netcracker.pmbackend.impl.entities.FacultyEntity;
 import com.netcracker.pmbackend.impl.factory.EntityFactory;
-import com.netcracker.pmbackend.impl.services.registration.RegistrationService;
-import com.netcracker.pmbackend.interfaces.FacultyService;
+import com.netcracker.pmbackend.interfaces.basic.FacultyService;
+import com.netcracker.pmbackend.interfaces.registration.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;

@@ -1,9 +1,9 @@
-package com.netcracker.pmbackend.impl.services;
+package com.netcracker.pmbackend.impl.services.basic;
 
 
 import com.google.common.collect.Lists;
 import com.netcracker.pmbackend.impl.entities.AssignStudentsEntity;
-import com.netcracker.pmbackend.interfaces.AssignStudentsService;
+import com.netcracker.pmbackend.interfaces.basic.AssignStudentsService;
 import com.netcracker.pmbackend.repository.AssignStudentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

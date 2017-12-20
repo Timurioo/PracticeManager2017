@@ -2,17 +2,14 @@ package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.beans.PracticeTableViewModel;
 import com.netcracker.etalon.beans.PracticeViewModel;
-import com.netcracker.etalon.dto.FacultyRegistrationDTO;
 import com.netcracker.etalon.dto.PracticeRegistrationDTO;
 import com.netcracker.etalon.validation.converter.ValidationResponseDataConverter;
 import com.netcracker.etalon.validation.validator.PracticeRegistrationDTOValidator;
-import com.netcracker.pmbackend.impl.entities.FacultyEntity;
-import com.netcracker.pmbackend.impl.entities.HeadofpracticesEntity;
 import com.netcracker.pmbackend.impl.entities.PracticesEntity;
 import com.netcracker.pmbackend.impl.factory.EntityFactory;
-import com.netcracker.pmbackend.impl.services.deletion.DeletionService;
-import com.netcracker.pmbackend.impl.services.registration.RegistrationService;
-import com.netcracker.pmbackend.interfaces.PracticesService;
+import com.netcracker.pmbackend.interfaces.basic.PracticesService;
+import com.netcracker.pmbackend.interfaces.deletion.DeletionService;
+import com.netcracker.pmbackend.interfaces.registration.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -21,7 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
-import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 

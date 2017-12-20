@@ -1,8 +1,9 @@
 package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.dto.AssignStudentDTO;
-import com.netcracker.pmbackend.impl.services.assign.AssignService;
-import com.netcracker.pmbackend.impl.services.deletion.DeletionService;
+import com.netcracker.pmbackend.impl.services.deletion.DeletionServiceImpl;
+import com.netcracker.pmbackend.interfaces.assign.AssignService;
+import com.netcracker.pmbackend.interfaces.deletion.DeletionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;

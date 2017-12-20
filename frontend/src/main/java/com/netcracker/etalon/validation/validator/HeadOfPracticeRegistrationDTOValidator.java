@@ -1,8 +1,8 @@
 package com.netcracker.etalon.validation.validator;
 
 import com.netcracker.etalon.dto.HeadOfPracticeRegistrationDTO;
-import com.netcracker.pmbackend.interfaces.HeadofpracticesService;
-import com.netcracker.pmbackend.interfaces.UsersService;
+import com.netcracker.pmbackend.interfaces.basic.HeadofpracticesService;
+import com.netcracker.pmbackend.interfaces.basic.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

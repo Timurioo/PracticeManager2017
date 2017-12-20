@@ -4,9 +4,10 @@ import com.netcracker.pmbackend.impl.entities.AssignStudentsEntity;
 import com.netcracker.pmbackend.impl.entities.PracticesEntity;
 import com.netcracker.pmbackend.impl.entities.StudentsEntity;
 import com.netcracker.pmbackend.impl.factory.EntityFactory;
-import com.netcracker.pmbackend.interfaces.AssignStudentsService;
-import com.netcracker.pmbackend.interfaces.PracticesService;
-import com.netcracker.pmbackend.interfaces.StudentsService;
+import com.netcracker.pmbackend.interfaces.basic.AssignStudentsService;
+import com.netcracker.pmbackend.interfaces.basic.PracticesService;
+import com.netcracker.pmbackend.interfaces.basic.StudentsService;
+import com.netcracker.pmbackend.interfaces.assign.AssignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class AssignService {
+public class AssignServiceImpl implements AssignService {
 
     @Autowired
     private StudentsService studentsService;

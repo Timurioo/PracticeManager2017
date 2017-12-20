@@ -1,7 +1,7 @@
 package com.netcracker.etalon.security;
 
 import com.netcracker.pmbackend.impl.entities.UsersEntity;
-import com.netcracker.pmbackend.interfaces.UsersService;
+import com.netcracker.pmbackend.interfaces.basic.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

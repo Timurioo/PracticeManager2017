@@ -3,7 +3,8 @@ package com.netcracker.pmbackend.impl.services.table;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netcracker.pmbackend.impl.entities.FilterData;
 import com.netcracker.pmbackend.impl.entities.StudentTableData;
-import com.netcracker.pmbackend.interfaces.StudentsService;
+import com.netcracker.pmbackend.interfaces.basic.StudentsService;
+import com.netcracker.pmbackend.interfaces.table.StudentTableDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -13,7 +14,7 @@ import java.io.IOException;
  * Created by dima on 11/29/2017.
  */
 @Service
-public class StudentTableDataService {
+public class StudentTableDataServiceImpl implements StudentTableDataService {
 
     @Autowired
     private StudentsService studentsService;

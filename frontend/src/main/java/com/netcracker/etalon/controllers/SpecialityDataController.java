@@ -1,16 +1,13 @@
 package com.netcracker.etalon.controllers;
 
-import com.netcracker.etalon.beans.FacultyViewModel;
 import com.netcracker.etalon.beans.SpecialityViewModel;
-import com.netcracker.etalon.dto.FacultyRegistrationDTO;
 import com.netcracker.etalon.dto.SpecialityRegistrationDTO;
 import com.netcracker.etalon.validation.converter.ValidationResponseDataConverter;
 import com.netcracker.etalon.validation.validator.SpecialityRegistrationDTOValidator;
-import com.netcracker.pmbackend.impl.entities.FacultyEntity;
 import com.netcracker.pmbackend.impl.entities.SpecialityEntity;
 import com.netcracker.pmbackend.impl.factory.EntityFactory;
-import com.netcracker.pmbackend.impl.services.registration.RegistrationService;
-import com.netcracker.pmbackend.interfaces.SpecialityService;
+import com.netcracker.pmbackend.interfaces.basic.SpecialityService;
+import com.netcracker.pmbackend.interfaces.registration.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;

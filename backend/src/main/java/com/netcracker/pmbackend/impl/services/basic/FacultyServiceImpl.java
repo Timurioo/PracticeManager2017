@@ -1,11 +1,10 @@
-package com.netcracker.pmbackend.impl.services;
+package com.netcracker.pmbackend.impl.services.basic;
 
 import com.google.common.collect.Lists;
 import com.netcracker.pmbackend.impl.entities.FacultyEntity;
-import com.netcracker.pmbackend.interfaces.FacultyService;
+import com.netcracker.pmbackend.interfaces.basic.FacultyService;
 import com.netcracker.pmbackend.repository.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

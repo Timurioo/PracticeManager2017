@@ -1,7 +1,8 @@
 package com.netcracker.pmbackend.impl.services.registration;
 
 import com.netcracker.pmbackend.impl.entities.*;
-import com.netcracker.pmbackend.interfaces.*;
+import com.netcracker.pmbackend.interfaces.basic.*;
+import com.netcracker.pmbackend.interfaces.registration.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class RegistrationService {
+public class RegistrationServiceImpl implements RegistrationService {
 
 
     @Autowired

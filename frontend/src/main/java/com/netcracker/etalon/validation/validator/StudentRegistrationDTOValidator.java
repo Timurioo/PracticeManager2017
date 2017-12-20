@@ -1,8 +1,8 @@
 package com.netcracker.etalon.validation.validator;
 
 import com.netcracker.etalon.dto.StudentRegistrationDTO;
-import com.netcracker.pmbackend.interfaces.StudentsService;
-import com.netcracker.pmbackend.interfaces.UsersService;
+import com.netcracker.pmbackend.interfaces.basic.StudentsService;
+import com.netcracker.pmbackend.interfaces.basic.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

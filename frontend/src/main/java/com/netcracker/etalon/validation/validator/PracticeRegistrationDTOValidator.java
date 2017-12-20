@@ -2,7 +2,7 @@ package com.netcracker.etalon.validation.validator;
 
 
 import com.netcracker.etalon.dto.PracticeRegistrationDTO;
-import com.netcracker.pmbackend.interfaces.PracticesService;
+import com.netcracker.pmbackend.interfaces.basic.PracticesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

@@ -3,10 +3,11 @@ package com.netcracker.pmbackend.impl.services.deletion;
 import com.netcracker.pmbackend.impl.entities.AssignStudentsEntity;
 import com.netcracker.pmbackend.impl.entities.PracticesEntity;
 import com.netcracker.pmbackend.impl.entities.StudentsEntity;
-import com.netcracker.pmbackend.interfaces.AssignStudentsService;
-import com.netcracker.pmbackend.interfaces.PracticesService;
-import com.netcracker.pmbackend.interfaces.StudentsService;
-import com.netcracker.pmbackend.interfaces.UsersService;
+import com.netcracker.pmbackend.interfaces.basic.AssignStudentsService;
+import com.netcracker.pmbackend.interfaces.basic.PracticesService;
+import com.netcracker.pmbackend.interfaces.basic.StudentsService;
+import com.netcracker.pmbackend.interfaces.basic.UsersService;
+import com.netcracker.pmbackend.interfaces.deletion.DeletionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class DeletionService {
+public class DeletionServiceImpl implements DeletionService {
 
     @Autowired
     private UsersService usersService;
