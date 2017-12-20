@@ -2,6 +2,7 @@ package com.netcracker.etalon.controllers;
 
 import com.netcracker.etalon.beans.PracticeTableViewModel;
 import com.netcracker.etalon.beans.PracticeViewModel;
+import com.netcracker.etalon.dto.filter.SimpleTableFilterDTO;
 import com.netcracker.etalon.dto.PracticeRegistrationDTO;
 import com.netcracker.etalon.validation.converter.ValidationResponseDataConverter;
 import com.netcracker.etalon.validation.validator.PracticeRegistrationDTOValidator;
@@ -56,15 +57,15 @@ public class PracticeDataController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public PracticeTableViewModel getPracticeData(@RequestParam( required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
+    public PracticeTableViewModel getPracticeData(SimpleTableFilterDTO simpleTableFilterDTO) {
 
         List<PracticesEntity> allPractices;
         int totalRows = 0;
-        if (search != null) {
-            allPractices = practicesService.findAllLimitSearch(search,Integer.parseInt(limit), Integer.parseInt(offset));
-            totalRows = practicesService.findAllSearch(search).size();
+        if (simpleTableFilterDTO.getSearch() != null) {
+            allPractices = practicesService.findAllLimitSearch(simpleTableFilterDTO.getSearch(), simpleTableFilterDTO.getLimit(), simpleTableFilterDTO.getOffset());
+            totalRows = practicesService.findAllSearch(simpleTableFilterDTO.getSearch()).size();
         } else {
-            allPractices = practicesService.findAllLimit(Integer.parseInt(limit), Integer.parseInt(offset));
+            allPractices = practicesService.findAllLimit(simpleTableFilterDTO.getLimit(), simpleTableFilterDTO.getOffset());
             totalRows = practicesService.findAll().size();
         }
         PracticeTableViewModel practiceTableViewModel = new PracticeTableViewModel();
@@ -125,15 +126,14 @@ public class PracticeDataController {
 
     @RequestMapping(value = "/curator/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public PracticeTableViewModel getPracticeDataByCurator(@PathVariable int id, @RequestParam(required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
-
+    public PracticeTableViewModel getPracticeDataByCurator(@PathVariable int id, SimpleTableFilterDTO simpleTableFilterDTO) {
         List<PracticesEntity> allPractices;
         int totalRows = 0;
-        if (search != null) {
-            allPractices = practicesService.findAllByCuratorIdSearchLimit(id,search,Integer.parseInt(limit), Integer.parseInt(offset));
-            totalRows = practicesService.findAllByCuratorIdSearch(id, search).size();
+        if (simpleTableFilterDTO.getSearch() != null) {
+            allPractices = practicesService.findAllByCuratorIdSearchLimit(id, simpleTableFilterDTO.getSearch(), simpleTableFilterDTO.getLimit(), simpleTableFilterDTO.getOffset());
+            totalRows = practicesService.findAllByCuratorIdSearch(id, simpleTableFilterDTO.getSearch()).size();
         } else {
-            allPractices = practicesService.findAllByCuratorIdLimit(id, Integer.parseInt(limit), Integer.parseInt(offset));
+            allPractices = practicesService.findAllByCuratorIdLimit(id, simpleTableFilterDTO.getLimit(), simpleTableFilterDTO.getOffset());
             totalRows = practicesService.findByCuratorId(id).size();
         }
         PracticeTableViewModel practiceTableViewModel = new PracticeTableViewModel();
@@ -141,5 +141,4 @@ public class PracticeDataController {
         practiceTableViewModel.setTotal(totalRows);
         return practiceTableViewModel;
     }
-
 }

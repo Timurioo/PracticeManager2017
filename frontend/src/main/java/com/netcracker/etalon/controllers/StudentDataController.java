@@ -4,6 +4,8 @@ import com.netcracker.etalon.beans.StudentAndPracticeViewModel;
 import com.netcracker.etalon.beans.StudentProfileViewModel;
 import com.netcracker.etalon.beans.StudentTableViewModel;
 import com.netcracker.etalon.dto.StudentRegistrationDTO;
+import com.netcracker.etalon.dto.filter.FullTableFilterDTO;
+import com.netcracker.etalon.dto.filter.SimpleTableFilterDTO;
 import com.netcracker.etalon.validation.converter.ValidationResponseDataConverter;
 import com.netcracker.etalon.validation.validator.StudentRegistrationDTOValidator;
 import com.netcracker.pmbackend.impl.entities.StudentTableData;
@@ -103,8 +105,8 @@ public class StudentDataController {
 
     @RequestMapping(value = "/practiceData", method = RequestMethod.GET)
     @ResponseBody
-    public StudentTableViewModel getStudentsAndPractice(@RequestParam(required = false, name = "search", defaultValue = "") String search, @RequestParam(required = false, name = "sort", defaultValue = "") String sort, @RequestParam String order, @RequestParam String offset, @RequestParam String limit, @RequestParam(required = false, name = "filter", defaultValue = "") String filter) {
-        StudentTableData studentTableData = studentTableDataService.getActualTableData(search, filter, sort, order, Integer.parseInt(limit), Integer.parseInt(offset));
+    public StudentTableViewModel getStudentsAndPractice(FullTableFilterDTO fullTableFilterDTO) {
+        StudentTableData studentTableData = studentTableDataService.getActualTableData(fullTableFilterDTO.getSearch(), fullTableFilterDTO.getFilter(), fullTableFilterDTO.getSort(), fullTableFilterDTO.getOrder(), fullTableFilterDTO.getLimit(), fullTableFilterDTO.getOffset());
         StudentTableViewModel studentsTableViewModel = new StudentTableViewModel();
         studentsTableViewModel.setRows((List<StudentAndPracticeViewModel>) conversionService.convert(studentTableData.getRowsData(),studentEntityListTypeDescriptor, studentAndPracticeViewModelListTypeDescriptor));
         studentsTableViewModel.setTotal(studentTableData.getTotalRows());
@@ -113,15 +115,15 @@ public class StudentDataController {
 
     @RequestMapping(value = "/practiceData/curator/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public StudentTableViewModel getStudentsAndPractice(@PathVariable int id, @RequestParam( required = false, name = "search") String search, @RequestParam String order, @RequestParam String offset, @RequestParam String limit) {
+    public StudentTableViewModel getStudentsAndPracticeDataByCurator(@PathVariable int id, SimpleTableFilterDTO simpleTableFilterDTO) {
 
         List<StudentsEntity> allStudents;
         int totalRows;
-        if(search != null){
-            allStudents = studentsService.findAllByCuratorIdSearchLimit(id,search,Integer.parseInt(limit), Integer.parseInt(offset));
-            totalRows = studentsService.countAllByCuratorIdSearch(id,search);
+        if(simpleTableFilterDTO.getSearch() != null){
+            allStudents = studentsService.findAllByCuratorIdSearchLimit(id, simpleTableFilterDTO.getSearch(), simpleTableFilterDTO.getLimit(), simpleTableFilterDTO.getOffset());
+            totalRows = studentsService.countAllByCuratorIdSearch(id, simpleTableFilterDTO.getSearch());
         }else{
-            allStudents = studentsService.findAllByCuratorIdLimit(id, Integer.parseInt(limit), Integer.parseInt(offset));
+            allStudents = studentsService.findAllByCuratorIdLimit(id, simpleTableFilterDTO.getLimit(), simpleTableFilterDTO.getOffset());
             totalRows = studentsService.countAllByCuratorId(id);
         }
         StudentTableViewModel studentsTableViewModel = new StudentTableViewModel();
