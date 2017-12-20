@@ -95,15 +95,15 @@ public class PracticeDataController {
             return validationResponseDataConverter.convertFieldErrorsToMap(bindingResult.getFieldErrors());
         }
 
+        int zeroId = 0;
         PracticesEntity practicesEntity = entityFactory.getPracticeEntity(Integer.parseInt(practiceRegistrationDTO.getHeadOfPracticeId()),
                 practiceRegistrationDTO.getCompany(),
                 Date.valueOf(practiceRegistrationDTO.getFirstDate()),
                 Date.valueOf(practiceRegistrationDTO.getFinishDate()),
                 Integer.parseInt(practiceRegistrationDTO.getTotalQuantity()),
-                practiceRegistrationDTO.getFacultyId().equals("-")?0:Integer.parseInt(practiceRegistrationDTO.getFacultyId()),
-                practiceRegistrationDTO.getSpecialityId().equals("-")?0:Integer.parseInt(practiceRegistrationDTO.getSpecialityId()),
-                practiceRegistrationDTO.getAvrMark().equals("")?0: Double.parseDouble(practiceRegistrationDTO.getAvrMark()));
-
+                practiceRegistrationDTO.getFacultyId().equals("-")?zeroId:Integer.parseInt(practiceRegistrationDTO.getFacultyId()),
+                practiceRegistrationDTO.getSpecialityId().equals("-")?zeroId:Integer.parseInt(practiceRegistrationDTO.getSpecialityId()),
+                practiceRegistrationDTO.getAvrMark().equals("")?zeroId: Double.parseDouble(practiceRegistrationDTO.getAvrMark()));
 
         registrationService.registratePractice(practicesEntity);
         return null;

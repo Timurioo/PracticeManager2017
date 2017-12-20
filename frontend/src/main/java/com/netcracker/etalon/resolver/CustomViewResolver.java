@@ -27,17 +27,13 @@ public class CustomViewResolver {
     public String resolveHomePageByRole(){
         User user;
         String urlRedirect = "redirect:/authorization";
-        try {
-            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        }catch (ClassCastException e){
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return urlRedirect;
+        }else{
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         }
         String userLogin = user.getUsername();
-        String userRole = null;
-
-        for (GrantedAuthority authority : user.getAuthorities()) {
-            userRole = authority.getAuthority();
-        }
+        String userRole = user.getAuthorities().stream().findFirst().get().getAuthority();
 
         switch (userRole){
             case "ROLE_ADMIN":{
@@ -61,17 +57,13 @@ public class CustomViewResolver {
 
     public String resolveStudentProfilePageById(int studentId){
         User user;
-        try {
-            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        }catch (ClassCastException e){
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "redirect:/authorization";
+        }else{
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         }
         String userLogin = user.getUsername();
-        String userRole = null;
-
-        for (GrantedAuthority authority : user.getAuthorities()) {
-            userRole = authority.getAuthority();
-        }
+        String userRole = user.getAuthorities().stream().findFirst().get().getAuthority();
 
         if(userRole.equals("ROLE_STUDENT")) {
             long currentStudentId = studentsService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
@@ -85,17 +77,13 @@ public class CustomViewResolver {
 
     public String resolveCuratorPageById(int curatorId){
         User user;
-        try {
-            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        }catch (ClassCastException e){
+        if(SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "redirect:/authorization";
+        }else{
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         }
         String userLogin = user.getUsername();
-        String userRole = null;
-
-        for (GrantedAuthority authority : user.getAuthorities()) {
-            userRole = authority.getAuthority();
-        }
+        String userRole = user.getAuthorities().stream().findFirst().get().getAuthority();
 
         if(userRole.equals("ROLE_HEADOFPRACTICE")) {
             long currentCuratorId = headofpracticesService.findByUserId(usersService.findByLogin(userLogin).getId()).getId();
