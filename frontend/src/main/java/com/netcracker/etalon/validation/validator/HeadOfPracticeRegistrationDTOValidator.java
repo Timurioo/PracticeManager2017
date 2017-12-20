@@ -1,6 +1,7 @@
 package com.netcracker.etalon.validation.validator;
 
 import com.netcracker.etalon.dto.HeadOfPracticeRegistrationDTO;
+import com.netcracker.etalon.validation.validator.message.ErrorMessage;
 import com.netcracker.pmbackend.interfaces.basic.HeadofpracticesService;
 import com.netcracker.pmbackend.interfaces.basic.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +31,22 @@ public class HeadOfPracticeRegistrationDTOValidator implements Validator {
     public void validate(Object o, Errors errors) {
         HeadOfPracticeRegistrationDTO headOfPracticeRegistrationDTO = (HeadOfPracticeRegistrationDTO) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"login","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"login", ErrorMessage.EMPTYFIELD.getMessage());
         if(usersService.findByLogin(headOfPracticeRegistrationDTO.getLogin()) != null){
-            errors.rejectValue("login","Login has been already in use");
+            errors.rejectValue("login", ErrorMessage.LOGININUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"password","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"password", ErrorMessage.EMPTYFIELD.getMessage());
         if(usersService.findByPassword(headOfPracticeRegistrationDTO.getPassword()) != null){
-            errors.rejectValue("password","Password has been already in use");
+            errors.rejectValue("password", ErrorMessage.PASSWORDINUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", ErrorMessage.EMPTYFIELD.getMessage());
         if(headofpracticesService.findByName(headOfPracticeRegistrationDTO.getName()) != null){
-            errors.rejectValue("name","Name has been already in use");
+            errors.rejectValue("name",ErrorMessage.NAMEINUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"role","NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"role", ErrorMessage.EMPTYFIELD.getMessage());
 
     }
 }

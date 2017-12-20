@@ -1,6 +1,7 @@
 package com.netcracker.etalon.validation.validator;
 
 import com.netcracker.etalon.dto.StudentRegistrationDTO;
+import com.netcracker.etalon.validation.validator.message.ErrorMessage;
 import com.netcracker.pmbackend.interfaces.basic.StudentsService;
 import com.netcracker.pmbackend.interfaces.basic.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,33 +32,33 @@ public class StudentRegistrationDTOValidator implements Validator {
 
         StudentRegistrationDTO studentRegistrationDTO = (StudentRegistrationDTO) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"login","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"login", ErrorMessage.EMPTYFIELD.getMessage());
         if(usersService.findByLogin(studentRegistrationDTO.getLogin()) != null){
-            errors.rejectValue("login","Login has been already in use");
+            errors.rejectValue("login", ErrorMessage.LOGININUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"password","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"password", ErrorMessage.EMPTYFIELD.getMessage());
         if(usersService.findByPassword(studentRegistrationDTO.getPassword()) != null){
-            errors.rejectValue("password","Password has been already in use");
+            errors.rejectValue("password", ErrorMessage.PASSWORDINUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"email","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"email", ErrorMessage.EMPTYFIELD.getMessage());
         if(studentsService.findByEmail(studentRegistrationDTO.getEmail()) != null){
-            errors.rejectValue("email","Email has been already in use");
+            errors.rejectValue("email", ErrorMessage.EMAILINUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"phone","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"phone", ErrorMessage.EMPTYFIELD.getMessage());
         if(studentsService.findByPhone(studentRegistrationDTO.getPhone()) != null){
-            errors.rejectValue("phone","Phone has been already in use");
+            errors.rejectValue("phone", ErrorMessage.PHONEINUSE.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"surname","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"group","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"budget","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"avrMark","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"role","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"facultyId","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"specialityId","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"surname", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"group", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"budget", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"avrMark", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"role", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"facultyId", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"specialityId", ErrorMessage.EMPTYFIELD.getMessage());
     }
 }

@@ -2,6 +2,7 @@ package com.netcracker.etalon.validation.validator;
 
 
 import com.netcracker.etalon.dto.PracticeRegistrationDTO;
+import com.netcracker.etalon.validation.validator.message.ErrorMessage;
 import com.netcracker.pmbackend.interfaces.basic.PracticesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,14 +25,14 @@ public class PracticeRegistrationDTOValidator implements Validator {
     public void validate(Object o, Errors errors) {
         PracticeRegistrationDTO practiceRegistrationDTO = (PracticeRegistrationDTO) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"company","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"company", ErrorMessage.EMPTYFIELD.getMessage());
         if(practicesService.findByCompany(practiceRegistrationDTO.getCompany()) != null){
-            errors.rejectValue("company","Such company has been already registered");
+            errors.rejectValue("company", ErrorMessage.COMPANYEXIST.getMessage());
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"headOfPracticeId","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"firstDate","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"finishDate","Should be not empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"totalQuantity","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"headOfPracticeId", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"firstDate", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"finishDate", ErrorMessage.EMPTYFIELD.getMessage());
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"totalQuantity",ErrorMessage.EMPTYFIELD.getMessage());
     }
 }

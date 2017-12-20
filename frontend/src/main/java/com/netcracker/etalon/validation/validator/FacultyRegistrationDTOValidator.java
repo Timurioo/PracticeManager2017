@@ -1,6 +1,7 @@
 package com.netcracker.etalon.validation.validator;
 
 import com.netcracker.etalon.dto.FacultyRegistrationDTO;
+import com.netcracker.etalon.validation.validator.message.ErrorMessage;
 import com.netcracker.pmbackend.interfaces.basic.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,9 +25,9 @@ public class FacultyRegistrationDTOValidator implements Validator {
     public void validate(Object o, Errors errors) {
         FacultyRegistrationDTO facultyRegistrationDTO = (FacultyRegistrationDTO) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name","Should be not empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name", ErrorMessage.EMPTYFIELD.getMessage());
         if(facultyService.findByName(facultyRegistrationDTO.getName()) != null){
-            errors.rejectValue("name","Faculty has been already registered");
+            errors.rejectValue("name", ErrorMessage.FACULTYEXIST.getMessage());
         }
     }
 }
