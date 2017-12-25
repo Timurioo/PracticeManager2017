@@ -98,5 +98,6 @@
             </div>
         </div>
     </div>
+    <jsp:include page="/jsp/blocks/sitefooter.jsp"/>
 </body>
 </html>
