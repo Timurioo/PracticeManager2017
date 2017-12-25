@@ -15,10 +15,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -50,6 +47,9 @@ public class HeadOfPracticeDataController {
     private final TypeDescriptor headOfPracticeEntityListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(HeadofpracticesEntity.class));
     private final TypeDescriptor headOfPracticeViewModelListTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(HeadOfPracticeViewModel.class));
 
+    private final TypeDescriptor headOfPracticeEntityTypeDescriptor = TypeDescriptor.valueOf(HeadofpracticesEntity.class);
+    private final TypeDescriptor headOfPracticeViewModelTypeDescriptor = TypeDescriptor.valueOf(HeadOfPracticeViewModel.class);
+
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -74,5 +74,13 @@ public class HeadOfPracticeDataController {
         registrationService.registrateHeadOfPractice(usersEntity, headofpracticesEntity);
 
         return null;
+    }
+
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public HeadOfPracticeViewModel getHeadOfPracticeName(@PathVariable int id) {
+        HeadofpracticesEntity headofpracticesEntity = headofpracticesService.findById(id);
+        HeadOfPracticeViewModel headOfPracticeViewModel = (HeadOfPracticeViewModel) conversionService.convert(headofpracticesEntity, headOfPracticeEntityTypeDescriptor, headOfPracticeViewModelTypeDescriptor);
+        return headOfPracticeViewModel;
     }
 }

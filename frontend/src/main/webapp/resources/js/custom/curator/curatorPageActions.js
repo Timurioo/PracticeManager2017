@@ -6,15 +6,13 @@ $(document).ready(function () {
         practicesTable: $('#curator_practices_table'),
         searchInputField: $('.fixed-table-toolbar .search input')
     };
-
+    setCuratorName();
     setTablesDataUrls();
     setSearchFiledPlaceholder();
 });
 
 function setTablesDataUrls() {
-    let s = window.location.href;
-    s = s.match(new RegExp('curator' + '\/([^&=]+)'));
-    let id= s ? s[1] : null;
+    let id = getIdParam();
 
     let studentsOptions = elements.studentsTable.bootstrapTable('getOptions');
     studentsOptions.url = '/students/practiceData/curator/'+id;
@@ -25,6 +23,30 @@ function setTablesDataUrls() {
     practicesOptions.url = '/practices/curator/'+id;
     elements.practicesTable .bootstrapTable('refreshOptions', practicesOptions);
     elements.practicesTable .bootstrapTable('refresh');
+}
+
+function setCuratorName() {
+    $.ajax({
+        type: "GET",
+        url: '/headOfPractice/'+getIdParam(),
+        data: '',
+        success: function (data) {
+            if(data) {
+                console.log(data);
+                $('#jumbotron_description').append(" <strong>"+data.name+"</strong>");
+            } else {
+                window.location.replace("/errors/404");
+            }
+
+        }
+    });
+}
+
+function getIdParam() {
+    let s = window.location.href;
+    s = s.match(new RegExp('curator' + '\/([^&=]+)'));
+    let id= s ? s[1] : null;
+    return id;
 }
 
 function setSearchFiledPlaceholder() {
