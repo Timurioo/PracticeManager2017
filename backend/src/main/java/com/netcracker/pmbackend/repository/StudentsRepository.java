@@ -29,6 +29,7 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) " +
             "LIMIT ?2 OFFSET ?3",
             nativeQuery = true)
     List<StudentsEntity> findAllLimitSearch(String search, int limit, int offset);
@@ -38,7 +39,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?1% " +
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) ",
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) "+
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) ",
             nativeQuery = true)
     int countAllSearch(String search);
     /////////////////////////////
@@ -89,6 +91,7 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) " +
             "ORDER BY surname ASC",
             nativeQuery = true)
     int countAllSearchOrderBySurnameAsc(String search);
@@ -99,6 +102,7 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) " +
             "ORDER BY surname ASC " +
             "LIMIT ?2 OFFSET ?3",
             nativeQuery = true)
@@ -110,6 +114,7 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) " +
             "ORDER BY surname DESC",
             nativeQuery = true)
     int countAllSearchOrderBySurnameDesc(String search);
@@ -120,6 +125,7 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) " +
             "ORDER BY surname DESC " +
             "LIMIT ?2 OFFSET ?3",
             nativeQuery = true)
@@ -134,6 +140,7 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) " +
             "ORDER BY avr_mark ASC",
             nativeQuery = true)
     int countAllSearchOrderByAvrMarkAsc(String search);
@@ -144,6 +151,7 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) " +
             "ORDER BY avr_mark ASC " +
             "LIMIT ?2 OFFSET ?3",
             nativeQuery = true)
@@ -155,6 +163,7 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) " +
             "ORDER BY avr_mark DESC",
             nativeQuery = true)
     int countAllSearchOrderByAvrMarkDesc(String search);
@@ -165,6 +174,7 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR status LIKE %?1% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?1%) " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?1%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?1%)) " +
             "ORDER BY avr_mark DESC " +
             "LIMIT ?2 OFFSET ?3",
             nativeQuery = true)
@@ -197,19 +207,21 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?2% " +
             "OR status LIKE %?2% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?2%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?2%)))",
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?2%))"+
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?2%))) ",
             nativeQuery = true)
     int countAllByCuratorIdSearch(int curatorId, String search);
 
     @Query(value = "SELECT * FROM practicemanager.students WHERE " +
             "id IN (SELECT student_id FROM practicemanager.assignstudents WHERE " +
-            "practice_id IN (SELECT id FROM practicemanager.practices WHERE headofpractice_id=?1))"+
+            "practice_id IN (SELECT id FROM practicemanager.practices WHERE headofpractice_id=?1)) "+
             "AND (name LIKE %?2% " +
             "OR surname LIKE %?2% " +
             "OR budget LIKE %?2% " +
             "OR status LIKE %?2% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?2%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?2%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?2%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?2%))) " +
             "LIMIT ?3 OFFSET ?4",
             nativeQuery = true)
     List<StudentsEntity> findAllByCuratorIdSearchLimit(int curatorId, String search, int limit, int offset);
@@ -305,7 +317,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) " +
             "LIMIT ?4 OFFSET ?5",
             nativeQuery = true)
     List<StudentsEntity> findAllByFilterAndSearchLimit(String filterBudget, String filterStatus, String search, int limit, int offset);
@@ -318,7 +331,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) ",
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) "+
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) ",
             nativeQuery = true)
     int countAllByFilterAndSearch(String filterBudget, String filterStatus, String search);
     /////////////////////////////////////////////////////////////////////
@@ -333,7 +347,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) " +
             "ORDER BY surname ASC",
             nativeQuery = true)
     int countAllByFilterAndSearchOrderBySurnameAsc(String filterBudget, String filterStatus, String search);
@@ -346,7 +361,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) " +
             "ORDER BY surname ASC " +
             "LIMIT ?4 OFFSET ?5",
             nativeQuery = true)
@@ -360,7 +376,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) " +
             "ORDER BY surname DESC",
             nativeQuery = true)
     int countAllByFilterAndSearchOrderBySurnameDesc(String filterBudget, String filterStatus, String search);
@@ -373,7 +390,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) " +
             "ORDER BY surname DESC " +
             "LIMIT ?4 OFFSET ?5",
             nativeQuery = true)
@@ -390,7 +408,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) " +
             "ORDER BY avr_mark ASC",
             nativeQuery = true)
     int countAllByFilterAndSearchOrderByAvrMarkAsc(String filterBudget, String filterStatus, String search);
@@ -403,7 +422,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) " +
             "ORDER BY avr_mark ASC " +
             "LIMIT ?4 OFFSET ?5",
             nativeQuery = true)
@@ -417,7 +437,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) " +
             "ORDER BY avr_mark DESC",
             nativeQuery = true)
     int countAllByFilterAndSearchOrderByAvrMarkDesc(String filterBudget, String filterStatus, String search);
@@ -430,7 +451,8 @@ public interface StudentsRepository extends CrudRepository<StudentsEntity, Integ
             "OR budget LIKE %?3% " +
             "OR status LIKE %?3% " +
             "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE name LIKE %?3%) " +
-            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%))) " +
+            "OR speciality_id IN (SELECT id FROM practicemanager.speciality WHERE faculty_id IN (SELECT id FROM practicemanager.faculty WHERE name LIKE %?3%)) " +
+            "OR id IN (SELECT student_id FROM practicemanager.assignstudents WHERE practice_id IN (SELECT id FROM practicemanager.practices WHERE company LIKE %?3%))) " +
             "ORDER BY avr_mark DESC " +
             "LIMIT ?4 OFFSET ?5",
             nativeQuery = true)
