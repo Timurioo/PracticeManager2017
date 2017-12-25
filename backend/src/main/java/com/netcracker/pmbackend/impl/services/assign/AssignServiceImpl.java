@@ -8,6 +8,7 @@ import com.netcracker.pmbackend.interfaces.basic.AssignStudentsService;
 import com.netcracker.pmbackend.interfaces.basic.PracticesService;
 import com.netcracker.pmbackend.interfaces.basic.StudentsService;
 import com.netcracker.pmbackend.interfaces.assign.AssignService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +60,9 @@ public class AssignServiceImpl implements AssignService {
     private String defineStatus(PracticesEntity practicesEntity){
         Date startDate = practicesEntity.getFirstDate();
         Date finishDate = practicesEntity.getFinishDate();
+        DateTime dtOrg = new DateTime(finishDate);
+        DateTime dtPlusOne = dtOrg.plusDays(1);
+        finishDate = dtPlusOne.toDate();
         Date currentDate = new Date();
         if(currentDate.compareTo(startDate)<0){
             return "Waiting";
