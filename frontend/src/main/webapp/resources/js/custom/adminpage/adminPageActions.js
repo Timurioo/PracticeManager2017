@@ -147,10 +147,12 @@ function getPracticesRequests() {
         success: function (data) {
             elements.practicesSelect.empty();
             for(let i in data) {
-                elements.practicesSelect
-                    .append($("<option></option>")
-                        .attr("value", data[i].id)
-                        .text(data[i].company+' (F:'+checkNull(data[i].faculty)+' S:'+checkNull(data[i].speciality)+' M:'+checkNull(data[i].avrMark)+') Available:'+data[i].availableQuantity));
+                if( checkedRows.length <= data[i].availableQuantity) {
+                    elements.practicesSelect
+                        .append($("<option></option>")
+                            .attr("value", data[i].id)
+                            .text(data[i].company + ' (F:' + checkNull(data[i].faculty) + ' S:' + checkNull(data[i].speciality) + ' M:' + checkNull(data[i].avrMark) + ') Available:' + data[i].availableQuantity));
+                }
             }
         }
     });

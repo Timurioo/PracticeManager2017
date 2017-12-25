@@ -58,6 +58,7 @@ public class DeletionServiceImpl implements DeletionService {
         for(AssignStudentsEntity assignStudentsEntity : assignStudentsEntityList){
             PracticesEntity practicesEntity = practicesService.findById(assignStudentsEntity.getPracticeId());
             practicesEntity.setAvailableQuantity(practicesEntity.getAvailableQuantity()+1);
+            practicesEntity.setStatus("Available");
             practicesService.save(practicesEntity);
             assignStudentsService.delete(assignStudentsEntity.getId());
         }
