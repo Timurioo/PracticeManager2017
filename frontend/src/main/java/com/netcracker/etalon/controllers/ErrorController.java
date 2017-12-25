@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
  * Created by dima on 12/13/2017.
  */
 @Controller
+@RequestMapping("/errors")
 public class ErrorController {
 
-    @RequestMapping(value = "/errors", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView renderErrorPage(HttpServletRequest httpRequest) {
         ModelAndView errorPage = new ModelAndView("errPage");
         int httpErrorCode = getErrorCode(httpRequest);
@@ -22,7 +23,7 @@ public class ErrorController {
         return errorPage;
     }
 
-    @RequestMapping(value = "/errors/{code}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{code}", method = RequestMethod.GET)
     public ModelAndView renderErrorPage(@PathVariable int code) {
         ModelAndView errorPage = new ModelAndView("errPage");
         String errorMsg = getErrorMsg(code);
