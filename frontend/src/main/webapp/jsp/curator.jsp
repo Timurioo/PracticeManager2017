@@ -14,7 +14,7 @@
 
     <jsp:include page="/jsp/blocks/jumbotronblock.jsp">
         <jsp:param name="pageTitle" value="Curator page"/>
-        <jsp:param name="titleDescription" value="Actual information for curator."/>
+        <jsp:param name="titleDescription" value="Actual information for curator:"/>
     </jsp:include>
 
     <div class="container">
