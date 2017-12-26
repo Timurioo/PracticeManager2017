@@ -6,6 +6,7 @@ import com.netcracker.pmbackend.impl.entities.StudentsEntity;
 import com.netcracker.pmbackend.interfaces.basic.AssignStudentsService;
 import com.netcracker.pmbackend.interfaces.basic.PracticesService;
 import com.netcracker.pmbackend.interfaces.basic.StudentsService;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -36,6 +37,9 @@ public class ScheduledTasks {
             PracticesEntity practicesEntity = practicesService.findById(assignStudentsEntity.getPracticeId());
             Date startDate = practicesEntity.getFirstDate();
             Date finishDate = practicesEntity.getFinishDate();
+            DateTime dtOrg = new DateTime(finishDate);
+            DateTime dtPlusOne = dtOrg.plusDays(1);
+            finishDate = dtPlusOne.toDate();
             Date currentDate = new Date();
             if(currentDate.compareTo(startDate)<0){
                 updateStudentStatus(assignStudentsEntity.getStudentId(), "Waiting");
