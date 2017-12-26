@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Choose faculty:</label>
                             <div class="col-md-4">
-                                <select id="faculty_name_student" class="form-control">
+                                <select id="faculty_name_student" name="faculty_s" class="form-control">
 
                                 </select>
                             </div>
@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-4">Choose speciality:</label>
                             <div class="col-md-4">
-                                <select id="speciality_name_student" class="form-control">
+                                <select id="speciality_name_student" name="speciality_s" class="form-control">
 
                                 </select>
                             </div>

@@ -35,6 +35,9 @@ $(document).ready(function () {
                 minlength: 2,
                 maxlength: 8,
                 lettersonly: true
+            },
+            faculty_select: {
+                required: true
             }
         },
 
@@ -44,16 +47,27 @@ $(document).ready(function () {
                 minlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Min length: 2.",
                 maxlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Max length: 8.",
                 lettersonly: "<span class='glyphicon glyphicon-exclamation-sign'></span> Only letters."
+            },
+            faculty_select:{
+                required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field.",
             }
         }
     });
 
     $('#speciality_form input').on('keyup blur', function () {
-        if ($('#speciality_form').valid()) {
-            $('#submit_speciality_btn').prop('disabled', false);
-        } else {
-            $('#submit_speciality_btn').prop('disabled', 'disabled');
-        }
+       validateSpecialityForm();
+    });
+
+    $('#speciality_form select').on('change', function () {
+        validateSpecialityForm();
     });
 
 });
+
+function validateSpecialityForm() {
+    if ($('#speciality_form').valid()) {
+        $('#submit_speciality_btn').prop('disabled', false);
+    } else {
+        $('#submit_speciality_btn').prop('disabled', 'disabled');
+    }
+}

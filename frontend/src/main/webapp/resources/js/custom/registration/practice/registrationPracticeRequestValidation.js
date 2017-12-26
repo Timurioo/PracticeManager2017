@@ -8,6 +8,9 @@ $(document).ready(function () {
                 maxlength: 20,
                 letterswithspace: true
             },
+            head_of_practice_select: {
+                required: true
+            },
             first_d: {
                 required: true
             },
@@ -39,6 +42,9 @@ $(document).ready(function () {
                 maxlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Max length: 20.",
                 letterswithspace: "<span class='glyphicon glyphicon-exclamation-sign'></span> Only letters."
             },
+            head_of_practice_select: {
+                required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field."
+            },
             first_d: {
                 required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field."
             },
@@ -64,10 +70,18 @@ $(document).ready(function () {
     });
 
     $('#id_practice_form input').on('keyup blur', function () {
-        if ($('#id_practice_form').valid()) {
-            $('#submit_practice_btn').prop('disabled', false);
-        } else {
-            $('#submit_practice_btn').prop('disabled', 'disabled');
-        }
+        validatePracticeForm();
+    });
+
+    $('#id_practice_form select').on('change', function () {
+        validatePracticeForm();
     });
 });
+
+function validatePracticeForm(){
+    if ($('#id_practice_form').valid()) {
+        $('#submit_practice_btn').prop('disabled', false);
+    } else {
+        $('#submit_practice_btn').prop('disabled', 'disabled');
+    }
+}

@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-4">Choose head of practice:</label>
                     <div class="col-md-4">
-                        <select id="head_of_practices" class="form-control">
+                        <select id="head_of_practices" name="head_of_practice_select" class="form-control">
 
                         </select>
                     </div>

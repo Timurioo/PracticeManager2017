@@ -9,6 +9,9 @@
         <script src="../resources/js/bootstrap-table.js"></script>
         <script src="../resources/js/lodash.min.js"></script>
         <script src="../resources/js/bootstrap-table-filter-control.min.js"></script>
+        <script src="../resources/js/jquery.validate.min.js"></script>
+        <script src="../resources/js/additional-methods.js"></script>
+        <script src="../resources/js/custom/adminpage/assignValidation.js"></script>
         <script src="../resources/js/custom/adminpage/adminPageActions.js"></script>
     </head>
     <body>
@@ -130,17 +133,17 @@
                             </table>
                         </div>
                         <br/>
-                        <form>
+                        <form id="assign_form">
                             <div class="form-group">
                                 <label class="control-label ">Choose practice request:</label>
                                 <div class="">
-                                    <select id="practices_requests_select" class="form-control">
+                                    <select id="practices_requests_select" name="practice_request_select_name" class="form-control">
 
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="button" id="assign_student_form_btn" class="btn btn-success btn-block">Assign student(s)</button>
+                                <button type="button" id="assign_student_form_btn" disabled="disabled" class="btn btn-success btn-block">Assign student(s)</button>
                             </div>
                         </form>
                     </div>

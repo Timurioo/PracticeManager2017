@@ -25,6 +25,12 @@ $(document).ready(function () {
                 maxlength: 40,
                 email: true
             },
+            faculty_s: {
+                required: true
+            },
+            speciality_s: {
+                required: true
+            },
             group_s: {
                 required: true,
                 minlength: 3,
@@ -76,6 +82,12 @@ $(document).ready(function () {
                 maxlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Max length: 40.",
                 email: "<span class='glyphicon glyphicon-exclamation-sign'></span> Uncorrect email address."
             },
+            faculty_s: {
+                required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field."
+            },
+            speciality_s: {
+                required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field."
+            },
             group_s: {
                 required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field.",
                 minlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Min length: 3.",
@@ -105,11 +117,18 @@ $(document).ready(function () {
     });
 
     $('#student_form input').on('keyup blur', function () {
-        if ($('#student_form').valid()) {
-            $('#submit_student_btn').prop('disabled', false);
-        } else {
-            $('#submit_student_btn').prop('disabled', 'disabled');
-        }
+        validateStudentForm();
+    });
+
+    $('#faculty_name_student').on('change', function () {
+        $('#submit_student_btn').prop('disabled', 'disabled');
+        setTimeout(function () {
+            validateStudentForm();
+        },500);
+    });
+
+    $('#speciality_name_student').on('change', function () {
+        validateStudentForm();
     });
 
     $('#head_of_practice_form').validate({
@@ -164,3 +183,11 @@ $(document).ready(function () {
         }
     });
 });
+
+function validateStudentForm(){
+    if ($('#student_form').valid()) {
+        $('#submit_student_btn').prop('disabled', false);
+    } else {
+        $('#submit_student_btn').prop('disabled', 'disabled');
+    }
+}

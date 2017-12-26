@@ -154,6 +154,7 @@ function getPracticesRequests() {
                             .text(data[i].company + ' (F:' + checkNull(data[i].faculty) + ' S:' + checkNull(data[i].speciality) + ' M:' + checkNull(data[i].avrMark) + ') Available:' + data[i].availableQuantity));
                 }
             }
+            validateAssignForm();
         }
     });
 }
@@ -224,14 +225,13 @@ function selectionManager(e, rows) {
     let datas = $.map(!$.isArray(rows) ? [rows] : rows, function (row) {
             return {id: row.id, name: row.name+' '+row.surname, faculty: row.faculty, speciality: row.speciality, avrMark: row.avrMark, status: row.status};
         }),
-        func2 = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'union' : 'differenceBy';
+        func2 = $.inArray(e.type, ['check', 'check-all']) > -1 ? 'unionBy' : 'differenceBy';
 
     if($.inArray(e.type, ['check', 'check-all']) > -1) {
-        checkedRows = _[func2](checkedRows, datas);
+        checkedRows = _[func2](checkedRows, datas, 'id');
     }else{
         checkedRows = _[func2](checkedRows, datas, 'id');
     }
-    console.log(checkedRows);
 }
 
 function responseHandler(res) {

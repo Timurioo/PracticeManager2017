@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-4">Password:</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control" name="user_password" placeholder="Enter password...">
+                        <input type="password" class="form-control" name="user_password" placeholder="Enter password...">
                     </div>
                 </div>
                 <div class="form-group">
