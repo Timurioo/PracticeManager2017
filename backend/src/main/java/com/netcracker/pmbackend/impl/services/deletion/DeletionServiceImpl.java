@@ -44,6 +44,12 @@ public class DeletionServiceImpl implements DeletionService {
 
     @Transactional
     public void deletePractice(int id){
+        List<AssignStudentsEntity> assignStudentsEntityList = assignStudentsService.findByPracticeId(id);
+        for(AssignStudentsEntity assignStudentsEntity : assignStudentsEntityList){
+            StudentsEntity studentsEntity = studentsService.findById(assignStudentsEntity.getStudentId());
+            studentsEntity.setStatus("Available");
+            studentsService.save(studentsEntity);
+        }
         practicesService.delete(id);
     }
 

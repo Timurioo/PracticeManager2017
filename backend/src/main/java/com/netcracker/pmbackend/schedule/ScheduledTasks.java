@@ -43,7 +43,7 @@ public class ScheduledTasks {
             Date currentDate = new Date();
             if(currentDate.compareTo(startDate)<0){
                 updateStudentStatus(assignStudentsEntity.getStudentId(), "Waiting");
-            }else if(currentDate.compareTo(startDate)>=0 && currentDate.compareTo(finishDate)<=0){
+            }else if(currentDate.compareTo(startDate)>=0 && currentDate.compareTo(finishDate)<0){
                 updateStudentStatus(assignStudentsEntity.getStudentId(), "Busy");
             }else{
                 updateStudentStatus(assignStudentsEntity.getStudentId(), "Passed");
