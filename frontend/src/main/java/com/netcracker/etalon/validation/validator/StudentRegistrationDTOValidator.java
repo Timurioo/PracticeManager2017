@@ -37,7 +37,7 @@ public class StudentRegistrationDTOValidator implements Validator {
         final String FIELD_EMAIL = "email";
         final String FIELD_PHONE = "phone";
         final String FIELD_SURNAME = "surname";
-        final String FIELD_CLASS_GROUP = "classgroup";
+        final String FIELD_CLASS_GROUP = "group";
         final String FIELD_BUDGET = "budget";
         final String FIELD_AVR_MARK = "avrMark";
         final String FIELD_FACULTY_ID = "facultyId";
