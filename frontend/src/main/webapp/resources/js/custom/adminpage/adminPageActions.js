@@ -36,7 +36,7 @@ $(document).ready(function () {
     });
 
     elements.assignStudentsBtn.click(function () {
-        loadAssignStudentsTableDate();
+        loadAssignStudentsTableData();
     });
 
     elements.confirmAssignBtn.click(function () {
@@ -54,6 +54,11 @@ $(document).ready(function () {
 
     elements.studentsTable.on('post-header.bs.table',function () {
         setFilterSelectOptions();
+    });
+
+    elements.practicesSelect.change(function () {
+        elements.assignStudentsTable.find('tr.success').removeClass("success");
+        checkAssignTableRows();
     });
 
     setSearchFiledPlaceholder();
@@ -132,7 +137,7 @@ function deleteStudentAjaxRequest(){
     });
 }
 
-function loadAssignStudentsTableDate(){
+function loadAssignStudentsTableData(){
 
     elements.assignStudentsTable.bootstrapTable("load", checkedRows);
     getPracticesRequests();
@@ -151,10 +156,14 @@ function getPracticesRequests() {
                     elements.practicesSelect
                         .append($("<option></option>")
                             .attr("value", data[i].id)
+                            .attr("faculty", checkNull(data[i].faculty))
+                            .attr("speciality", checkNull(data[i].speciality))
+                            .attr("avrmark", checkNull(data[i].avrMark))
                             .text(data[i].company + ' (F:' + checkNull(data[i].faculty) + ' S:' + checkNull(data[i].speciality) + ' M:' + checkNull(data[i].avrMark) + ') Available:' + data[i].availableQuantity));
                 }
             }
             validateAssignForm();
+            checkAssignTableRows();
         }
     });
 }
@@ -264,11 +273,43 @@ function setFilterSelectOptions(){
         elements.filterSelectForStatus.append($("<option value='Busy'>Busy</option>"));
     }
 
+    if(!elements.filterSelectForStatus.find("option[value='Passed']").length){
+        elements.filterSelectForStatus.append($("<option value='Passed'>Passed</option>"));
+    }
+
     if(!elements.filterSelectForBudget.find("option[value='Budget']").length){
         elements.filterSelectForBudget.append($("<option value='Budget'>Budget</option>"));
     }
 
     if(!elements.filterSelectForBudget.find("option[value='Chargeable']").length){
         elements.filterSelectForBudget.append($("<option value='Chargeable'>Chargeable</option>"));
+    }
+}
+
+function checkAssignTableRows() {
+    let optionSelector = 'option:selected';
+    let rows = elements.assignStudentsTable.bootstrapTable('getData',true);
+    let faculty = $(optionSelector, elements.practicesSelect).attr("faculty");
+    let speciality = $(optionSelector, elements.practicesSelect).attr("speciality");
+    let avrMark = $(optionSelector, elements.practicesSelect).attr("avrmark");
+    for(let i in rows){
+        if(faculty!=""){
+            if(rows[i].faculty != faculty) {
+                continue;
+            }
+        }
+
+        if(speciality!=""){
+            if(rows[i].speciality != speciality) {
+                continue;
+            }
+        }
+
+        if(avrMark!=""){
+            if(rows[i].avrMark < avrMark) {
+                continue;
+            }
+        }
+        elements.assignStudentsTable.find('tr[data-index=' + i + ']').addClass("success");
     }
 }
