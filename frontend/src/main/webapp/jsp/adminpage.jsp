@@ -5,7 +5,8 @@
         <title>Administration</title>
         <jsp:include page="/jsp/blocks/siteresourceslinks.jsp"/>
 
-        <link rel="stylesheet" href="../resources/css/bootstrap-table.css">
+        <link rel="stylesheet" href="../resources/css/bootstrap-table.css"/>
+        <link rel="stylesheet" href="../resources/css/custom/assignTable.css"/>
         <script src="../resources/js/bootstrap-table.js"></script>
         <script src="../resources/js/lodash.min.js"></script>
         <script src="../resources/js/bootstrap-table-filter-control.min.js"></script>
@@ -115,22 +116,23 @@
                     </div>
                     <div class="modal-body">
                         <h2 class="text-center">Assign information:</h2>
-
-                        <div class="table-responsive">
-                            <table class="table table-no-bordered"
-                                   id="assign_student_table"
-                                   data-toggle="table"
-                                   data-classes="table table-no-bordered"
-                                   data-click-to-select="true">
-                                <thead>
-                                    <tr>
-                                        <th data-field="name">Student name</th>
-                                        <th data-field="faculty">Faculty</th>
-                                        <th data-field="speciality">Speciality</th>
-                                        <th data-field="avrMark">Average mark</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                        <div class="assignTable">
+                            <div class="table-responsive">
+                                <table class="table table-no-bordered"
+                                       id="assign_student_table"
+                                       data-toggle="table"
+                                       data-classes="table table-no-bordered"
+                                       data-click-to-select="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="name">Student name</th>
+                                            <th data-field="faculty">Faculty</th>
+                                            <th data-field="speciality">Speciality</th>
+                                            <th data-field="avrMark">Average mark</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                         <br/>
                         <form id="assign_form">
