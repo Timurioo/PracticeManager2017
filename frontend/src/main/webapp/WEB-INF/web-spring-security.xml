@@ -19,6 +19,21 @@
         <intercept-url pattern="/registration" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/registration/*" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/curator/*" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_HEADOFPRACTICE')"/>
+        <intercept-url pattern="/assignStudents" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/faculties" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/faculties/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/headOfPractice" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/headOfPractice/**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_HEADOFPRACTICE')"/>
+        <intercept-url pattern="/practicesRequests" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/practices" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/practices/*" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/practices/curator/*" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_HEADOFPRACTICE')"/>
+        <intercept-url pattern="/specialities" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/specialities/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/students" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/students" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/students/*" access="hasRole('ROLE_STUDENT') or hasRole('ROLE_ADMIN') or hasRole('ROLE_HEADOFPRACTICE')"/>
+        <intercept-url pattern="/students/practiceData/curator/**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_HEADOFPRACTICE')"/>
         <intercept-url pattern="/jsp/*" access="denyAll"/>
         <csrf disabled="true"/>
 
