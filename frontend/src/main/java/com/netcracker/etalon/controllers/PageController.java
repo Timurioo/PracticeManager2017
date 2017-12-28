@@ -16,11 +16,6 @@ public class PageController {
         return customViewResolver.resolveHomePageByRole();
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String goToLoginPage() {
-        return "login";
-    }
-
     @RequestMapping(value = "/authorization", method = RequestMethod.GET)
     public String goToAuthorizationPage() {
         return "authorization";

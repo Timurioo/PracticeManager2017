@@ -5,7 +5,7 @@ $(document).ready(function () {
             name_s: {
                 required: true,
                 minlength: 2,
-                maxlength: 20,
+                maxlength: 15,
                 lettersonly: true
             },
             surname_s: {
@@ -62,7 +62,7 @@ $(document).ready(function () {
             name_s: {
                 required: "<span class='glyphicon glyphicon-exclamation-sign'></span> Required field.",
                 minlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Min length: 2.",
-                maxlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Max length: 20.",
+                maxlength: "<span class='glyphicon glyphicon-exclamation-sign'></span> Max length: 15.",
                 lettersonly: "<span class='glyphicon glyphicon-exclamation-sign'></span> Only letters."
             },
             surname_s: {
