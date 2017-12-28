@@ -38,6 +38,14 @@ $(document).ready(function () {
         registrationHeadOfPracticeAjaxRequest()
     });
 
+    elements.alertCloseBtn.click(function () {
+        window.location.replace("/registration");
+    });
+
+    elements.alertModal.on('hidden.bs.modal', function () {
+        window.location.replace("/registration");
+    })
+
 });
 
 function registrationHeadOfPracticeAjaxRequest() {
@@ -70,9 +78,6 @@ function registrationHeadOfPracticeAjaxRequest() {
             if(!data){
                 elements.alertText.html("Head of practice");
                 elements.alertModal.modal("show");
-                elements.alertCloseBtn.click(function () {
-                    window.location.replace("/registration");
-                });
             }
         }
     })
@@ -156,9 +161,6 @@ function registrationStudentAjaxRequest() {
             if(!data){
                 elements.alertText.html("Student");
                 elements.alertModal.modal("show");
-                elements.alertCloseBtn.click(function () {
-                    window.location.replace("/registration");
-                });
             }
 
         }

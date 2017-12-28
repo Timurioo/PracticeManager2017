@@ -27,6 +27,14 @@ $(document).ready(function () {
         registrationPracticeAjaxRequest();
     });
 
+    elements.alertCloseBtn.click(function () {
+        window.location.replace("/registration/practice");
+    });
+
+    elements.alertModal.on('hidden.bs.modal', function () {
+        window.location.replace("/registration/practice");
+    })
+
 });
 
 
@@ -135,9 +143,6 @@ function registrationPracticeAjaxRequest() {
             if(!data){
                 elements.alertText.html("Practice request");
                 elements.alertModal.modal("show");
-                elements.alertCloseBtn.click(function () {
-                    window.location.replace("/registration/practice");
-                });
             }
         }
     })

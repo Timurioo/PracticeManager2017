@@ -22,6 +22,13 @@ $(document).ready( function () {
         registrationSpecialityAjaxRequest();
     });
 
+    elements.alertCloseBtn.click(function () {
+        window.location.replace("/registration/faculty");
+    });
+
+    elements.alertModal.on('hidden.bs.modal', function () {
+        window.location.replace("/registration/faculty");
+    })
 });
 
 function registrationFacultyAjaxRequest(){
@@ -40,9 +47,6 @@ function registrationFacultyAjaxRequest(){
             if(!data){
                 elements.alertText.html("Faculty");
                 elements.alertModal.modal("show");
-                elements.alertCloseBtn.click(function () {
-                    window.location.replace("/registration/faculty");
-                });
             }
         }
     })
@@ -70,9 +74,6 @@ function registrationSpecialityAjaxRequest(){
             if(!data){
                 elements.alertText.html("Speciality");
                 elements.alertModal.modal("show");
-                elements.alertCloseBtn.click(function () {
-                    window.location.replace("/registration/faculty");
-                });
             }
         }
     })
