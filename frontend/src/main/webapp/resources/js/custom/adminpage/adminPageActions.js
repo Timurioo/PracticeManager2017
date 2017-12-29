@@ -133,6 +133,8 @@ function deleteStudentAjaxRequest(){
             clearSelectedRows();
             elements.studentsTable.bootstrapTable('refresh');
             setDeleteButtonEnable();
+            setReleaseButtonEnable();
+            setAssignButtonEnable();
         }
     });
 }
@@ -195,6 +197,7 @@ function assignStudents() {
             elements.assignStudentsModal.modal('toggle');
             setDeleteButtonEnable();
             setAssignButtonEnable();
+            setReleaseButtonEnable();
             elements.studentsTable.bootstrapTable('refresh');
             elements.alertText.html("Student(s) has been assigned!");
             elements.alertModal.modal("show");
@@ -218,6 +221,7 @@ function releaseStudents() {
             clearSelectedRows();
             setDeleteButtonEnable();
             setReleaseButtonEnable();
+            setAssignButtonEnable();
             elements.studentsTable.bootstrapTable('refresh');
             elements.alertText.html("Student(s) has been released!");
             elements.alertModal.modal("show");

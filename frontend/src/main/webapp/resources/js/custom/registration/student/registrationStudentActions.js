@@ -19,7 +19,6 @@ $(document).ready(function () {
         studentGroupInputField : $('#group_student'),
         studentAvrMarkInputField : $('#average_mark_student'),
         studentBudgetRadioBtnField : $('#radio_Form'),
-        studentBudgetRadioBtnCheckedField : $("#radio_Form input[type='radio']:checked"),
         alertModal: $('#alert_modal'),
         alertText: $('#alert_text'),
         alertCloseBtn: $('#alert_close_btn')
@@ -99,7 +98,7 @@ function registrationStudentAjaxRequest() {
             "specialityId":elements.specialityNameSelectionField.val(),
             "group":elements.studentGroupInputField.val(),
             "avrMark":elements.studentAvrMarkInputField.val(),
-            "budget":elements.studentBudgetRadioBtnCheckedField.val()}),
+            "budget":elements.studentBudgetRadioBtnField.find("input[type='radio']:checked").val()}),
         success: function (data) {
 
 
