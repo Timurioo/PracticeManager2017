@@ -1,0 +1,11 @@
+package com.chekh.pmbackend.repository;
+
+import com.chekh.pmbackend.impl.entities.SpecialityEntity;
+import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+public interface SpecialityRepository extends CrudRepository<SpecialityEntity, Integer> {
+
+    List<SpecialityEntity> findByFacultyId(int facultyId);
+    SpecialityEntity findByName(String name);
+}

@@ -24,7 +24,7 @@
         </property>
         <!--поиск сущностей в этом пакете-->
         <property name="packagesToScan"
-                  value="com.netcracker"/>
+                  value="com.chekh"/>
     </bean>
 
     <!-- Datasource. Источник данных - база MySQL -->
@@ -40,10 +40,10 @@
     <context:annotation-config/>
 
     <!--Scanning components in base-package (look for annotations) -->
-    <context:component-scan base-package="com.netcracker"/>
+    <context:component-scan base-package="com.chekh"/>
 
     <!-- Need for Repository abstraction -->
-    <jpa:repositories base-package="com.netcracker.pmbackend.repository" entity-manager-factory-ref="emf"
+    <jpa:repositories base-package="com.chekh.pmbackend.repository" entity-manager-factory-ref="emf"
                       transaction-manager-ref="transactionManager"/>
 
 </beans>

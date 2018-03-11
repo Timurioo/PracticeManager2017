@@ -4,18 +4,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-        <bean id="conversionService" class="com.netcracker.etalon.converters.CustomConvertersRegister">
+        <bean id="conversionService" class="com.chekh.pmfrontend.converters.CustomConvertersRegister">
             <property name="converters">
                 <set>
-                    <bean class="com.netcracker.etalon.converters.custom.StudentEntityToStudentProfileViewModel"/>
-                    <bean class="com.netcracker.etalon.converters.custom.StudentEntityToStudentAndPracticeConverter"/>
-                    <bean class="com.netcracker.etalon.converters.entities.FacultyEntityToFacultyViewModelConverter"/>
-                    <bean class="com.netcracker.etalon.converters.entities.SpecialityEntityToSpecialityViewModelConverter"/>
-                    <bean class="com.netcracker.etalon.converters.entities.UserEntityToUserViewModelConverter"/>
-                    <bean class="com.netcracker.etalon.converters.entities.StudentEntityToStudentViewModelConverter"/>
-                    <bean class="com.netcracker.etalon.converters.entities.HeadOfPracticeEntityToHeadOfPracticeViewModelConverter"/>
-                    <bean class="com.netcracker.etalon.converters.entities.PracticeEntityToPracticeViewModelConverter"/>
-                    <bean class="com.netcracker.etalon.converters.entities.AssignStudentEntityToAssignStudentViewModelConverter"/>
+                    <bean class="com.chekh.pmfrontend.converters.custom.StudentEntityToStudentProfileViewModel"/>
+                    <bean class="com.chekh.pmfrontend.converters.custom.StudentEntityToStudentAndPracticeConverter"/>
+                    <bean class="com.chekh.pmfrontend.converters.entities.FacultyEntityToFacultyViewModelConverter"/>
+                    <bean class="com.chekh.pmfrontend.converters.entities.SpecialityEntityToSpecialityViewModelConverter"/>
+                    <bean class="com.chekh.pmfrontend.converters.entities.UserEntityToUserViewModelConverter"/>
+                    <bean class="com.chekh.pmfrontend.converters.entities.StudentEntityToStudentViewModelConverter"/>
+                    <bean class="com.chekh.pmfrontend.converters.entities.HeadOfPracticeEntityToHeadOfPracticeViewModelConverter"/>
+                    <bean class="com.chekh.pmfrontend.converters.entities.PracticeEntityToPracticeViewModelConverter"/>
+                    <bean class="com.chekh.pmfrontend.converters.entities.AssignStudentEntityToAssignStudentViewModelConverter"/>
                 </set>
             </property>
         </bean>

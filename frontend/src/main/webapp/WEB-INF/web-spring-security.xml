@@ -51,7 +51,7 @@
     </http>
 
 
-  <beans:bean id="customUserDetailsService" class="com.netcracker.etalon.security.CustomUserDetailService"/>
+  <beans:bean id="customUserDetailsService" class="com.chekh.pmfrontend.security.CustomUserDetailService"/>
 
 
     <authentication-manager>
