@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("jpaHeadofpracticesService")
+@Service("jpaHeadOfPracticesService")
 @Transactional
-public class HeadofpracticesServiceImpl implements HeadofpracticesService {
+public class HeadOfPracticesServiceImpl implements HeadofpracticesService {
 
     @Autowired
     private HeadofpracticesRepository headofpracticesRepository;
