@@ -1,8 +1,11 @@
 package com.chekh.pmbackend.impl.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by dima on 12/6/2017.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FilterData {
 
     private String budget;
